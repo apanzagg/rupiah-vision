@@ -123,7 +123,8 @@ def grad_dist(id_a: str, id_b: str, rot_b: int) -> float:
     return float(np.abs(a - b).sum() / (a.sum() + b.sum() + 1e-6))
 
 
-def stratified_group_split(groups: dict[int, list[int]], rows: list[dict], rng: random.Random) -> dict[int, str]:
+def stratified_group_split(groups: dict[int, list[int]], rows: list[dict], rng: random.Random,
+                           force_slugs: frozenset = frozenset()) -> dict[int, str]:
     cats = CLASSES + ["neg"]
     cidx = {c: i for i, c in enumerate(cats)}
     vec, forced = {}, {}
@@ -136,7 +137,8 @@ def stratified_group_split(groups: dict[int, list[int]], rows: list[dict], rng: 
             for c in set(r["classes"].split()):
                 v[cidx[CLASSES[int(c)]]] += 1
         vec[g] = v
-        forced[g] = any(int(rows[m]["augmented"]) for m in members)
+        # salinan augmentasi & sumber berlabel bising (force_train_sources) hanya boleh di train
+        forced[g] = any(int(rows[m]["augmented"]) or rows[m]["slug"] in force_slugs for m in members)
     total = sum(vec.values())
     target = FRACS[:, None] * np.maximum(total[None, :], 1)
     cur = np.zeros((3, len(cats)))
@@ -215,6 +217,31 @@ def main() -> None:
         r["classes"] = " ".join(sorted(str(int(a[0])) for a in keep))
         r["n_boxes"] = str(len(keep))
         return len(bx) - len(keep)
+
+    # perbaikan label hasil audit (configs/label_fixes.csv: id,action,from_class,to_class,reason)
+    fix_file = CONFIGS / "label_fixes.csv"
+    if fix_file.exists():
+        by_id = {r["id"]: r for r in rows}
+        n_fix = Counter()
+        for fx in csv.DictReader(open(fix_file, encoding="utf-8")):
+            r = by_id.get(fx["id"])
+            if r is None:
+                continue
+            if fx["action"] == "drop_image":
+                r["status"] = "fix_drop"
+                n_fix["drop_image"] += 1
+            elif fx["action"] == "relabel":
+                lp = pool / "labels" / f"{r['id']}.txt"
+                src_c, dst_c = str(CLASSES.index(fx["from_class"])), str(CLASSES.index(fx["to_class"]))
+                lines = [l.split() for l in lp.read_text().splitlines() if len(l.split()) == 5]
+                for l in lines:
+                    if l[0] == src_c:
+                        l[0] = dst_c
+                lp.write_text("".join(" ".join(l) + "\n" for l in lines))
+                r["classes"] = " ".join(sorted(l[0] for l in lines))
+                n_fix["relabel"] += 1
+        report["label_fixes"] = dict(n_fix)
+        print("perbaikan label:", dict(n_fix))
 
     if excl.get("strip_nested_boxes"):
         stripped = sum(strip_nested(r) for r in rows if r["role"] == "pos" and r["status"] == "ok")
@@ -316,7 +343,7 @@ def main() -> None:
     groups = defaultdict(list)
     for i in alive:
         groups[grp_uf.find(i)].append(i)
-    assign = stratified_group_split(groups, rows, rng)
+    assign = stratified_group_split(groups, rows, rng, frozenset(excl.get("force_train_sources") or []))
 
     # tulis dataset final
     if FINAL.exists():

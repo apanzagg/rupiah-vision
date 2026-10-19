@@ -1,18 +1,38 @@
 # Catatan Eksperimen
 
-Setiap angka di bawah berasal dari eksekusi nyata: `runs/<run>/metrics.json` (PyTorch, Ultralytics val) dan
-`export/<run>/variants.json` (ONNX) yang diunduh dari kernel Kaggle `suararupiah-train` ke `training/kaggle_out/train/`.
-mAP dihitung pada **split test** (tidak dipakai untuk training maupun pemilihan model), kecuali disebut lain.
+Setiap angka di bawah berasal dari eksekusi nyata: `dedup_report.json` (kernel `suararupiah-data`/`suararupiah-build`),
+`runs/<run>/metrics.json` (PyTorch, Ultralytics val) dan `export/<run>/variants.json` (ONNX) yang diunduh dari kernel
+Kaggle ke `training/kaggle_out/`. mAP dihitung pada **split test** (tidak dipakai untuk training maupun pemilihan model),
+kecuali disebut lain.
 
 ## Iterasi data (sebelum training)
 
-| Iterasi | Perubahan | Hasil |
-|---|---|---|
-| D1 | Pool awal dari 44 sumber; dedup union-find transitif (pHash + warna + gradien) | 69.624 citra di pool, 38.250 setelah dedup; 5.299 citra terbuang sebagai "konflik label" (824 klaster) |
-| D2 | Analisis konflik: mayoritas hanya beda **jumlah** box untuk foto sama, diperparah rantai union-find (klaster hingga 153 citra). Dedup diganti serakah **non-transitif**; beda jumlah box bukan konflik (anotasi per lembar dipertahankan) | lihat bawah |
-| D3 | Pemeriksaan visual crop per sumber: `malik-project/deteksi-uang-rupiah-50fx4` memberi box pada **bagian** uang (angka/potret/sudut), dikeluarkan; foto lampu UV (`bima-dcfqn/*`) disaring | lihat bawah |
+Pool awal: **69.624 citra** dari 44 sumber Roboflow + 1 dataset Kaggle (setelah normalisasi kelas & validasi box).
+
+| Iterasi | Perubahan | Citra final | Konflik label (citra dibuang) | Catatan |
+|---|---|---|---|---|
+| D1 | Dedup union-find transitif (pHash 4 rotasi + warna + gradien) | 38.250 | 5.299 (824 klaster) | Klaster terbesar 153 citra: satu beda label membuang seluruh rantai |
+| D2 | Dedup serakah **non-transitif**; beda *jumlah* box bukan konflik (anotasi per lembar dipertahankan); `malik-project` dikeluarkan (anotasi per-bagian); filter foto UV untuk `bima-dcfqn/*` | 39.681 | 250 (125 pasangan) | 2.663 duplikat beda-jumlah-box, 1.632 foto UV terbuang |
+| D3 | Audit gaya anotasi (`audit_sources.py`): `hmmakmur/nominal-rupiah`, `putra-p21x4/project-ka` (dominan per-bagian) dan `bima-dcfqn/*` (UV lolos filter) dikeluarkan; **box bagian bersarang** (≥80% di dalam box sekelas yang lebih besar) dibuang untuk semua sumber | **38.430** | 246 (123 pasangan) | 11.359 box bagian dibuang; nest_rate maks. turun 0,73 → 0,05 |
+
+Pemeriksaan visual konflik D2/D3 (`reports/sheets/conflicts_*.jpg`): mayoritas adalah **salah label sungguhan** pada foto
+identik, pola "salah jumlah nol" (Rp1.000 ditulis 10000, Rp2.000 ditulis 20000, Rp5.000 ditulis 50000), terutama di
+`duit/deteksi-uang-4lt3e`, `teamkito-labs/uang-wfprv`, `test-eyksp/tugas-pemodelan-data-rupiah`,
+`remedial-data-mining/deteksi-uang-zyvb3`. Konflik yang tertangkap dedup hanya yang kebetulan punya duplikat; sisanya
+dicari dengan **audit berbasis model** (ronde 1).
+
+Split D3 (objek per kelas):
+
+| Split | Citra | Negatif | Rp1.000 | Rp2.000 | Rp5.000 | Rp10.000 | Rp20.000 | Rp50.000 | Rp100.000 |
+|---|---|---|---|---|---|---|---|---|---|
+| train | 27.157 | 2.692 | 3.424 | 3.185 | 4.221 | 4.074 | 3.745 | 4.397 | 4.155 |
+| val | 5.812 | 576 | 765 | 680 | 785 | 771 | 800 | 812 | 781 |
+| test | 5.461 | 576 | 779 | 682 | 796 | 782 | 803 | 821 | 800 |
+
+Rasio kelas terbanyak/tersedikit di train = 1,38 sehingga **oversampling tidak dipakai** (daftar `train_balanced.txt`
+tetap dibuat untuk eksperimen bila diperlukan).
 
 ## Training
 
-| Run | Perubahan | mAP50 (test) | mAP50-95 (test) | Catatan |
-|---|---|---|---|---|
+| Run | Data | Perubahan | mAP50 (test) | mAP50-95 (test) | Catatan |
+|---|---|---|---|---|---|
