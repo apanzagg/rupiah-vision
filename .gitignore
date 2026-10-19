@@ -45,3 +45,4 @@ web/public/models/
 web/public/parity/
 web/public/ort/
 web/tests/e2e/.fake/
+data/final_test/
