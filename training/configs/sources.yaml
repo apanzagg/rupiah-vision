@@ -1,0 +1,60 @@
+# Sumber dataset terpilih. Dipilih dari survei 2026-10-19 (data/interim/rf_survey.csv).
+# Kriteria: lisensi jelas (CC BY 4.0 / Public Domain / MIT / CC0 / Apache-2.0),
+# object detection (atau klasifikasi per folder untuk auto-label), versi TANPA augmentasi bila ada.
+# Versi dengan augmentasi hanya dipakai jika augmentasinya tanpa flip (cermin).
+# role: positive = rupiah kertas; negative = semua box dibuang, citra jadi citra negatif.
+
+roboflow:
+  # --- positif, versi tanpa augmentasi ---
+  - {slug: coin-new/uang-rupiah-kertas-dan-koin-by-adelia-clarissa-zzt2j, version: 11, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: craft-model/rupiah-currentcy-public-v2, version: 8, role: positive, license: Public Domain, aug: none}
+  - {slug: test-eyksp/tugas-pemodelan-data-rupiah, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: currency-yimpm/deteksiuang-xllap, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: andri/idr_money_detection, version: 3, role: positive, license: Public Domain, aug: none}
+  - {slug: 2210511040-mahasiswa-upnvj-ac-id/dataset-uang-rupiah-kertas, version: 5, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: duit/deteksi-uang-4lt3e, version: 1, role: positive, license: Public Domain, aug: none}
+  - {slug: tugas-akhir-xq8lu/train-6bmh8, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: bima-dcfqn/ini-uang, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: bima-dcfqn/uang-1, version: 2, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: nanabanana/rupiah-detector-zrmyf, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: ramzi-guyzk/uang-rupiah-li6sa, version: 2, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: 4ia17ottos-workspace/moneydetection-uetq8, version: 14, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: dakhmadlearner/deteksi-uang-kertas-rupiah, version: 3, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: ramziahmar-sdckt/uang-yolo, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: shuttlecock-6uoyv/eas-vision, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: rupiah-detector/rupiah-detector-qzmb7, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: tugas-akhir-afuhz/rupiah-m55hl, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: ilham-project/data-mining-n52lu, version: 1, role: positive, license: Public Domain, aug: none}
+  - {slug: hmmakmur/nominal-rupiah, version: 17, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: agil-skripsi-3/fix-indonesia-rupiah-banknote-7-cls, version: 13, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black, version: 16, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: universitas-amikom-yogyakarta-uxsjx/deteksi-uang-2, version: 2, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: uang-rupiah/uang-rupiah-oyrxk, version: 2, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: image-processing-re77r/rupiah-detection-7nuxw, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: malik-project/deteksi-uang-rupiah-50fx4, version: 2, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: yudhi/uang-rupiah-sjt3b, version: 1, role: positive, license: CC BY 4.0, aug: none}
+  - {slug: putra-p21x4/project-ka, version: 5, role: positive, license: CC BY 4.0, aug: none}
+  # --- positif, hanya tersedia versi augmentasi TANPA flip (dikelompokkan per citra asal saat split) ---
+  - {slug: teamkito-labs/uang-wfprv, version: 3, role: positive, license: CC BY 4.0, aug: "x2 rotate ninety"}
+  - {slug: rizkynindra-wsxpl/rupiah-detection, version: 11, role: positive, license: CC BY 4.0, aug: "x3 rotate"}
+  - {slug: remedial-data-mining/deteksi-uang-zyvb3, version: 1, role: positive, license: CC BY 4.0, aug: "x3 rotate ninety"}
+  - {slug: blind-aid/uang-5z9jp, version: 1, role: positive, license: CC BY 4.0, aug: "x3 ninety blur brightness rotate"}
+  - {slug: netrasense/netrasense, version: 1, role: positive, license: CC BY 4.0, aug: "x3 brightness rotate blur shear noise exposure ninety"}
+  # --- negatif: uang asing (semua box dibuang) ---
+  - {slug: mata-uang/currency-detection-y4tb2, version: 9, role: negative, license: CC BY 4.0, aug: none, drop_images_with: ["Indonesian Rupiah"]}
+  - {slug: kalumkoi/banknote-68gsn, version: 1, role: negative, license: CC BY 4.0, aug: none}
+  - {slug: dell-lead-7wvtm/banknote-recognition, version: 9, role: negative, license: CC BY 4.0, aug: none}
+
+kaggle:
+  # klasifikasi per folder -> perlu auto-label bounding box
+  - {ref: daniakhmadmaulana/citra-uang-rupiah-emisi-2022, role: positive_cls, license: MIT}
+  - {ref: indahtricahyani/kondisi-uang-kertas-rupiah, role: inspect, license: CC0-1.0}
+  - {ref: elvinjaya6/deteksi-uang-kertas, role: inspect, license: Apache-2.0}
+  - {ref: erichaw/uang-rupiah-wendy, role: inspect, license: Apache-2.0}
+
+# Dikecualikan (dicatat di docs/SUMBER_DATASET.md):
+# - lisensi "Private": craft-model/rupiah-currentcy-detection(-v2), machine-learning-pmhkb/deteksi-rupiah-jkkmu
+# - lisensi Kaggle "Unknown"/"Other" tanpa keterangan: anidwiastuti/rupiah-banknotes-dataset, fannyzahrahramadhan/*,
+#   nurulalfiyyah/rupiah-banknotes, brotoa/*, dimaswara/*, fzmhww8782/rupiah-22, hashimatulzaria/*
+# - hanya versi augmentasi dengan flip: banyak proyek (lihat rf_survey.csv)

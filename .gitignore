@@ -1,0 +1,38 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Kredensial (JANGAN di-commit)
+.env
+kaggle.json
+access_token
+*.key
+
+# Data & artefak training (besar, tidak di-commit)
+data/raw/
+data/interim/
+data/final/
+data/test_conditions/
+data/cache/
+training/runs/
+training/outputs/
+training/kaggle_out/
+runs/
+*.pt
+*.cache
+!models/**/*.onnx
+
+# Web
+web/node_modules/
+web/dist/
+web/test-results/
+web/playwright-report/
+web/.vite/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

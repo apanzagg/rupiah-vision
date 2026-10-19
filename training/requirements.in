@@ -1,0 +1,16 @@
+# Dependensi tingkat atas (versi lengkap terkunci ada di requirements.txt hasil pip freeze)
+--extra-index-url https://download.pytorch.org/whl/cpu
+ultralytics==8.3.253
+torch==2.7.1+cpu
+torchvision==0.22.1+cpu
+roboflow
+kaggle
+opencv-python
+onnx
+onnxruntime
+onnxconverter-common
+onnxslim
+imagehash
+albumentations
+pandas
+matplotlib
