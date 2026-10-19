@@ -1,11 +1,12 @@
 # Job training untuk kernel Kaggle "suararupiah-train" (dibaca training/kaggle/train/main.py).
 # Setiap percobaan dicatat di docs/EKSPERIMEN.md.
-# Ronde 1 (audit): model cepat untuk menemukan label salah per sumber sebelum training final.
+# Ronde 2 (final): data D4 (pembersihan hasil audit), dua ukuran input dibandingkan, berjalan berurutan dalam satu sesi.
 version: v1
 runs:
-  - {name: e0_r320_audit, imgsz: 320, epochs: 30, patience: 10, batch: 64, args: {cache: ram, train-list: images/train}}
-parallel: false
-max_hours: 4.0
-export: false
-save_test: false
-audit: true
+  - {name: e1_r320, imgsz: 320, epochs: 80, patience: 20, batch: 64, args: {cache: ram, train-list: images/train}}
+  - {name: e1_r416, imgsz: 416, epochs: 80, patience: 20, batch: 64, args: {cache: ram, train-list: images/train}}
+parallel: false   # berurutan: CPU (4 core) adalah bottleneck dan cache RAM dua run paralel berisiko OOM
+max_hours: 4.5   # per run; dua run berurutan + ekspor < batas sesi Kaggle 12 jam
+export: true
+save_test: true
+audit: false

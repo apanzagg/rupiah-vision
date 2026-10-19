@@ -8,6 +8,8 @@ exclude_sources:
   putra-p21x4/project-ka: "dominan anotasi per-bagian uang (4,4 box/citra, nest_rate 0,73)"
   bima-dcfqn/ini-uang: "sebagian besar foto di bawah lampu UV untuk cek keaslian; filter warna tidak cukup andal karena bingkai hitam"
   bima-dcfqn/uang-1: "sebagian besar foto di bawah lampu UV untuk cek keaslian"
+  tugas-akhir-xq8lu/train-6bmh8: "audit model: salah label parah (Rp10.000 emisi 2022 berlabel 20000, koin Rp1.000 berlabel uang kertas), 45% box tidak cocok"
+  sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1: "koin Rp1.000 diberi label uang kertas 1000 (pemeriksaan visual crop + audit model)"
 
 # Sumber yang citra lampu UV-nya (dominan ungu) dibuang
 uv_filter_sources: []

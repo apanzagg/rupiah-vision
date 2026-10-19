@@ -36,3 +36,4 @@ tetap dibuat untuk eksperimen bila diperlukan).
 
 | Run | Data | Perubahan | mAP50 (test) | mAP50-95 (test) | Catatan |
 |---|---|---|---|---|---|
+| e0_r320_audit | D3 | YOLOv8n, imgsz 320, 30 epoch (patience 10), batch 64, cache RAM, augmentasi kustom; tujuan: model audit label | 0,8393 | 0,6647 | 57 menit (T4). val mAP50 0,8440. AP50 per kelas: 1000 0,903 · 2000 0,833 · 5000 0,767 · 10000 0,776 · 20000 0,808 · 50000 0,954 · 100000 0,835. Confusion matrix: salah kelas antar-nominal ≤3%; kesalahan dominan = uang tidak terdeteksi/terlokalisasi (5 sampai 18% per kelas) dan prediksi tanpa label (10 sampai 18%) |

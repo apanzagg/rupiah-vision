@@ -40,6 +40,7 @@ def main() -> None:
     ap.add_argument("--data-root", default="/tmp/final")
     ap.add_argument("--imgsz", type=int, default=320)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--device", default="")
     args = ap.parse_args()
     from ultralytics import YOLO
 
@@ -51,8 +52,12 @@ def main() -> None:
     rows = []
     for split in ("train", "val", "test"):
         imgs = sorted((root / "images" / split).glob("*.jpg"))
-        for res in model.predict([str(p) for p in imgs], imgsz=args.imgsz, conf=0.25, iou=0.45, agnostic_nms=True,
-                                 stream=True, verbose=False, batch=64):
+        # diproses per potongan: memberi seluruh daftar sekaligus membuat proses kehabisan memori (exit 137)
+        def chunks():
+            for k in range(0, len(imgs), 256):
+                yield from model.predict([str(p) for p in imgs[k : k + 256]], imgsz=args.imgsz, conf=0.25, iou=0.45,
+                                         agnostic_nms=True, stream=True, verbose=False, batch=32, device=args.device or None)
+        for res in chunks():
             p = Path(res.path)
             h, w = res.orig_shape
             gt = []
