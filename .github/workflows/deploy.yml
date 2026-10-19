@@ -24,6 +24,8 @@ jobs:
         working-directory: web
     steps:
       - uses: actions/checkout@v4
+      - name: Pastikan model sudah terpasang (models/*.onnx)
+        run: ls ../models/*.onnx
       - uses: actions/setup-node@v4
         with:
           node-version: 24
