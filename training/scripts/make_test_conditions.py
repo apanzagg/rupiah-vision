@@ -179,10 +179,11 @@ def build() -> None:
         put("terlipat_tertutup", f"sint_{i}", synth_fold_occlude(img, boxes(lbl), rng), lbl.read_text().splitlines())
         n += 1
     meta["terlipat_tertutup"] = {"real": 0, "synthetic": n, "source": "SINTETIS: oklusi jari 20-45% box + lipatan pada citra test"}
-    # lusuh_kusut: label manual (configs/labels_kondisi.csv: file,kelas,x0,y0,x1,y1 relatif; kelas kosong = buang)
+    # lusuh_kusut & baru_pindaian: label manual (configs/labels_kondisi.csv: file,kondisi,kelas,x0,y0,x1,y1,catatan;
+    # kelas kosong = dibuang, mis. emisi lama / Rp75.000)
     lab_csv = CONFIGS / "labels_kondisi.csv"
     if lab_csv.exists():
-        k = 0
+        cnt: dict[str, int] = {}
         for r in csv.DictReader(open(lab_csv, encoding="utf-8")):
             if not r["kelas"]:
                 continue
@@ -191,9 +192,12 @@ def build() -> None:
                 continue
             x0, y0, x1, y1 = (float(r[c]) for c in ("x0", "y0", "x1", "y1"))
             line = f"{CLASSES.index(r['kelas'])} {(x0 + x1) / 2:.6f} {(y0 + y1) / 2:.6f} {x1 - x0:.6f} {y1 - y0:.6f}"
-            put("lusuh_kusut", Path(r["file"]).stem.replace(" ", "_"), img, [line])
-            k += 1
-        meta["lusuh_kusut"] = {"real": k, "synthetic": 0, "source": "Kaggle indahtricahyani/kondisi-uang-kertas-rupiah (CC0), label manual"}
+            name = Path(r["file"]).parent.name + "_" + Path(r["file"]).stem.replace(" ", "_").replace(".", "_")
+            put(r["kondisi"], name, img, [line])
+            cnt[r["kondisi"]] = cnt.get(r["kondisi"], 0) + 1
+        for k, n in cnt.items():
+            meta[k] = {"real": n, "synthetic": 0, "source": "Kaggle indahtricahyani/kondisi-uang-kertas-rupiah (CC0), "
+                       "pindaian uang (memenuhi bingkai), label nominal manual"}
     for cond, m in meta.items():
         (OUT / cond).mkdir(parents=True, exist_ok=True)
         (OUT / cond / "meta.json").write_text(json.dumps(m, indent=1), encoding="utf-8")

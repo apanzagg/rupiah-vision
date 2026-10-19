@@ -1,0 +1,372 @@
+[{"stream_name":"stdout","time":1.033631778,"data":"\n"}
+,{"stream_name":"stdout","time":1.033735729,"data":"$ nvidia-smi --query-gpu=name,memory.total --format=csv || true   [0 dtk]\n"}
+,{"stream_name":"stdout","time":1.067808956,"data":"name, memory.total [MiB]\n"}
+,{"stream_name":"stdout","time":1.067875378,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.067931092,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.074979132,"data":"\n"}
+,{"stream_name":"stdout","time":1.074998211,"data":"$ find /kaggle/input -maxdepth 3 -type d | head -30   [0 dtk]\n"}
+,{"stream_name":"stdout","time":1.09593417,"data":"/kaggle/input\n"}
+,{"stream_name":"stdout","time":1.095949375,"data":"/kaggle/input/datasets\n"}
+,{"stream_name":"stdout","time":1.09595258,"data":"/kaggle/input/datasets/indahtricahyani\n"}
+,{"stream_name":"stdout","time":1.095955062,"data":"/kaggle/input/datasets/indahtricahyani/kondisi-uang-kertas-rupiah\n"}
+,{"stream_name":"stdout","time":1.095957548,"data":"/kaggle/input/datasets/daniakhmadmaulana\n"}
+,{"stream_name":"stdout","time":1.095959833,"data":"/kaggle/input/datasets/daniakhmadmaulana/citra-uang-rupiah-emisi-2022\n"}
+,{"stream_name":"stdout","time":1.096734267,"data":"\n"}
+,{"stream_name":"stdout","time":1.096750168,"data":"$ pip install -q ultralytics==8.3.253   [0 dtk]\n"}
+,{"stream_name":"stdout","time":5.370929622,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 19.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":8.208805922,"data":"\n"}
+,{"stream_name":"stdout","time":8.208838769,"data":"$ cd /tmp/src/scripts \u0026\u0026 python fetch_rf_links.py /tmp/src/rf_links.json   [7 dtk]\n"}
+,{"stream_name":"stdout","time":72.970076564,"data":"  ok coin-new/uang-rupiah-kertas-dan-koin-by-adelia-clarissa-zzt2j: 9000 citra, 691 MB, 65 dtk\n"}
+,{"stream_name":"stdout","time":72.970106113,"data":"  ok craft-model/rupiah-currentcy-public-v2: 3405 citra, 122 MB, 21 dtk\n"}
+,{"stream_name":"stdout","time":72.970125676,"data":"  ok test-eyksp/tugas-pemodelan-data-rupiah: 3402 citra, 122 MB, 26 dtk\n"}
+,{"stream_name":"stdout","time":72.970131853,"data":"  ok currency-yimpm/deteksiuang-xllap: 3213 citra, 21 MB, 16 dtk\n"}
+,{"stream_name":"stdout","time":72.970136889,"data":"  ok andri/idr_money_detection: 2878 citra, 95 MB, 19 dtk\n"}
+,{"stream_name":"stdout","time":72.970142456,"data":"  ok 2210511040-mahasiswa-upnvj-ac-id/dataset-uang-rupiah-kertas: 2332 citra, 33 MB, 14 dtk\n"}
+,{"stream_name":"stdout","time":72.970337716,"data":"  ok duit/deteksi-uang-4lt3e: 2549 citra, 60 MB, 17 dtk\n"}
+,{"stream_name":"stdout","time":72.970402782,"data":"  ok tugas-akhir-xq8lu/train-6bmh8: 2394 citra, 26 MB, 15 dtk\n"}
+,{"stream_name":"stdout","time":72.970445294,"data":"  ok bima-dcfqn/ini-uang: 2249 citra, 78 MB, 18 dtk\n"}
+,{"stream_name":"stdout","time":72.970549212,"data":"  ok bima-dcfqn/uang-1: 745 citra, 23 MB, 6 dtk\n"}
+,{"stream_name":"stdout","time":72.970559516,"data":"  ok nanabanana/rupiah-detector-zrmyf: 1582 citra, 80 MB, 13 dtk\n"}
+,{"stream_name":"stdout","time":123.826319039,"data":"  ok ramzi-guyzk/uang-rupiah-li6sa: 1552 citra, 1785 MB, 88 dtk\n"}
+,{"stream_name":"stdout","time":123.82777465,"data":"  ok 4ia17ottos-workspace/moneydetection-uetq8: 1417 citra, 75 MB, 11 dtk\n"}
+,{"stream_name":"stdout","time":123.828154059,"data":"  ok dakhmadlearner/deteksi-uang-kertas-rupiah: 1400 citra, 62 MB, 11 dtk\n"}
+,{"stream_name":"stdout","time":123.828385008,"data":"  ok ramziahmar-sdckt/uang-yolo: 1287 citra, 346 MB, 23 dtk\n"}
+,{"stream_name":"stdout","time":123.829031864,"data":"  ok shuttlecock-6uoyv/eas-vision: 1080 citra, 36 MB, 5 dtk\n"}
+,{"stream_name":"stdout","time":123.82995361,"data":"  ok rupiah-detector/rupiah-detector-qzmb7: 1130 citra, 60 MB, 12 dtk\n"}
+,{"stream_name":"stdout","time":123.830874068,"data":"  ok tugas-akhir-afuhz/rupiah-m55hl: 746 citra, 147 MB, 14 dtk\n"}
+,{"stream_name":"stdout","time":123.831244724,"data":"  ok ilham-project/data-mining-n52lu: 692 citra, 4 MB, 9 dtk\n"}
+,{"stream_name":"stdout","time":123.832321806,"data":"  ok hmmakmur/nominal-rupiah: 654 citra, 42 MB, 6 dtk\n"}
+,{"stream_name":"stdout","time":123.83262634,"data":"  ok agil-skripsi-3/fix-indonesia-rupiah-banknote-7-cls: 644 citra, 40 MB, 5 dtk\n"}
+,{"stream_name":"stdout","time":123.832810748,"data":"  ok agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black: 420 citra, 13 MB, 3 dtk\n"}
+,{"stream_name":"stdout","time":123.833213461,"data":"  ok universitas-amikom-yogyakarta-uxsjx/deteksi-uang-2: 500 citra, 26 MB, 4 dtk\n"}
+,{"stream_name":"stdout","time":123.833331798,"data":"  ok uang-rupiah/uang-rupiah-oyrxk: 422 citra, 16 MB, 4 dtk\n"}
+,{"stream_name":"stdout","time":123.833338374,"data":"  ok image-processing-re77r/rupiah-detection-7nuxw: 392 citra, 31 MB, 4 dtk\n"}
+,{"stream_name":"stdout","time":123.833342106,"data":"  ok malik-project/deteksi-uang-rupiah-50fx4: 358 citra, 9 MB, 3 dtk\n"}
+,{"stream_name":"stdout","time":123.833345573,"data":"  ok sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1: 343 citra, 15 MB, 7 dtk\n"}
+,{"stream_name":"stdout","time":123.833349136,"data":"  ok yudhi/uang-rupiah-sjt3b: 333 citra, 17 MB, 1 dtk\n"}
+,{"stream_name":"stdout","time":123.833353933,"data":"  ok putra-p21x4/project-ka: 299 citra, 16 MB, 2 dtk\n"}
+,{"stream_name":"stdout","time":127.921160805,"data":"  ok teamkito-labs/uang-wfprv: 9780 citra, 254 MB, 56 dtk\n"}
+,{"stream_name":"stdout","time":127.921369365,"data":"  ok rizkynindra-wsxpl/rupiah-detection: 2304 citra, 90 MB, 14 dtk\n"}
+,{"stream_name":"stdout","time":127.921382475,"data":"  ok remedial-data-mining/deteksi-uang-zyvb3: 1327 citra, 36 MB, 9 dtk\n"}
+,{"stream_name":"stdout","time":127.921387431,"data":"  ok blind-aid/uang-5z9jp: 937 citra, 48 MB, 8 dtk\n"}
+,{"stream_name":"stdout","time":127.921562598,"data":"  ok netrasense/netrasense: 3638 citra, 199 MB, 29 dtk\n"}
+,{"stream_name":"stdout","time":128.053228768,"data":"  ok mata-uang/currency-detection-y4tb2: 2593 citra, 913 MB, 47 dtk\n"}
+,{"stream_name":"stdout","time":128.053255279,"data":"  ok kalumkoi/banknote-68gsn: 800 citra, 150 MB, 11 dtk\n"}
+,{"stream_name":"stdout","time":128.053260359,"data":"  ok dell-lead-7wvtm/banknote-recognition: 3255 citra, 239 MB, 31 dtk\n"}
+,{"stream_name":"stdout","time":128.053282351,"data":"  ok cj-gl8m1/receipt-ocr-cvfxx: 202 citra, 8 MB, 2 dtk\n"}
+,{"stream_name":"stdout","time":128.053286745,"data":"  ok receipt-lbosb/receipt-msfg0: 2129 citra, 131 MB, 19 dtk\n"}
+,{"stream_name":"stdout","time":128.053290364,"data":"  ok mohamed-hussam-cq81o/wallet-sn9n2: 418 citra, 16 MB, 3 dtk\n"}
+,{"stream_name":"stdout","time":128.053294337,"data":"  ok project-qysdi/wallet-iiyy3: 1089 citra, 43 MB, 9 dtk\n"}
+,{"stream_name":"stdout","time":128.053297565,"data":"  ok fastnucesuakqb/hand-object-detection-wyhyi: 788 citra, 91 MB, 12 dtk\n"}
+,{"stream_name":"stdout","time":128.053300588,"data":"  ok holeno/holding-hand-only: 419 citra, 24 MB, 6 dtk\n"}
+,{"stream_name":"stdout","time":128.053303719,"data":"  ok tugas-akhir-xq8lu/coin-rupiah: 248 citra, 3 MB, 5 dtk\n"}
+,{"stream_name":"stdout","time":128.053877907,"data":"Selesai mengunduh 44 sumber dalam 120 dtk\n"}
+,{"stream_name":"stdout","time":128.077342678,"data":"\n"}
+,{"stream_name":"stdout","time":128.07735998,"data":"$ cd /tmp/src/scripts \u0026\u0026 python ingest.py   [127 dtk]\n"}
+,{"stream_name":"stdout","time":129.364352746,"data":"  coin-new/uang-rupiah-kertas-dan-koin-by-adelia-clarissa-zzt2j: 8999 citra\n"}
+,{"stream_name":"stdout","time":129.633301081,"data":"  craft-model/rupiah-currentcy-public-v2: 3405 citra\n"}
+,{"stream_name":"stdout","time":129.909930136,"data":"  test-eyksp/tugas-pemodelan-data-rupiah: 3402 citra\n"}
+,{"stream_name":"stdout","time":130.186423684,"data":"  currency-yimpm/deteksiuang-xllap: 3213 citra\n"}
+,{"stream_name":"stdout","time":130.417222024,"data":"  andri/idr_money_detection: 2878 citra\n"}
+,{"stream_name":"stdout","time":130.704095513,"data":"  2210511040-mahasiswa-upnvj-ac-id/dataset-uang-rupiah-kertas: 2332 citra\n"}
+,{"stream_name":"stdout","time":130.943757668,"data":"  duit/deteksi-uang-4lt3e: 2549 citra\n"}
+,{"stream_name":"stdout","time":131.168706224,"data":"  tugas-akhir-xq8lu/train-6bmh8: 2394 citra\n"}
+,{"stream_name":"stdout","time":131.37856459,"data":"  bima-dcfqn/ini-uang: 2243 citra\n"}
+,{"stream_name":"stdout","time":131.437295504,"data":"  bima-dcfqn/uang-1: 688 citra\n"}
+,{"stream_name":"stdout","time":131.588020591,"data":"  nanabanana/rupiah-detector-zrmyf: 1581 citra\n"}
+,{"stream_name":"stdout","time":131.713804776,"data":"  ramzi-guyzk/uang-rupiah-li6sa: 1548 citra\n"}
+,{"stream_name":"stdout","time":131.829794161,"data":"  4ia17ottos-workspace/moneydetection-uetq8: 1417 citra\n"}
+,{"stream_name":"stdout","time":131.944559121,"data":"  dakhmadlearner/deteksi-uang-kertas-rupiah: 1399 citra\n"}
+,{"stream_name":"stdout","time":132.049749418,"data":"  ramziahmar-sdckt/uang-yolo: 1287 citra\n"}
+,{"stream_name":"stdout","time":132.135421984,"data":"  shuttlecock-6uoyv/eas-vision: 1079 citra\n"}
+,{"stream_name":"stdout","time":132.291660228,"data":"  rupiah-detector/rupiah-detector-qzmb7: 1129 citra\n"}
+,{"stream_name":"stdout","time":132.353081387,"data":"  tugas-akhir-afuhz/rupiah-m55hl: 746 citra\n"}
+,{"stream_name":"stdout","time":132.429146564,"data":"  ilham-project/data-mining-n52lu: 692 citra\n"}
+,{"stream_name":"stdout","time":132.529794627,"data":"  hmmakmur/nominal-rupiah: 654 citra\n"}
+,{"stream_name":"stdout","time":132.611103836,"data":"  agil-skripsi-3/fix-indonesia-rupiah-banknote-7-cls: 644 citra\n"}
+,{"stream_name":"stdout","time":132.646944718,"data":"  agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black: 420 citra\n"}
+,{"stream_name":"stdout","time":132.698226136,"data":"  universitas-amikom-yogyakarta-uxsjx/deteksi-uang-2: 500 citra\n"}
+,{"stream_name":"stdout","time":132.732684024,"data":"  uang-rupiah/uang-rupiah-oyrxk: 384 citra\n"}
+,{"stream_name":"stdout","time":132.765292035,"data":"  image-processing-re77r/rupiah-detection-7nuxw: 392 citra\n"}
+,{"stream_name":"stdout","time":132.800755048,"data":"  malik-project/deteksi-uang-rupiah-50fx4: 358 citra\n"}
+,{"stream_name":"stdout","time":132.8293683,"data":"  sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1: 343 citra\n"}
+,{"stream_name":"stdout","time":132.85888548,"data":"  yudhi/uang-rupiah-sjt3b: 333 citra\n"}
+,{"stream_name":"stdout","time":132.88786242,"data":"  putra-p21x4/project-ka: 299 citra\n"}
+,{"stream_name":"stdout","time":133.687028733,"data":"  teamkito-labs/uang-wfprv: 9778 citra\n"}
+,{"stream_name":"stdout","time":133.917462461,"data":"  rizkynindra-wsxpl/rupiah-detection: 2291 citra\n"}
+,{"stream_name":"stdout","time":134.023991773,"data":"  remedial-data-mining/deteksi-uang-zyvb3: 1327 citra\n"}
+,{"stream_name":"stdout","time":134.109236578,"data":"  blind-aid/uang-5z9jp: 937 citra\n"}
+,{"stream_name":"stdout","time":134.412519443,"data":"  netrasense/netrasense: 3633 citra\n"}
+,{"stream_name":"stdout","time":134.705784213,"data":"  mata-uang/currency-detection-y4tb2: 700 citra\n"}
+,{"stream_name":"stdout","time":134.766752271,"data":"  kalumkoi/banknote-68gsn: 250 citra\n"}
+,{"stream_name":"stdout","time":135.031633567,"data":"  dell-lead-7wvtm/banknote-recognition: 350 citra\n"}
+,{"stream_name":"stdout","time":135.048109955,"data":"  cj-gl8m1/receipt-ocr-cvfxx: 202 citra\n"}
+,{"stream_name":"stdout","time":135.257767025,"data":"  receipt-lbosb/receipt-msfg0: 250 citra\n"}
+,{"stream_name":"stdout","time":135.291596519,"data":"  mohamed-hussam-cq81o/wallet-sn9n2: 250 citra\n"}
+,{"stream_name":"stdout","time":135.376427554,"data":"  project-qysdi/wallet-iiyy3: 200 citra\n"}
+,{"stream_name":"stdout","time":135.442533911,"data":"  fastnucesuakqb/hand-object-detection-wyhyi: 300 citra\n"}
+,{"stream_name":"stdout","time":135.475841325,"data":"  holeno/holding-hand-only: 200 citra\n"}
+,{"stream_name":"stdout","time":135.497157517,"data":"  tugas-akhir-xq8lu/coin-rupiah: 248 citra\n"}
+,{"stream_name":"stdout","time":138.988052464,"data":"  daniakhmadmaulana/citra-uang-rupiah-emisi-2022: 1400 citra (perlu auto-label)\n"}
+,{"stream_name":"stdout","time":179.303555451,"data":"  kondisi: 304 citra -\u003e /tmp/work/conditions_raw/d45ea9\n"}
+,{"stream_name":"stdout","time":241.526604435,"data":"  diproses 5000/69624 (113 dtk)\n"}
+,{"stream_name":"stdout","time":291.647323895,"data":"  diproses 10000/69624 (163 dtk)\n"}
+,{"stream_name":"stdout","time":308.421957502,"data":"  diproses 15000/69624 (180 dtk)\n"}
+,{"stream_name":"stdout","time":317.038191471,"data":"  diproses 20000/69624 (188 dtk)\n"}
+,{"stream_name":"stdout","time":329.154336339,"data":"  diproses 25000/69624 (201 dtk)\n"}
+,{"stream_name":"stdout","time":340.899415784,"data":"  diproses 30000/69624 (212 dtk)\n"}
+,{"stream_name":"stdout","time":546.230457423,"data":"  diproses 35000/69624 (418 dtk)\n"}
+,{"stream_name":"stdout","time":616.913383924,"data":"  diproses 40000/69624 (488 dtk)\n"}
+,{"stream_name":"stdout","time":652.49181445,"data":"  diproses 45000/69624 (524 dtk)\n"}
+,{"stream_name":"stdout","time":668.968457181,"data":"  diproses 50000/69624 (540 dtk)\n"}
+,{"stream_name":"stdout","time":685.150143629,"data":"  diproses 55000/69624 (557 dtk)\n"}
+,{"stream_name":"stdout","time":706.697635002,"data":"  diproses 60000/69624 (578 dtk)\n"}
+,{"stream_name":"stdout","time":724.568200665,"data":"  diproses 65000/69624 (596 dtk)\n"}
+,{"stream_name":"stdout","time":814.153645525,"data":"Selesai: 69624 citra di pool, {'koin_75k_dari_pos': 5049, 'positive': 61625, 'uang_asing': 1300, 'struk': 452, 'dompet': 450, 'tangan': 500, 'koin': 248} (686 dtk)\n"}
+,{"stream_name":"stdout","time":814.303172259,"data":"\n"}
+,{"stream_name":"stdout","time":814.303202849,"data":"$ cd /tmp/src/scripts \u0026\u0026 python autolabel.py   [813 dtk]\n"}
+,{"stream_name":"stdout","time":822.335052782,"data":"Creating new Ultralytics Settings v0.0.6 file ✅ \n"}
+,{"stream_name":"stdout","time":822.335080854,"data":"View Ultralytics Settings with 'yolo settings' or at '/root/.config/Ultralytics/settings.json'\n"}
+,{"stream_name":"stdout","time":822.335087222,"data":"Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.\n"}
+,{"stream_name":"stdout","time":828.672951809,"data":"1400 citra perlu auto-label\n"}
+,{"stream_name":"stdout","time":830.500820567,"data":"\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 7% ╸─────────── 10.0/139.6MB 99.9MB/s 0.1s\u003c1.3s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 24% ━━╸───────── 33.2/139.6MB 231.3MB/s 0.2s\u003c0.5s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 31% ━━━╸──────── 43.1/139.6MB 96.6MB/s 0.3s\u003c1.0s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 37% ━━━━──────── 51.8/139.6MB 86.1MB/s 0.4s\u003c1.0s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 50% ━━━━━━────── 70.1/139.6MB 151.0MB/s 0.5s\u003c0.5s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 60% ━━━━━━━───── 84.0/139.6MB 130.8MB/s 0.6s\u003c0.4s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 72% ━━━━━━━━╸─── 100.2/139.6MB 159.1MB/s 0.7s\u003c0.2s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 79% ━━━━━━━━━─── 110.1/139.6MB 98.8MB/s 0.8s\u003c0.3s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 84% ━━━━━━━━━━── 117.7/139.6MB 74.1MB/s 0.9s\u003c0.3s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 88% ━━━━━━━━━━╸─ 122.4/139.6MB 46.2MB/s 1.0s\u003c0.4s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 91% ━━━━━━━━━━╸─ 126.5/139.6MB 39.3MB/s 1.1s\u003c0.3s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 93% ━━━━━━━━━━━─ 130.4/139.6MB 37.3MB/s 1.2s\u003c0.2s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 95% ━━━━━━━━━━━─ 133.3/139.6MB 28.9MB/s 1.3s\u003c0.2s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 98% ━━━━━━━━━━━╸ 136.4/139.6MB 30.0MB/s 1.4s\u003c0.1s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 100% ━━━━━━━━━━━╸ 139.4/139.6MB 29.8MB/s 1.6s\u003c0.0s\r\u001b[KDownloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8x-worldv2.pt to 'yolov8x-worldv2.pt': 100% ━━━━━━━━━━━━ 139.6MB 89.6MB/s 1.6s\n"}
+,{"stream_name":"stdout","time":830.879705232,"data":"\u001b[31m\u001b[1mrequirements:\u001b[0m Ultralytics requirement ['git+https://github.com/ultralytics/CLIP.git'] not found, attempting AutoUpdate...\n"}
+,{"stream_name":"stdout","time":834.447071967,"data":"Using Python 3.13.15 environment at: /usr\n"}
+,{"stream_name":"stdout","time":834.447100836,"data":"Resolved 37 packages in 792ms\n"}
+,{"stream_name":"stdout","time":834.447107297,"data":"   Updating https://github.com/ultralytics/CLIP.git (HEAD)\n"}
+,{"stream_name":"stdout","time":834.447112185,"data":"    Updated https://github.com/ultralytics/CLIP.git (7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40)\n"}
+,{"stream_name":"stdout","time":834.447117344,"data":"   Building clip @ git+https://github.com/ultralytics/CLIP.git@7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40\n"}
+,{"stream_name":"stdout","time":834.447121852,"data":"      Built clip @ git+https://github.com/ultralytics/CLIP.git@7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40\n"}
+,{"stream_name":"stdout","time":834.447137289,"data":"Prepared 2 packages in 2.29s\n"}
+,{"stream_name":"stdout","time":834.447142007,"data":"Installed 2 packages in 1ms\n"}
+,{"stream_name":"stdout","time":834.447145946,"data":" + clip==1.0 (from git+https://github.com/ultralytics/CLIP.git@7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40)\n"}
+,{"stream_name":"stdout","time":834.447150067,"data":" + ftfy==6.3.1\n"}
+,{"stream_name":"stdout","time":834.447153852,"data":"\n"}
+,{"stream_name":"stdout","time":834.4471576,"data":"\u001b[31m\u001b[1mrequirements:\u001b[0m AutoUpdate success ✅ 3.6s\n"}
+,{"stream_name":"stdout","time":834.447167388,"data":"WARNING ⚠️ \u001b[31m\u001b[1mrequirements:\u001b[0m \u001b[1mRestart runtime or rerun command for updates to take effect\u001b[0m\n"}
+,{"stream_name":"stdout","time":834.447172027,"data":"\n"}
+,{"stream_name":"stderr","time":838.817932438,"data":"\r  0%|                                               | 0.00/338M [00:00\u003c?, ?iB/s]\r  0%|                                       | 352k/338M [00:00\u003c01:40, 3.53MiB/s]\r  1%|▎                                     | 2.84M/338M [00:00\u003c00:21, 16.7MiB/s]\r  5%|█▊                                    | 16.0M/338M [00:00\u003c00:04, 70.8MiB/s]\r  7%|██▋                                   | 23.9M/338M [00:00\u003c00:04, 75.0MiB/s]\r 10%|███▋                                  | 33.0M/338M [00:00\u003c00:03, 81.8MiB/s]\r 13%|█████                                 | 45.2M/338M [00:00\u003c00:03, 96.8MiB/s]\r 17%|██████▍                                | 56.0M/338M [00:00\u003c00:02, 101MiB/s]\r 19%|███████▍                              | 65.6M/338M [00:00\u003c00:02, 97.4MiB/s]\r 23%|████████▉                              | 77.8M/338M [00:00\u003c00:02, 106MiB/s]\r 26%|██████████▏                            | 88.0M/338M [00:01\u003c00:02, 101MiB/s]\r 29%|███████████                           | 97.7M/338M [00:01\u003c00:02, 90.2MiB/s]\r 32%|████████████▋                          | 110M/338M [00:01\u003c00:02, 99.7MiB/s]\r 36%|██████████████▏                         | 120M/338M [00:01\u003c00:02, 102MiB/s]\r 39%|███████████████                        | 130M/338M [00:01\u003c00:02, 98.1MiB/s]\r 41%|████████████████                       | 140M/338M [00:01\u003c00:02, 95.8MiB/s]\r 45%|█████████████████▉                      | 152M/338M [00:01\u003c00:01, 105MiB/s]\r 48%|██████████████████▋                    | 162M/338M [00:01\u003c00:01, 93.7MiB/s]\r 51%|███████████████████▊                   | 171M/338M [00:01\u003c00:01, 93.9MiB/s]\r 54%|████████████████████▉                  | 182M/338M [00:02\u003c00:01, 96.6MiB/s]\r 57%|██████████████████████                 | 191M/338M [00:02\u003c00:01, 88.5MiB/s]\r 59%|███████████████████████                | 200M/338M [00:02\u003c00:01, 78.5MiB/s]\r 62%|████████████████████████               | 208M/338M [00:02\u003c00:01, 81.7MiB/s]\r 64%|█████████████████████████              | 217M/338M [00:02\u003c00:01, 83.1MiB/s]\r 67%|██████████████████████████             | 225M/338M [00:02\u003c00:01, 85.5MiB/s]\r 70%|███████████████████████████▍           | 238M/338M [00:02\u003c00:01, 98.2MiB/s]\r 74%|█████████████████████████████▍          | 248M/338M [00:02\u003c00:00, 101MiB/s]\r 76%|█████████████████████████████▊         | 258M/338M [00:02\u003c00:00, 90.8MiB/s]\r 79%|██████████████████████████████▉        | 268M/338M [00:03\u003c00:00, 93.3MiB/s]\r 82%|███████████████████████████████▉       | 277M/338M [00:03\u003c00:00, 93.7MiB/s]\r 85%|█████████████████████████████████▏     | 287M/338M [00:03\u003c00:00, 97.1MiB/s]\r 88%|██████████████████████████████████▎    | 297M/338M [00:03\u003c00:00, 99.6MiB/s]\r 91%|████████████████████████████████████▎   | 307M/338M [00:03\u003c00:00, 100MiB/s]\r 94%|████████████████████████████████████▌  | 316M/338M [00:03\u003c00:00, 96.6MiB/s]\r 97%|██████████████████████████████████████▊ | 327M/338M [00:03\u003c00:00, 101MiB/s]\r100%|██████████████████████████████████████▉| 337M/338M [00:03\u003c00:00, 86.7MiB/s]\r100%|███████████████████████████████████████| 338M/338M [00:03\u003c00:00, 91.4MiB/s]\n"}
+,{"stream_name":"stdout","time":847.366647376,"data":"  16/1400 (19 dtk)\n"}
+,{"stream_name":"stdout","time":848.260588702,"data":"  32/1400 (20 dtk)\n"}
+,{"stream_name":"stdout","time":849.156607042,"data":"  48/1400 (21 dtk)\n"}
+,{"stream_name":"stdout","time":850.053098615,"data":"  64/1400 (22 dtk)\n"}
+,{"stream_name":"stdout","time":850.955086133,"data":"  80/1400 (23 dtk)\n"}
+,{"stream_name":"stdout","time":851.855737416,"data":"  96/1400 (23 dtk)\n"}
+,{"stream_name":"stdout","time":852.763274281,"data":"  112/1400 (24 dtk)\n"}
+,{"stream_name":"stdout","time":853.47911381,"data":"  128/1400 (25 dtk)\n"}
+,{"stream_name":"stdout","time":854.404947693,"data":"  144/1400 (26 dtk)\n"}
+,{"stream_name":"stdout","time":855.307870873,"data":"  160/1400 (27 dtk)\n"}
+,{"stream_name":"stdout","time":856.217107725,"data":"  176/1400 (28 dtk)\n"}
+,{"stream_name":"stdout","time":857.125236,"data":"  192/1400 (29 dtk)\n"}
+,{"stream_name":"stdout","time":858.029024809,"data":"  208/1400 (30 dtk)\n"}
+,{"stream_name":"stdout","time":858.934328965,"data":"  224/1400 (31 dtk)\n"}
+,{"stream_name":"stdout","time":859.849691904,"data":"  240/1400 (31 dtk)\n"}
+,{"stream_name":"stdout","time":860.755346087,"data":"  256/1400 (32 dtk)\n"}
+,{"stream_name":"stdout","time":861.671676719,"data":"  272/1400 (33 dtk)\n"}
+,{"stream_name":"stdout","time":862.582525705,"data":"  288/1400 (34 dtk)\n"}
+,{"stream_name":"stdout","time":863.497543733,"data":"  304/1400 (35 dtk)\n"}
+,{"stream_name":"stdout","time":864.424253394,"data":"  320/1400 (36 dtk)\n"}
+,{"stream_name":"stdout","time":865.348542725,"data":"  336/1400 (37 dtk)\n"}
+,{"stream_name":"stdout","time":866.27078646,"data":"  352/1400 (38 dtk)\n"}
+,{"stream_name":"stdout","time":867.192477566,"data":"  368/1400 (39 dtk)\n"}
+,{"stream_name":"stdout","time":868.117388451,"data":"  384/1400 (40 dtk)\n"}
+,{"stream_name":"stdout","time":869.041923233,"data":"  400/1400 (41 dtk)\n"}
+,{"stream_name":"stdout","time":871.263302288,"data":"  416/1400 (43 dtk)\n"}
+,{"stream_name":"stdout","time":872.208197806,"data":"  432/1400 (44 dtk)\n"}
+,{"stream_name":"stdout","time":873.149258014,"data":"  448/1400 (45 dtk)\n"}
+,{"stream_name":"stdout","time":874.090890118,"data":"  464/1400 (46 dtk)\n"}
+,{"stream_name":"stdout","time":875.044737511,"data":"  480/1400 (47 dtk)\n"}
+,{"stream_name":"stdout","time":875.997173377,"data":"  496/1400 (48 dtk)\n"}
+,{"stream_name":"stdout","time":876.958338583,"data":"  512/1400 (49 dtk)\n"}
+,{"stream_name":"stdout","time":877.915072544,"data":"  528/1400 (50 dtk)\n"}
+,{"stream_name":"stdout","time":878.866973862,"data":"  544/1400 (51 dtk)\n"}
+,{"stream_name":"stdout","time":879.823278773,"data":"  560/1400 (51 dtk)\n"}
+,{"stream_name":"stdout","time":880.781678833,"data":"  576/1400 (52 dtk)\n"}
+,{"stream_name":"stdout","time":881.746039785,"data":"  592/1400 (53 dtk)\n"}
+,{"stream_name":"stdout","time":882.708326051,"data":"  608/1400 (54 dtk)\n"}
+,{"stream_name":"stdout","time":883.676478645,"data":"  624/1400 (55 dtk)\n"}
+,{"stream_name":"stdout","time":884.632629619,"data":"  640/1400 (56 dtk)\n"}
+,{"stream_name":"stdout","time":885.585987288,"data":"  656/1400 (57 dtk)\n"}
+,{"stream_name":"stdout","time":886.542515834,"data":"  672/1400 (58 dtk)\n"}
+,{"stream_name":"stdout","time":887.498474779,"data":"  688/1400 (59 dtk)\n"}
+,{"stream_name":"stdout","time":888.460040724,"data":"  704/1400 (60 dtk)\n"}
+,{"stream_name":"stdout","time":889.427779807,"data":"  720/1400 (61 dtk)\n"}
+,{"stream_name":"stdout","time":890.386070292,"data":"  736/1400 (62 dtk)\n"}
+,{"stream_name":"stdout","time":891.339895881,"data":"  752/1400 (63 dtk)\n"}
+,{"stream_name":"stdout","time":892.297264576,"data":"  768/1400 (64 dtk)\n"}
+,{"stream_name":"stdout","time":893.249891263,"data":"  784/1400 (65 dtk)\n"}
+,{"stream_name":"stdout","time":894.218792744,"data":"  800/1400 (66 dtk)\n"}
+,{"stream_name":"stdout","time":895.174385964,"data":"  816/1400 (67 dtk)\n"}
+,{"stream_name":"stdout","time":896.12897144,"data":"  832/1400 (68 dtk)\n"}
+,{"stream_name":"stdout","time":897.100783272,"data":"  848/1400 (69 dtk)\n"}
+,{"stream_name":"stdout","time":898.08508305,"data":"  864/1400 (70 dtk)\n"}
+,{"stream_name":"stdout","time":899.061367406,"data":"  880/1400 (71 dtk)\n"}
+,{"stream_name":"stdout","time":900.048934566,"data":"  896/1400 (72 dtk)\n"}
+,{"stream_name":"stdout","time":901.033357287,"data":"  912/1400 (73 dtk)\n"}
+,{"stream_name":"stdout","time":902.057279366,"data":"  928/1400 (74 dtk)\n"}
+,{"stream_name":"stdout","time":903.03043612,"data":"  944/1400 (75 dtk)\n"}
+,{"stream_name":"stdout","time":904.016555584,"data":"  960/1400 (76 dtk)\n"}
+,{"stream_name":"stdout","time":904.999624827,"data":"  976/1400 (77 dtk)\n"}
+,{"stream_name":"stdout","time":905.972639306,"data":"  992/1400 (78 dtk)\n"}
+,{"stream_name":"stdout","time":906.949920595,"data":"  1008/1400 (79 dtk)\n"}
+,{"stream_name":"stdout","time":907.947801029,"data":"  1024/1400 (80 dtk)\n"}
+,{"stream_name":"stdout","time":908.951270908,"data":"  1040/1400 (81 dtk)\n"}
+,{"stream_name":"stdout","time":909.957706873,"data":"  1056/1400 (82 dtk)\n"}
+,{"stream_name":"stdout","time":910.968381041,"data":"  1072/1400 (83 dtk)\n"}
+,{"stream_name":"stdout","time":911.979331481,"data":"  1088/1400 (84 dtk)\n"}
+,{"stream_name":"stdout","time":912.983770477,"data":"  1104/1400 (85 dtk)\n"}
+,{"stream_name":"stdout","time":913.988672566,"data":"  1120/1400 (86 dtk)\n"}
+,{"stream_name":"stdout","time":915.004901388,"data":"  1136/1400 (87 dtk)\n"}
+,{"stream_name":"stdout","time":916.027929437,"data":"  1152/1400 (88 dtk)\n"}
+,{"stream_name":"stdout","time":917.048029354,"data":"  1168/1400 (89 dtk)\n"}
+,{"stream_name":"stdout","time":918.066913371,"data":"  1184/1400 (90 dtk)\n"}
+,{"stream_name":"stdout","time":919.079759233,"data":"  1200/1400 (91 dtk)\n"}
+,{"stream_name":"stdout","time":920.109961681,"data":"  1216/1400 (92 dtk)\n"}
+,{"stream_name":"stdout","time":921.150569803,"data":"  1232/1400 (93 dtk)\n"}
+,{"stream_name":"stdout","time":922.19891101,"data":"  1248/1400 (94 dtk)\n"}
+,{"stream_name":"stdout","time":923.233595899,"data":"  1264/1400 (95 dtk)\n"}
+,{"stream_name":"stdout","time":924.275526913,"data":"  1280/1400 (96 dtk)\n"}
+,{"stream_name":"stdout","time":925.324061997,"data":"  1296/1400 (97 dtk)\n"}
+,{"stream_name":"stdout","time":926.326430275,"data":"  1312/1400 (98 dtk)\n"}
+,{"stream_name":"stdout","time":927.371948649,"data":"  1328/1400 (99 dtk)\n"}
+,{"stream_name":"stdout","time":928.408926846,"data":"  1344/1400 (100 dtk)\n"}
+,{"stream_name":"stdout","time":929.449632936,"data":"  1360/1400 (101 dtk)\n"}
+,{"stream_name":"stdout","time":930.499261107,"data":"  1376/1400 (102 dtk)\n"}
+,{"stream_name":"stdout","time":931.540339809,"data":"  1392/1400 (103 dtk)\n"}
+,{"stream_name":"stdout","time":932.185625516,"data":"  1400/1400 (104 dtk)\n"}
+,{"stream_name":"stdout","time":932.191209672,"data":"Selesai auto-label: {'al_reject_nobox': 579, 'ok': 307, 'al_reject_lowconf': 514} multi-box: 0\n"}
+,{"stream_name":"stdout","time":936.143605921,"data":"\n"}
+,{"stream_name":"stdout","time":936.143641321,"data":"$ cd /tmp/src/scripts \u0026\u0026 python dedup_split.py --balance   [935 dtk]\n"}
+,{"stream_name":"stdout","time":937.130466249,"data":"68531 citra masuk dedup (1 dtk)\n"}
+,{"stream_name":"stdout","time":1127.948463622,"data":"3232521 pasangan kandidat (192 dtk)\n"}
+,{"stream_name":"stdout","time":1534.992253696,"data":"{\n"}
+,{"stream_name":"stdout","time":1534.992308676,"data":" \"input\": 69624,\n"}
+,{"stream_name":"stdout","time":1534.992313507,"data":" \"drop\": {\n"}
+,{"stream_name":"stdout","time":1534.992316654,"data":"  \"status_al_reject_nobox\": 579,\n"}
+,{"stream_name":"stdout","time":1534.992319699,"data":"  \"status_al_reject_lowconf\": 514,\n"}
+,{"stream_name":"stdout","time":1534.99232261,"data":"  \"duplicate\": 22998,\n"}
+,{"stream_name":"stdout","time":1534.992325399,"data":"  \"label_conflict\": 5299,\n"}
+,{"stream_name":"stdout","time":1534.992331063,"data":"  \"dup_neg_of_pos\": 54,\n"}
+,{"stream_name":"stdout","time":1534.992333809,"data":"  \"neg_quota\": 1930\n"}
+,{"stream_name":"stdout","time":1534.992336656,"data":" },\n"}
+,{"stream_name":"stdout","time":1534.99233939,"data":" \"balanced_train_entries\": 36549,\n"}
+,{"stream_name":"stdout","time":1534.992342225,"data":" \"after_dedup\": 38250,\n"}
+,{"stream_name":"stdout","time":1534.992344933,"data":" \"groups\": 10835,\n"}
+,{"stream_name":"stdout","time":1534.992347636,"data":" \"pairs\": 3232521,\n"}
+,{"stream_name":"stdout","time":1534.992350379,"data":" \"dup_pairs\": 92933,\n"}
+,{"stream_name":"stdout","time":1534.992353144,"data":" \"n_conflict_clusters\": 824,\n"}
+,{"stream_name":"stdout","time":1534.992355958,"data":" \"splits\": {\n"}
+,{"stream_name":"stdout","time":1534.992358759,"data":"  \"train\": {\n"}
+,{"stream_name":"stdout","time":1534.992361547,"data":"   \"images\": 26392,\n"}
+,{"stream_name":"stdout","time":1534.992364383,"data":"   \"negatives\": 2678,\n"}
+,{"stream_name":"stdout","time":1534.992367187,"data":"   \"instances\": {\n"}
+,{"stream_name":"stdout","time":1534.992369907,"data":"    \"1000\": 4186,\n"}
+,{"stream_name":"stdout","time":1534.992372653,"data":"    \"2000\": 3909,\n"}
+,{"stream_name":"stdout","time":1534.992383801,"data":"    \"5000\": 4433,\n"}
+,{"stream_name":"stdout","time":1534.992386167,"data":"    \"10000\": 4369,\n"}
+,{"stream_name":"stdout","time":1534.992388433,"data":"    \"20000\": 4218,\n"}
+,{"stream_name":"stdout","time":1534.992390693,"data":"    \"50000\": 4672,\n"}
+,{"stream_name":"stdout","time":1534.992392899,"data":"    \"100000\": 4487\n"}
+,{"stream_name":"stdout","time":1534.992395294,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.99239748,"data":"   \"images_with_class\": {\n"}
+,{"stream_name":"stdout","time":1534.99239978,"data":"    \"1000\": 3388,\n"}
+,{"stream_name":"stdout","time":1534.992401984,"data":"    \"2000\": 3074,\n"}
+,{"stream_name":"stdout","time":1534.992404273,"data":"    \"5000\": 3948,\n"}
+,{"stream_name":"stdout","time":1534.992406488,"data":"    \"10000\": 3877,\n"}
+,{"stream_name":"stdout","time":1534.992408697,"data":"    \"20000\": 3764,\n"}
+,{"stream_name":"stdout","time":1534.992410868,"data":"    \"50000\": 4089,\n"}
+,{"stream_name":"stdout","time":1534.992412992,"data":"    \"100000\": 3878\n"}
+,{"stream_name":"stdout","time":1534.992415119,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.992417179,"data":"   \"augmented\": 10830,\n"}
+,{"stream_name":"stdout","time":1534.992419416,"data":"   \"autolabel\": 0\n"}
+,{"stream_name":"stdout","time":1534.992421646,"data":"  },\n"}
+,{"stream_name":"stdout","time":1534.992423825,"data":"  \"val\": {\n"}
+,{"stream_name":"stdout","time":1534.992425974,"data":"   \"images\": 6102,\n"}
+,{"stream_name":"stdout","time":1534.992428126,"data":"   \"negatives\": 574,\n"}
+,{"stream_name":"stdout","time":1534.992430275,"data":"   \"instances\": {\n"}
+,{"stream_name":"stdout","time":1534.9924324,"data":"    \"1000\": 1068,\n"}
+,{"stream_name":"stdout","time":1534.992435648,"data":"    \"2000\": 914,\n"}
+,{"stream_name":"stdout","time":1534.992437979,"data":"    \"5000\": 1193,\n"}
+,{"stream_name":"stdout","time":1534.992440125,"data":"    \"10000\": 1124,\n"}
+,{"stream_name":"stdout","time":1534.992442302,"data":"    \"20000\": 1034,\n"}
+,{"stream_name":"stdout","time":1534.992444407,"data":"    \"50000\": 1252,\n"}
+,{"stream_name":"stdout","time":1534.992446526,"data":"    \"100000\": 1247\n"}
+,{"stream_name":"stdout","time":1534.992448738,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.992450794,"data":"   \"images_with_class\": {\n"}
+,{"stream_name":"stdout","time":1534.992452956,"data":"    \"1000\": 726,\n"}
+,{"stream_name":"stdout","time":1534.992455186,"data":"    \"2000\": 658,\n"}
+,{"stream_name":"stdout","time":1534.992457315,"data":"    \"5000\": 846,\n"}
+,{"stream_name":"stdout","time":1534.992459425,"data":"    \"10000\": 831,\n"}
+,{"stream_name":"stdout","time":1534.992461524,"data":"    \"20000\": 806,\n"}
+,{"stream_name":"stdout","time":1534.992464505,"data":"    \"50000\": 876,\n"}
+,{"stream_name":"stdout","time":1534.992466634,"data":"    \"100000\": 831\n"}
+,{"stream_name":"stdout","time":1534.992469001,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.992471174,"data":"   \"augmented\": 0,\n"}
+,{"stream_name":"stdout","time":1534.992473323,"data":"   \"autolabel\": 0\n"}
+,{"stream_name":"stdout","time":1534.992475572,"data":"  },\n"}
+,{"stream_name":"stdout","time":1534.992477617,"data":"  \"test\": {\n"}
+,{"stream_name":"stdout","time":1534.992479808,"data":"   \"images\": 5756,\n"}
+,{"stream_name":"stdout","time":1534.992482041,"data":"   \"negatives\": 573,\n"}
+,{"stream_name":"stdout","time":1534.992484346,"data":"   \"instances\": {\n"}
+,{"stream_name":"stdout","time":1534.992489321,"data":"    \"1000\": 1268,\n"}
+,{"stream_name":"stdout","time":1534.992491558,"data":"    \"2000\": 1073,\n"}
+,{"stream_name":"stdout","time":1534.992493784,"data":"    \"5000\": 1319,\n"}
+,{"stream_name":"stdout","time":1534.992495898,"data":"    \"10000\": 1395,\n"}
+,{"stream_name":"stdout","time":1534.992498078,"data":"    \"20000\": 1333,\n"}
+,{"stream_name":"stdout","time":1534.992500271,"data":"    \"50000\": 1447,\n"}
+,{"stream_name":"stdout","time":1534.992502394,"data":"    \"100000\": 1418\n"}
+,{"stream_name":"stdout","time":1534.992504508,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.992506611,"data":"   \"images_with_class\": {\n"}
+,{"stream_name":"stdout","time":1534.992508764,"data":"    \"1000\": 725,\n"}
+,{"stream_name":"stdout","time":1534.992510881,"data":"    \"2000\": 658,\n"}
+,{"stream_name":"stdout","time":1534.992513101,"data":"    \"5000\": 846,\n"}
+,{"stream_name":"stdout","time":1534.992515289,"data":"    \"10000\": 831,\n"}
+,{"stream_name":"stdout","time":1534.992517409,"data":"    \"20000\": 806,\n"}
+,{"stream_name":"stdout","time":1534.992519531,"data":"    \"50000\": 876,\n"}
+,{"stream_name":"stdout","time":1534.992521858,"data":"    \"100000\": 831\n"}
+,{"stream_name":"stdout","time":1534.992525001,"data":"   },\n"}
+,{"stream_name":"stdout","time":1534.992528333,"data":"   \"augmented\": 0,\n"}
+,{"stream_name":"stdout","time":1534.992530506,"data":"   \"autolabel\": 0\n"}
+,{"stream_name":"stdout","time":1534.992532661,"data":"  }\n"}
+,{"stream_name":"stdout","time":1534.99253474,"data":" },\n"}
+,{"stream_name":"stdout","time":1534.992536805,"data":" \"thresholds\": {\n"}
+,{"stream_name":"stdout","time":1534.992539051,"data":"  \"T_DUP\": 4,\n"}
+,{"stream_name":"stdout","time":1534.992541194,"data":"  \"C_DUP\": 14.0,\n"}
+,{"stream_name":"stdout","time":1534.992543389,"data":"  \"G_DUP\": 0.15,\n"}
+,{"stream_name":"stdout","time":1534.992545482,"data":"  \"T_GROUP\": 10,\n"}
+,{"stream_name":"stdout","time":1534.992547702,"data":"  \"C_GROUP\": 24.0,\n"}
+,{"stream_name":"stdout","time":1534.99254983,"data":"  \"NEG_FRAC\": 0.1\n"}
+,{"stream_name":"stdout","time":1534.992552613,"data":" },\n"}
+,{"stream_name":"stdout","time":1534.992554767,"data":" \"seconds\": 599\n"}
+,{"stream_name":"stdout","time":1534.992557019,"data":"}\n"}
+,{"stream_name":"stdout","time":1535.464248398,"data":"\n"}
+,{"stream_name":"stdout","time":1535.464286546,"data":"$ cd /tmp/src/scripts \u0026\u0026 python analyze.py   [1534 dtk]\n"}
+,{"stream_name":"stdout","time":1550.467242169,"data":"# Ringkasan dataset final\n"}
+,{"stream_name":"stdout","time":1550.467275035,"data":"\n"}
+,{"stream_name":"stdout","time":1550.467278668,"data":"| Split | Citra | Negatif | Rp1.000 | Rp2.000 | Rp5.000 | Rp10.000 | Rp20.000 | Rp50.000 | Rp100.000 |\n"}
+,{"stream_name":"stdout","time":1550.467281288,"data":"|---|---|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":1550.467283652,"data":"| train | 26392 | 2678 | 4186 | 3909 | 4433 | 4369 | 4218 | 4672 | 4487 |\n"}
+,{"stream_name":"stdout","time":1550.467286061,"data":"| val | 6102 | 574 | 1068 | 914 | 1193 | 1124 | 1034 | 1252 | 1247 |\n"}
+,{"stream_name":"stdout","time":1550.467288369,"data":"| test | 5756 | 573 | 1268 | 1073 | 1319 | 1395 | 1333 | 1447 | 1418 |\n"}
+,{"stream_name":"stdout","time":1550.467290618,"data":"\n"}
+,{"stream_name":"stdout","time":1550.467292708,"data":"Input pool: 69624; setelah dedup/kuota: 38250; grup: 10835\n"}
+,{"stream_name":"stdout","time":1550.467295141,"data":"Dibuang: {\"status_al_reject_nobox\": 579, \"status_al_reject_lowconf\": 514, \"duplicate\": 22998, \"label_conflict\": 5299, \"dup_neg_of_pos\": 54, \"neg_quota\": 1930}\n"}
+,{"stream_name":"stdout","time":1603.370418504,"data":"\n"}
+,{"stream_name":"stdout","time":1603.370450871,"data":"$ ls -la /kaggle/working \u0026\u0026 du -sh /tmp/work/pool /tmp/final   [1602 dtk]\n"}
+,{"stream_name":"stdout","time":1603.383067842,"data":"total 5356264\n"}
+,{"stream_name":"stdout","time":1603.383085779,"data":"drwxr-xr-x 2 root root       4096 Oct 19 14:15 .\n"}
+,{"stream_name":"stdout","time":1603.38309081,"data":"drwxr-xr-x 8 root root       4096 Oct 19 13:49 ..\n"}
+,{"stream_name":"stdout","time":1603.383097019,"data":"-rw-r--r-- 1 root root   20807680 Oct 19 14:15 conditions_raw.tar\n"}
+,{"stream_name":"stdout","time":1603.383104174,"data":"-rw-r--r-- 1 root root 1916958720 Oct 19 14:15 final.tar\n"}
+,{"stream_name":"stdout","time":1603.383107004,"data":"-rw-r--r-- 1 root root 3535636480 Oct 19 14:15 pool.tar\n"}
+,{"stream_name":"stdout","time":1603.383109912,"data":"-rw-r--r-- 1 root root   11386915 Oct 19 14:15 reports.zip\n"}
+,{"stream_name":"stdout","time":1603.88394764,"data":"3.5G\t/tmp/work/pool\n"}
+,{"stream_name":"stdout","time":1604.141612105,"data":"140M\t/tmp/final\n"}
+,{"stream_name":"stdout","time":1604.145356227,"data":"SELESAI dalam 1603 dtk\n"}
+,{"stream_name":"stderr","time":1606.346873839,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1606.34690104,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1606.64526623,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1606.645292496,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1607.514895035,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1609.443793846,"data":"[NbConvertApp] Writing 331547 bytes to __results__.html\n"}
+]

@@ -22,7 +22,7 @@ import numpy as np
 from common import CLASSES, DATA
 from infer_ref import OnnxDetector
 
-CONDITIONS = ["baru", "lusuh_kusut", "terlipat_tertutup", "cahaya_redup", "latar_ramai", "bukan_rupiah"]
+CONDITIONS = ["baru", "lusuh_kusut", "terlipat_tertutup", "cahaya_redup", "latar_ramai", "bukan_rupiah", "baru_pindaian"]
 NAMES = [f"Rp{int(c):,}".replace(",", ".") for c in CLASSES] + ["latar"]
 
 
