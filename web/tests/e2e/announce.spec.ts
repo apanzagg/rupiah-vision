@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { fakeCamera, type DebugState } from './fake-camera';
 
 // dibuat oleh make_fake_videos.py (tidak di-commit karena berukuran besar)
-const casesFile = resolve(__dirname, '.fake', 'cases.json');
+const casesFile = resolve(import.meta.dirname, '.fake', 'cases.json');
 const cases: { video: string; expect: string; kind: string }[] = existsSync(casesFile) ? JSON.parse(readFileSync(casesFile, 'utf8')) : [];
 
 const dbg = (page: Page) => page.evaluate(() => (window as unknown as { __suararupiah: DebugState }).__suararupiah);

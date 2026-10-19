@@ -9,13 +9,13 @@ export default defineConfig({
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e-results.json' }]],
   use: {
     channel: process.env.PW_CHANNEL ?? 'chrome',
-    baseURL: 'http://localhost:4173/',
+    baseURL: 'http://127.0.0.1:4173/',
     permissions: ['camera'],
     viewport: { width: 412, height: 860 },
   },
   webServer: {
-    command: 'npx vite preview --port 4173 --strictPort',
-    url: 'http://localhost:4173/',
+    command: 'npx vite preview --port 4173 --strictPort --host 127.0.0.1',
+    url: 'http://127.0.0.1:4173/',
     reuseExistingServer: true,
     timeout: 60_000,
   },

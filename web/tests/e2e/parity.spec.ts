@@ -10,7 +10,7 @@ interface Det {
   score: number;
   box: number[];
 }
-const ref = JSON.parse(readFileSync(resolve(__dirname, '../../public/parity/parity_ref.json'), 'utf8')) as {
+const ref = JSON.parse(readFileSync(resolve(import.meta.dirname, '../../public/parity/parity_ref.json'), 'utf8')) as {
   images: Record<string, Record<string, Det[]>>;
 };
 const MIN_SCORE = 0.3; // abaikan deteksi di sekitar ambang 0,25 yang bisa muncul/hilang karena beda resize

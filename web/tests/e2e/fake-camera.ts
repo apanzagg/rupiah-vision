@@ -7,7 +7,7 @@ export function fakeCamera(video: string) {
       args: [
         '--use-fake-ui-for-media-stream',
         '--use-fake-device-for-media-stream',
-        `--use-file-for-fake-video-capture=${resolve(__dirname, '.fake', video)}`,
+        `--use-file-for-fake-video-capture=${resolve(import.meta.dirname, '.fake', video)}`,
         '--autoplay-policy=no-user-gesture-required',
       ],
     },
