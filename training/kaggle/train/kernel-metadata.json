@@ -9,6 +9,6 @@
   "enable_internet": true,
   "dataset_sources": [],
   "competition_sources": [],
-  "kernel_sources": ["achmadapanza/suararupiah-data"],
+  "kernel_sources": ["achmadapanza/suararupiah-build"],
   "model_sources": []
 }

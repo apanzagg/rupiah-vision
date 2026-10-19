@@ -29,13 +29,20 @@ print(json.dumps(job, indent=1))
 sh("nvidia-smi --query-gpu=name,memory.total --format=csv")
 sh("pip install -q ultralytics==8.3.253 albumentations==2.0.8 onnx onnxslim onnxruntime")
 
-pool_tar = sorted(glob.glob("/kaggle/input/**/pool.tar", recursive=True))
-print("pool.tar:", pool_tar)
-Path("/tmp/work").mkdir(parents=True, exist_ok=True)
-with tarfile.open(pool_tar[0]) as t:
-    t.extractall("/tmp/work", filter="data")
 S = "/tmp/src/scripts"
-sh(f"cd {S} && python dedup_split.py --balance")
+Path("/tmp/work").mkdir(parents=True, exist_ok=True)
+final_tar = sorted(glob.glob("/kaggle/input/**/final.tar", recursive=True))
+if final_tar:  # dataset final dari kernel suararupiah-build (dedup sudah dilakukan di CPU)
+    print("final.tar:", final_tar[0])
+    with tarfile.open(final_tar[0]) as t:
+        t.extractall("/tmp", filter="data")
+    for f in ("dedup_report.json", "manifest_final.csv"):
+        shutil.copy2(f"/tmp/final/{f}", f"/tmp/work/{f}")
+else:  # cadangan: bangun dari pool
+    pool_tar = sorted(glob.glob("/kaggle/input/**/pool.tar", recursive=True))
+    with tarfile.open(pool_tar[0]) as t:
+        t.extractall("/tmp/work", filter="data")
+    sh(f"cd {S} && python dedup_split.py --balance")
 (W / "data_info").mkdir(parents=True, exist_ok=True)
 for f in ("dedup_report.json", "manifest_final.csv"):
     shutil.copy2(f"/tmp/work/{f}", W / "data_info" / f)

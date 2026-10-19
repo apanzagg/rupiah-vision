@@ -345,8 +345,9 @@ def main() -> None:
             cl = [CLASSES[int(c)] for c in set(r["classes"].split())]
             rep = 1 if not cl else min(3, max(1, math.ceil(med / max(1, min(cnt[c] for c in cl)))))
             lines += [f"./images/train/{r['id']}.jpg"] * rep
+        # daftar oversampling hanya disediakan; data.yaml tetap memakai images/train.
+        # Dipakai bila perlu lewat train.py --train-list train_balanced.txt (keputusan dicatat di EKSPERIMEN.md)
         (FINAL / "train_balanced.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
-        train_file = "train_balanced.txt"
         report["balanced_train_entries"] = len(lines)
     names = "\n".join(f"  {i}: '{c}'" for i, c in enumerate(CLASSES))
     (FINAL / "data.yaml").write_text(

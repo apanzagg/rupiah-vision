@@ -1,6 +1,6 @@
 # Kernel Kaggle "suararupiah-build" (CPU): bangun ulang split final dari pool (output suararupiah-data)
 # dengan kode dedup terbaru + daftar reject manual, lalu analisis & diagnosis konflik label.
-# Output: reports.zip (grafik, contact sheet, statistik). Tidak memakai kuota GPU.
+# Output: final.tar (dataset siap latih) + reports.zip (grafik, contact sheet, statistik). Tanpa GPU.
 import glob
 import os
 import subprocess
@@ -26,6 +26,11 @@ S = "cd /tmp/src/scripts && python"
 sh(f"{S} dedup_split.py --balance")
 sh(f"{S} diag_dedup.py")
 sh(f"{S} analyze.py")
+sh(f"{S} audit_sources.py")
+with tarfile.open("/kaggle/working/final.tar", "w") as t:
+    t.add("/tmp/final", arcname="final")
+    t.add("/tmp/work/manifest_final.csv", arcname="final/manifest_final.csv")
+    t.add("/tmp/work/dedup_report.json", arcname="final/dedup_report.json")
 with zipfile.ZipFile("/kaggle/working/reports.zip", "w", zipfile.ZIP_DEFLATED) as z:
     for p in Path("/tmp/work").rglob("*"):
         if p.is_file() and ("reports" in p.parts or p.suffix in {".json", ".csv"}) and "pool" not in p.parts:

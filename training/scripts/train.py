@@ -45,6 +45,8 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--no-custom-aug", action="store_true")
+    ap.add_argument("--cache", default="false", help="false | ram | disk (ram mempercepat bila RAM cukup)")
+    ap.add_argument("--train-list", default="", help="ganti entri train di data.yaml, mis. train_balanced.txt")
     ap.add_argument("--max-hours", type=float, default=0, help="hentikan training dengan rapi setelah N jam (batas sesi Kaggle)")
     ap.add_argument("--set", nargs="*", default=[], help="override hyperparameter: key=value")
     args = ap.parse_args()
@@ -57,6 +59,14 @@ def main() -> None:
     for kv in args.set:
         k, v = kv.split("=", 1)
         hyp[k] = type(hyp[k])(v) if k in hyp else (float(v) if v.replace(".", "", 1).isdigit() else v)
+    if args.train_list:  # data.yaml varian dengan daftar train lain (mis. oversampling)
+        import yaml
+
+        d = yaml.safe_load(open(args.data, encoding="utf-8"))
+        d["train"] = args.train_list
+        alt = Path(args.data).with_name(f"data_{Path(args.train_list).stem}.yaml")
+        alt.write_text(yaml.safe_dump(d, allow_unicode=True), encoding="utf-8")
+        args.data = str(alt)
     t0 = time.time()
     model = YOLO(args.model)
     if args.max_hours:
@@ -69,7 +79,7 @@ def main() -> None:
     train_kw = dict(
         data=args.data, imgsz=args.imgsz, epochs=args.epochs, patience=args.patience, batch=args.batch,
         device=args.device, workers=args.workers, project=args.project, name=args.name, exist_ok=True,
-        seed=args.seed, deterministic=False, plots=True, cache=False, **hyp,
+        seed=args.seed, deterministic=False, plots=True, cache={"false": False, "ram": "ram", "disk": "disk"}[args.cache], **hyp,
     )
     if not args.no_custom_aug:
         train_kw["augmentations"] = build_augmentations()
@@ -79,7 +89,7 @@ def main() -> None:
     run = Path(args.project) / args.name
     best = YOLO(run / "weights" / "best.pt")
     out = {"name": args.name, "imgsz": args.imgsz, "epochs_requested": args.epochs, "patience": args.patience,
-           "batch": args.batch, "max_hours": args.max_hours, "hyp": hyp, "custom_aug": not args.no_custom_aug, "train_seconds": round(train_s)}
+           "batch": args.batch, "cache": args.cache, "train_list": args.train_list or "images/train", "max_hours": args.max_hours, "hyp": hyp, "custom_aug": not args.no_custom_aug, "train_seconds": round(train_s)}
     for split in ("val", "test"):
         r = best.val(data=args.data, split=split, imgsz=args.imgsz, batch=32, device=args.device, plots=True,
                      project=str(run), name=f"eval_{split}", exist_ok=True)
