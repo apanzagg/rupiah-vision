@@ -1,0 +1,13 @@
+# Kandidat citra negatif non-uang kertas (struk, dompet, tangan, koin)
+experimental-6jahs/receipt-finder-bxe8f
+receipt-lbosb/receipt-msfg0
+cj-gl8m1/receipt-ocr-cvfxx
+new-workspace-gforu/receipt-tergn
+loganqin/wallet-vrjpl
+mohamed-hussam-cq81o/wallet-sn9n2
+project-qysdi/wallet-iiyy3
+holeno/holding-hand-only
+fastnucesuakqb/hand-object-detection-wyhyi
+testroboflow-esndn/hand-object-y2ghz
+chandras/coin-rupiah-detection
+tugas-akhir-xq8lu/coin-rupiah

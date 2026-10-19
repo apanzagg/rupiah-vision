@@ -36,3 +36,6 @@ web/.vite/
 Thumbs.db
 .vscode/
 .idea/
+
+# Kernel Kaggle hasil bundel (memuat link unduhan sementara)
+training/kaggle/_build/

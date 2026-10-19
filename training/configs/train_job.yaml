@@ -1,0 +1,10 @@
+# Job training untuk kernel Kaggle "suararupiah-train" (dibaca training/kaggle/train/main.py).
+# Setiap percobaan dicatat di docs/EKSPERIMEN.md.
+version: v1
+runs:
+  - {name: e1_r320, imgsz: 320, epochs: 120, patience: 25, batch: 64}
+  - {name: e1_r416, imgsz: 416, epochs: 120, patience: 25, batch: 64}
+parallel: true     # jalankan run bersamaan, satu run per GPU (Kaggle T4 x2)
+max_hours: 8.5     # batas waktu training per run (sesi Kaggle maks. 12 jam, sisakan waktu ekspor)
+export: true       # ekspor ONNX FP32/FP16/INT8 + evaluasi tiap varian
+save_test: true    # simpan split test (test.tar) untuk evaluasi lokal, uji kondisi & parity test web

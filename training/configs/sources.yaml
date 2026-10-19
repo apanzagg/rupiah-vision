@@ -41,17 +41,30 @@ roboflow:
   - {slug: remedial-data-mining/deteksi-uang-zyvb3, version: 1, role: positive, license: CC BY 4.0, aug: "x3 rotate ninety"}
   - {slug: blind-aid/uang-5z9jp, version: 1, role: positive, license: CC BY 4.0, aug: "x3 ninety blur brightness rotate"}
   - {slug: netrasense/netrasense, version: 1, role: positive, license: CC BY 4.0, aug: "x3 brightness rotate blur shear noise exposure ninety"}
-  # --- negatif: uang asing (semua box dibuang) ---
-  - {slug: mata-uang/currency-detection-y4tb2, version: 9, role: negative, license: CC BY 4.0, aug: none, drop_images_with: ["Indonesian Rupiah"]}
-  - {slug: kalumkoi/banknote-68gsn, version: 1, role: negative, license: CC BY 4.0, aug: none}
-  - {slug: dell-lead-7wvtm/banknote-recognition, version: 9, role: negative, license: CC BY 4.0, aug: none}
+  # --- negatif: semua box dibuang, citra menjadi citra negatif (max_images = batas sampel) ---
+  # uang asing
+  - {slug: mata-uang/currency-detection-y4tb2, version: 9, role: negative, kind: uang_asing, license: CC BY 4.0, aug: none, drop_images_with: ["Indonesian Rupiah"], max_images: 700}
+  - {slug: kalumkoi/banknote-68gsn, version: 1, role: negative, kind: uang_asing, license: CC BY 4.0, aug: none, max_images: 250}
+  - {slug: dell-lead-7wvtm/banknote-recognition, version: 9, role: negative, kind: uang_asing, license: CC BY 4.0, aug: none, max_images: 350}
+  # struk / kertas
+  - {slug: cj-gl8m1/receipt-ocr-cvfxx, version: 4, role: negative, kind: struk, license: CC BY 4.0, aug: none, max_images: 202}
+  - {slug: receipt-lbosb/receipt-msfg0, version: 1, role: negative, kind: struk, license: CC BY 4.0, aug: "x3 shear", max_images: 250}
+  # dompet
+  - {slug: mohamed-hussam-cq81o/wallet-sn9n2, version: 1, role: negative, kind: dompet, license: CC BY 4.0, aug: none, max_images: 250}
+  - {slug: project-qysdi/wallet-iiyy3, version: 1, role: negative, kind: dompet, license: CC BY 4.0, aug: none, max_images: 200}
+  # tangan kosong / tangan memegang benda lain
+  - {slug: fastnucesuakqb/hand-object-detection-wyhyi, version: 5, role: negative, kind: tangan, license: CC BY 4.0, aug: none, max_images: 300}
+  - {slug: holeno/holding-hand-only, version: 3, role: negative, kind: tangan, license: CC BY 4.0, aug: none, max_images: 200}
+  # koin rupiah (di luar lingkup: tidak boleh disebut nominal kertas)
+  - {slug: tugas-akhir-xq8lu/coin-rupiah, version: 1, role: negative, kind: koin, license: CC BY 4.0, aug: none, max_images: 248}
 
 kaggle:
-  # klasifikasi per folder -> perlu auto-label bounding box
-  - {ref: daniakhmadmaulana/citra-uang-rupiah-emisi-2022, role: positive_cls, license: MIT}
-  - {ref: indahtricahyani/kondisi-uang-kertas-rupiah, role: inspect, license: CC0-1.0}
-  - {ref: elvinjaya6/deteksi-uang-kertas, role: inspect, license: Apache-2.0}
-  - {ref: erichaw/uang-rupiah-wendy, role: inspect, license: Apache-2.0}
+  # klasifikasi per folder nominal -> bounding box dibuat otomatis (autolabel.py)
+  - {ref: daniakhmadmaulana/citra-uang-rupiah-emisi-2022, role: positive_cls, license: MIT, format: "klasifikasi per folder (1k..100k), emisi 2022",
+     folder_map: {1k: "1000", 2k: "2000", 5k: "5000", 10k: "10000", 20k: "20000", 50k: "50000", 100k: "100000"}}
+  # folder per kondisi (lusuh / sedikit_lusuh / uang_baru) TANPA label nominal -> kandidat set uji kondisi
+  # setelah dilabeli model + pemeriksaan visual
+  - {ref: indahtricahyani/kondisi-uang-kertas-rupiah, role: condition_unlabeled, license: CC0-1.0, format: "folder per kondisi, tanpa nominal"}
 
 # Dikecualikan (dicatat di docs/SUMBER_DATASET.md):
 # - lisensi "Private": craft-model/rupiah-currentcy-detection(-v2), machine-learning-pmhkb/deteksi-rupiah-jkkmu
