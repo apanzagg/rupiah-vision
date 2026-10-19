@@ -34,13 +34,13 @@ Kolom:
 | 19 | [data mining](https://universe.roboflow.com/ilham-project/data-mining-n52lu/dataset/1) (`ilham-project/data-mining-n52lu`) | Public Domain | positive | 692 | v1, none | 1000, 2000, 5000, 100 ribu, 10ribu, 50 ribu, 20 ribu |  |
 | 20 | [Nominal Rupiah](https://universe.roboflow.com/hmmakmur/nominal-rupiah/dataset/17) (`hmmakmur/nominal-rupiah`) | CC BY 4.0 | positive | 654 | v17, none | Seratus-Ribu, Lima-Puluh-RIbu, Sepuluh-Ribu, Dua-Puluh-Ribu, Lima Ribu, Dua-Ribu, Seribu |  |
 | 21 | [FIX Indonesia rupiah banknote 7 cls](https://universe.roboflow.com/agil-skripsi-3/fix-indonesia-rupiah-banknote-7-cls/dataset/13) (`agil-skripsi-3/fix-indonesia-rupiah-banknote-7-cls`) | CC BY 4.0 | positive | 644 | v13, none | lima ribu, dua ribu, lima puluh ribu, seratus ribu, sepuluh ribu, dua puluh ribu, seribu |  |
-| 22 | [1-indonesian-rupiah-banknotes-bg-black](https://universe.roboflow.com/agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black/dataset/16) (`agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black`) | CC BY 4.0 | positive | 420 | v16, none | sepuluhribu 2022, dua ribu 2016, lima ribu 2022, lima puluh ribu 2016, seratus ribu 2016, dua puluh ribu 2022, seribu 2016, dua ribu 2022, lima ribu 2016, seribu 2022, dua puluhribu 2016, lima puluh ribu 2022, seratus ribu 2022, sepuluhribu 2016 |  |
+| 22 | [1-indonesian-rupiah-banknotes-bg-black](https://universe.roboflow.com/agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black/dataset/16) (`agil-skripsi-fix/1-indonesian-rupiah-banknotes-bg-black`) | CC BY 4.0 | positive | 420 | v16, none | sepuluhribu 2022, dua ribu 2016, lima ribu 2022, lima puluh ribu 2016, seratus ribu 2016, dua puluh ribu 2022, seribu 2016, dua ribu 2022, lima ribu 2016, seribu 2022, dua puluhribu 2016, lima puluh ribu 2022, seratus ribu 2022, sepuluhribu 2016 | 408 |
 | 23 | [Deteksi Uang 2](https://universe.roboflow.com/universitas-amikom-yogyakarta-uxsjx/deteksi-uang-2/dataset/2) (`universitas-amikom-yogyakarta-uxsjx/deteksi-uang-2`) | CC BY 4.0 | positive | 500 | v2, none | 50k, 5k, 2k, 1k, 10k, 20k, 100k |  |
 | 24 | [Uang rupiah](https://universe.roboflow.com/uang-rupiah/uang-rupiah-oyrxk/dataset/2) (`uang-rupiah/uang-rupiah-oyrxk`) | CC BY 4.0 | positive | 422 | v2, none | 1000, 2000, 5000, 10000, 20000, 50000, 100000 |  |
 | 25 | [rupiah detection](https://universe.roboflow.com/image-processing-re77r/rupiah-detection-7nuxw/dataset/1) (`image-processing-re77r/rupiah-detection-7nuxw`) | CC BY 4.0 | positive | 392 | v1, none | 50k, 5k, 2k, 1k, 10k, 20k, 100k |  |
-| 26 | [Deteksi Uang Rupiah](https://universe.roboflow.com/malik-project/deteksi-uang-rupiah-50fx4/dataset/2) (`malik-project/deteksi-uang-rupiah-50fx4`) | CC BY 4.0 | positive | 358 | v2, none | 1000, 2000, 5000, 10000, 20000, 50000, 100000 |  |
+| 26 | [Deteksi Uang Rupiah](https://universe.roboflow.com/malik-project/deteksi-uang-rupiah-50fx4/dataset/2) (`malik-project/deteksi-uang-rupiah-50fx4`) | CC BY 4.0 | positive | 358 | v2, none | 1000, 2000, 5000, 10000, 20000, 50000, 100000 | 354 |
 | 27 | [Deteksi Uang Rupiah](https://universe.roboflow.com/sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1/dataset/1) (`sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1`) | CC BY 4.0 | positive | 343 | v1, none | Rp. 5.000, objects, Rp. 1.000, Rp. 2.000, Rp. 50.000, Rp. 100.000, Rp. 20.000, Rp. 10.000 |  |
-| 28 | [Uang Rupiah](https://universe.roboflow.com/yudhi/uang-rupiah-sjt3b/dataset/1) (`yudhi/uang-rupiah-sjt3b`) | CC BY 4.0 | positive | 333 | v1, none | 20000 rupiah, 2000 rupiah, 50000 rupiah, 5000 rupiah, 10000 rupiah, 100000 rupiah, 1000 rupiah |  |
+| 28 | [Uang Rupiah](https://universe.roboflow.com/yudhi/uang-rupiah-sjt3b/dataset/1) (`yudhi/uang-rupiah-sjt3b`) | CC BY 4.0 | positive | 333 | v1, none | 20000 rupiah, 2000 rupiah, 50000 rupiah, 5000 rupiah, 10000 rupiah, 100000 rupiah, 1000 rupiah | 333 |
 | 29 | [project ka](https://universe.roboflow.com/putra-p21x4/project-ka/dataset/5) (`putra-p21x4/project-ka`) | CC BY 4.0 | positive | 299 | v5, none | dua puluh ribu rupiah, lima ribu rupiah, sepuluh ribu rupiah, 100-perak, seribu rupiah, dua ribu rupiah, 500-perak, lima puluh ribu rupiah, 1000-perak, 200 perak, seratus ribu rupiah |  |
 | 30 | [Uang](https://universe.roboflow.com/teamkito-labs/uang-wfprv/dataset/3) (`teamkito-labs/uang-wfprv`) | CC BY 4.0 | positive | 5435 | v3, x2 rotate ninety | 1000, 2000, 5000, 10000, 20000, 50000, 75000, 100000 |  |
 | 31 | [Rupiah Detection](https://universe.roboflow.com/rizkynindra-wsxpl/rupiah-detection/dataset/11) (`rizkynindra-wsxpl/rupiah-detection`) | CC BY 4.0 | positive | 972 | v11, x3 rotate | 1000, 2000, 5000, 10000, 20000, 50000, 100000 |  |
@@ -48,19 +48,32 @@ Kolom:
 | 33 | [uang](https://universe.roboflow.com/blind-aid/uang-5z9jp/dataset/1) (`blind-aid/uang-5z9jp`) | CC BY 4.0 | positive | 391 | v1, x3 ninety blur brightness rotate | koin_1k, 10k, 20k, koin_100, 5k, 75k, koin_500, 1k, 50k, 2k, 100k |  |
 | 34 | [NetraSense](https://universe.roboflow.com/netrasense/netrasense/dataset/1) (`netrasense/netrasense`) | CC BY 4.0 | positive | 1514 | v1, x3 brightness rotate blur shear noise exposure ninety | 100K, 10K, 50K, 5K, 20K |  |
 | 35 | [currency detection](https://universe.roboflow.com/mata-uang/currency-detection-y4tb2/dataset/9) (`mata-uang/currency-detection-y4tb2`) | CC BY 4.0 | negative | 2593 | v9, none | Vietnam Dong, Brunei Dollar, Singapore Dollar, Thailand Baht, Philippines Peso, Myanmar Kyat, Laos Kip, Indonesian Rupiah, Malaysian Ringgit, Cambodian Riel |  |
-| 36 | [Banknote](https://universe.roboflow.com/kalumkoi/banknote-68gsn/dataset/1) (`kalumkoi/banknote-68gsn`) | CC BY 4.0 | negative | 800 | v1, none | THAI50, THAI20, THAI1000, THAI500, THAI100 |  |
+| 36 | [Banknote](https://universe.roboflow.com/kalumkoi/banknote-68gsn/dataset/1) (`kalumkoi/banknote-68gsn`) | CC BY 4.0 | negative | 800 | v1, none | THAI50, THAI20, THAI1000, THAI500, THAI100 | 122 |
 | 37 | [banknote-recognition](https://universe.roboflow.com/dell-lead-7wvtm/banknote-recognition/dataset/9) (`dell-lead-7wvtm/banknote-recognition`) | CC BY 4.0 | negative | 3255 | v9, none | 05reais-cara, 20reais-cara, 05reais-coroa, 02reais-cara, 20reais-coroa, 10reais-cara, 02reais-coroa, 50reais-cara, 10reais-coroa, 50reais-coroa, 200reais-cara, 200reais-coroa, 100reais-cara, 100reais-coroa |  |
+| 38 | [cj-gl8m1/receipt-ocr-cvfxx](https://universe.roboflow.com/cj-gl8m1/receipt-ocr-cvfxx/dataset/4) (`cj-gl8m1/receipt-ocr-cvfxx`) | CC BY 4.0 | negative |  | v4, none |  |  |
+| 39 | [receipt-lbosb/receipt-msfg0](https://universe.roboflow.com/receipt-lbosb/receipt-msfg0/dataset/1) (`receipt-lbosb/receipt-msfg0`) | CC BY 4.0 | negative |  | v1, x3 shear |  |  |
+| 40 | [mohamed-hussam-cq81o/wallet-sn9n2](https://universe.roboflow.com/mohamed-hussam-cq81o/wallet-sn9n2/dataset/1) (`mohamed-hussam-cq81o/wallet-sn9n2`) | CC BY 4.0 | negative |  | v1, none |  |  |
+| 41 | [project-qysdi/wallet-iiyy3](https://universe.roboflow.com/project-qysdi/wallet-iiyy3/dataset/1) (`project-qysdi/wallet-iiyy3`) | CC BY 4.0 | negative |  | v1, none |  |  |
+| 42 | [fastnucesuakqb/hand-object-detection-wyhyi](https://universe.roboflow.com/fastnucesuakqb/hand-object-detection-wyhyi/dataset/5) (`fastnucesuakqb/hand-object-detection-wyhyi`) | CC BY 4.0 | negative |  | v5, none |  |  |
+| 43 | [holeno/holding-hand-only](https://universe.roboflow.com/holeno/holding-hand-only/dataset/3) (`holeno/holding-hand-only`) | CC BY 4.0 | negative |  | v3, none |  |  |
+| 44 | [tugas-akhir-xq8lu/coin-rupiah](https://universe.roboflow.com/tugas-akhir-xq8lu/coin-rupiah/dataset/1) (`tugas-akhir-xq8lu/coin-rupiah`) | CC BY 4.0 | negative |  | v1, none |  |  |
 
 ## Kaggle
 
 | # | Dataset | Lisensi | Peran | Format | Dipakai |
 |---|---|---|---|---|---|
-| 1 | [daniakhmadmaulana/citra-uang-rupiah-emisi-2022](https://www.kaggle.com/datasets/daniakhmadmaulana/citra-uang-rupiah-emisi-2022) | MIT | positive_cls | klasifikasi per folder |  |
-| 2 | [indahtricahyani/kondisi-uang-kertas-rupiah](https://www.kaggle.com/datasets/indahtricahyani/kondisi-uang-kertas-rupiah) | CC0-1.0 | inspect | klasifikasi per folder |  |
-| 3 | [elvinjaya6/deteksi-uang-kertas](https://www.kaggle.com/datasets/elvinjaya6/deteksi-uang-kertas) | Apache-2.0 | inspect | klasifikasi per folder |  |
-| 4 | [erichaw/uang-rupiah-wendy](https://www.kaggle.com/datasets/erichaw/uang-rupiah-wendy) | Apache-2.0 | inspect | klasifikasi per folder |  |
+| 1 | [daniakhmadmaulana/citra-uang-rupiah-emisi-2022](https://www.kaggle.com/datasets/daniakhmadmaulana/citra-uang-rupiah-emisi-2022) | MIT | positive_cls | klasifikasi per folder (1k..100k), emisi 2022 |  |
+| 2 | [indahtricahyani/kondisi-uang-kertas-rupiah](https://www.kaggle.com/datasets/indahtricahyani/kondisi-uang-kertas-rupiah) | CC0-1.0 | condition_unlabeled | folder per kondisi, tanpa nominal |  |
 
-## Dataset yang dikecualikan
+## Pembersihan setelah pemeriksaan visual (`training/configs/exclude.yaml`)
+
+| Sumber | Tindakan | Alasan |
+|---|---|---|
+| `malik-project/deteksi-uang-rupiah-50fx4` | seluruh citra dikeluarkan | anotasi per-bagian uang (angka/potret/sudut), bukan uang utuh (nest_rate 0,68) |
+| `bima-dcfqn/ini-uang` | foto lampu UV (dominan ungu) dibuang | foto untuk cek keaslian, tidak mewakili pemakaian |
+| `bima-dcfqn/uang-1` | foto lampu UV (dominan ungu) dibuang | foto untuk cek keaslian, tidak mewakili pemakaian |
+
+## Dataset yang dikecualikan sejak seleksi awal
 
 | Dataset | Alasan |
 |---|---|
@@ -70,6 +83,7 @@ Kolom:
 | `muhammad-ihsan-sinaga/dataset-gabungan-rupiah`, `first-oi8bn/money-detection-q0jko` | Nama kelas tidak konsisten/tidak bisa dipetakan dengan pasti; sebagian besar isinya gabungan dataset lain |
 | Kaggle: `anidwiastuti/rupiah-banknotes-dataset`, `fannyzahrahramadhan/*`, `nurulalfiyyah/rupiah-banknotes`, `brotoa/*`, `dimaswara/*`, `kevinwaska/uang-baru`, `muhrisal100786/*`, `yunhann/*` | Lisensi "Unknown" (tidak dinyatakan) |
 | Kaggle: `fzmhww8782/rupiah-22`, `hashimatulzaria/data-uang-rupiah` | Lisensi "Other (specified in description)" tetapi deskripsinya kosong |
+| Kaggle: `elvinjaya6/deteksi-uang-kertas`, `erichaw/uang-rupiah-wendy` | Hanya citra tanpa label; tampak turunan dataset berlisensi "Unknown" |
 
 Catatan: banyak proyek Roboflow merupakan salinan (fork) satu sama lain. Duplikat lintas sumber dihapus dengan
 perceptual hash sebelum split (lihat `docs/LAPORAN_EVALUASI.md`).

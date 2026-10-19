@@ -49,9 +49,17 @@ def main() -> None:
         url = f"https://www.kaggle.com/datasets/{s['ref']}"
         used = stats.get(s["ref"], {}).get("kept", "")
         lines.append(f"| {i} | [{s['ref']}]({url}) | {s['license']} | {s['role']} | {s.get('format', 'klasifikasi per folder')} | {used} |")
+    excl = yaml.safe_load((ROOT / "training/configs/exclude.yaml").read_text(encoding="utf-8")) if (ROOT / "training/configs/exclude.yaml").exists() else {}
+    if excl:
+        lines.append("\n## Pembersihan setelah pemeriksaan visual (`training/configs/exclude.yaml`)\n")
+        lines.append("| Sumber | Tindakan | Alasan |\n|---|---|---|")
+        for slug, why in (excl.get("exclude_sources") or {}).items():
+            lines.append(f"| `{slug}` | seluruh citra dikeluarkan | {why} |")
+        for slug in excl.get("uv_filter_sources") or []:
+            lines.append(f"| `{slug}` | foto lampu UV (dominan ungu) dibuang | foto untuk cek keaslian, tidak mewakili pemakaian |")
     lines.append(
         """
-## Dataset yang dikecualikan
+## Dataset yang dikecualikan sejak seleksi awal
 
 | Dataset | Alasan |
 |---|---|
@@ -61,6 +69,7 @@ def main() -> None:
 | `muhammad-ihsan-sinaga/dataset-gabungan-rupiah`, `first-oi8bn/money-detection-q0jko` | Nama kelas tidak konsisten/tidak bisa dipetakan dengan pasti; sebagian besar isinya gabungan dataset lain |
 | Kaggle: `anidwiastuti/rupiah-banknotes-dataset`, `fannyzahrahramadhan/*`, `nurulalfiyyah/rupiah-banknotes`, `brotoa/*`, `dimaswara/*`, `kevinwaska/uang-baru`, `muhrisal100786/*`, `yunhann/*` | Lisensi "Unknown" (tidak dinyatakan) |
 | Kaggle: `fzmhww8782/rupiah-22`, `hashimatulzaria/data-uang-rupiah` | Lisensi "Other (specified in description)" tetapi deskripsinya kosong |
+| Kaggle: `elvinjaya6/deteksi-uang-kertas`, `erichaw/uang-rupiah-wendy` | Hanya citra tanpa label; tampak turunan dataset berlisensi "Unknown" |
 
 Catatan: banyak proyek Roboflow merupakan salinan (fork) satu sama lain. Duplikat lintas sumber dihapus dengan
 perceptual hash sebelum split (lihat `docs/LAPORAN_EVALUASI.md`).

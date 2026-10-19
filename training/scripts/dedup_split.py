@@ -196,6 +196,30 @@ def main() -> None:
         return b_ > 90 and g_ < 0.6 * b_ and r_ > 0.3 * b_
 
     report: dict = {"input": len(rows), "drop": Counter()}
+
+    def strip_nested(r: dict) -> int:
+        """Buang box bagian (>= 80% di dalam box lain berkelas sama yang lebih besar). Kembalikan jumlah box dibuang."""
+        lp = pool / "labels" / f"{r['id']}.txt"
+        if not lp.exists():
+            return 0
+        bx = [list(map(float, l.split())) for l in lp.read_text().splitlines() if len(l.split()) == 5]
+        def inside(a, b):
+            iw = max(0.0, min(a[1] + a[3] / 2, b[1] + b[3] / 2) - max(a[1] - a[3] / 2, b[1] - b[3] / 2))
+            ih = max(0.0, min(a[2] + a[4] / 2, b[2] + b[4] / 2) - max(a[2] - a[4] / 2, b[2] - b[4] / 2))
+            return iw * ih / max(1e-9, a[3] * a[4])
+        keep = [a for i, a in enumerate(bx) if not any(
+            j != i and b[0] == a[0] and b[3] * b[4] > a[3] * a[4] and inside(a, b) >= 0.8 for j, b in enumerate(bx))]
+        if len(keep) == len(bx):
+            return 0
+        lp.write_text("".join(f"{int(a[0])} {a[1]:.6f} {a[2]:.6f} {a[3]:.6f} {a[4]:.6f}\n" for a in keep))
+        r["classes"] = " ".join(sorted(str(int(a[0])) for a in keep))
+        r["n_boxes"] = str(len(keep))
+        return len(bx) - len(keep)
+
+    if excl.get("strip_nested_boxes"):
+        stripped = sum(strip_nested(r) for r in rows if r["role"] == "pos" and r["status"] == "ok")
+        report["nested_boxes_removed"] = stripped
+        print(f"{stripped} box bagian (bersarang) dibuang")
     kept = []
     for r in rows:
         if r["status"] != "ok":

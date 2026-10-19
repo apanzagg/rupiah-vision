@@ -1,0 +1,1326 @@
+{
+ "mms": {
+  "mean_cer": 0.0428,
+  "exact_match": 90,
+  "n": 109,
+  "total_kb": 1445,
+  "clips": {
+   "status_preparing": {
+    "ref": "sedang menyiapkan aplikasi mohon tunggu",
+    "hyp": "sedang menyiapkan aplikasi mohon tunggu",
+    "raw": "sedang menyiapkan aplikasi mohon tunggu",
+    "cer": 0.0
+   },
+   "status_ready": {
+    "ref": "aplikasi siap arahkan kamera ke uang",
+    "hyp": "aplikasi siap arahkan kamera ke uang",
+    "raw": "Aplikasi siap arahkan kamera ke uang.",
+    "cer": 0.0
+   },
+   "guide_not_found": {
+    "ref": "uang belum terdeteksi coba balik uang atau jauhkan sedikit",
+    "hyp": "uang belum terdeteksi coba balik uang atau jauhkan sedikit",
+    "raw": "Uang belum terdeteksi, coba balik uang atau jauhkan sedikit.",
+    "cer": 0.0
+   },
+   "guide_dark": {
+    "ref": "ruangan terlalu gelap",
+    "hyp": "ruangan terlalu gelap",
+    "raw": "Ruangan terlalu gelap",
+    "cer": 0.0
+   },
+   "guide_torch_on": {
+    "ref": "senter dinyalakan",
+    "hyp": "senter dinyalakan",
+    "raw": "Senter dinyalakan",
+    "cer": 0.0
+   },
+   "error_camera_denied": {
+    "ref": "izin kamera ditolak mohon izinkan akses kamera di pengaturan browser lalu muat ulang aplikasi",
+    "hyp": "izin kamera ditolak mohon izinkan akses kamera di pengaturan browser lalu muat pulang aplikasi",
+    "raw": "Izin, kamera ditolak mohon izinkan akses, kamera di pengaturan browser, lalu muat pulang aplikasi.",
+    "cer": 0.0125
+   },
+   "error_camera": {
+    "ref": "kamera tidak dapat dibuka",
+    "hyp": "kamera tidak dapat dibuka",
+    "raw": "Kamera tidak dapat dibuka.",
+    "cer": 0.0
+   },
+   "error_model": {
+    "ref": "gagal memuat model periksa koneksi internet lalu muat ulang aplikasi",
+    "hyp": "dagal memuat model periksa koneksi internet lalu muat ulang aplikasi",
+    "raw": "Dagal memuat model periksa koneksi internet, lalu muat ulang aplikasi.",
+    "cer": 0.0169
+   },
+   "help": {
+    "ref": "cara memakai suararupiah arahkan kamera belakang ke uang kertas dengan jarak sekitar dua puluh sampai lima puluh sentimeter aplikasi akan menyebutkan nominal uang secara otomatis jika ada lebih dari satu lembar aplikasi menyebutkan jumlah lembar nominal masing masing dan totalnya ketuk layar di mana saja untuk mengulang hasil terakhir jika uang belum terdeteksi coba balik uang jauhkan sedikit atau pindah ke tempat yang lebih terang aplikasi ini hanya mengenali nominal tidak memeriksa keaslian uang uang logam dan uang peringatan tujuh puluh lima ribu rupiah tidak dikenali semua proses berjalan di ponsel anda tidak ada gambar kamera yang dikirim ke internet",
+    "hyp": "cara memakai suara rupiah arahkan kamera belakang ke uang kertas dengan jarak sekitar dua puluh lima puluh cm aplikasi akan menyebutkan momina uang secara otomatis jika ada lebih dari satu lembar aplikasi menyebutkan jumlah lembar momina masing masing dan totalnya ketuk layar di mana saja untuk memulang hasil terakhir jika uang belum terdeteksi coba balik uang jauhkan sedikit atau pindah ke tempat yang lebih terang aplikasi ini hanya mengenali meminal tidak memeriksa kehasilan uang uang lokam dan uang peringatan tujuh puluh lima ribu rupiah tidak dikenali semua proses berjalan di ponsel anda tidak ada gambar kamera yang dikirim ke internet",
+    "raw": "Cara memakai suara rupiah, arahkan kamera belakang ke uang kertas dengan jarak sekitar 20-50 cm aplikasi akan menyebutkan momina uang secara otomatis. Jika ada lebih dari satu lembar aplikasi menyebutkan jumlah lembar momina masing-masing dan totalnya. Ketuk layar di mana saja, untuk memulang hasil terakhir jika uang belum terdeteksi coba balik uang jauhkan sedikit atau pindah ke tempat yang lebih terang aplikasi ini. Hanya mengenali, meminal tidak memeriksa kehasilan uang-uang lokam, dan uang peringatan Rp75.000 tidak dikenali, semua proses berjalan di ponsel Anda tidak ada gambar kamera yang dikirim ke internet.",
+    "cer": 0.0479
+   },
+   "d1000": {
+    "ref": "seribu rupiah",
+    "hyp": "rupiah",
+    "raw": "Rp 1.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.",
+    "cer": 0.5
+   },
+   "n1000": {
+    "ref": "seribu",
+    "hyp": "selurimu",
+    "raw": "Selurimu.",
+    "cer": 0.5
+   },
+   "d2000": {
+    "ref": "dua ribu rupiah",
+    "hyp": "dua ribu rupiah",
+    "raw": "2.000 rupiah",
+    "cer": 0.0
+   },
+   "n2000": {
+    "ref": "dua ribu",
+    "hyp": "delarremu",
+    "raw": "Delarremu",
+    "cer": 0.7143
+   },
+   "d5000": {
+    "ref": "lima ribu rupiah",
+    "hyp": "lima ribu rupiah",
+    "raw": "5.000 rupiah",
+    "cer": 0.0
+   },
+   "n5000": {
+    "ref": "lima ribu",
+    "hyp": "linarimu",
+    "raw": "Linarimu",
+    "cer": 0.25
+   },
+   "d10000": {
+    "ref": "sepuluh ribu rupiah",
+    "hyp": "sepuluh ribu rupiah",
+    "raw": "10.000 rupiah",
+    "cer": 0.0
+   },
+   "n10000": {
+    "ref": "sepuluh ribu",
+    "hyp": "sepuluh ribu",
+    "raw": "10.000",
+    "cer": 0.0
+   },
+   "d20000": {
+    "ref": "dua puluh ribu rupiah",
+    "hyp": "dua puluh ribu rupiah",
+    "raw": "20.000 rupiah",
+    "cer": 0.0
+   },
+   "n20000": {
+    "ref": "dua puluh ribu",
+    "hyp": "dua puluh ribu",
+    "raw": "20.000",
+    "cer": 0.0
+   },
+   "d50000": {
+    "ref": "lima puluh ribu rupiah",
+    "hyp": "lima puluh ribu rupiah",
+    "raw": "50.000 rupiah",
+    "cer": 0.0
+   },
+   "n50000": {
+    "ref": "lima puluh ribu",
+    "hyp": "lima puluh ribu",
+    "raw": "50.000",
+    "cer": 0.0
+   },
+   "d100000": {
+    "ref": "seratus ribu rupiah",
+    "hyp": "seratus ribu rupiah",
+    "raw": "100 ribu rupiah",
+    "cer": 0.0
+   },
+   "n100000": {
+    "ref": "seratus ribu",
+    "hyp": "ceratus rimu",
+    "raw": "Ceratus Rimu",
+    "cer": 0.1818
+   },
+   "c2": {
+    "ref": "dua lembar",
+    "hyp": "dua nomba",
+    "raw": "Dua nomba",
+    "cer": 0.3333
+   },
+   "c3": {
+    "ref": "tiga lembar",
+    "hyp": "tiga lembang",
+    "raw": "Tiga Lembang",
+    "cer": 0.2
+   },
+   "c4": {
+    "ref": "empat lembar",
+    "hyp": "keempat lembang",
+    "raw": "keempat lembang",
+    "cer": 0.3636
+   },
+   "c5": {
+    "ref": "lima lembar",
+    "hyp": "limang namura",
+    "raw": "LIMANG NAMURA",
+    "cer": 0.7
+   },
+   "t2000": {
+    "ref": "total dua ribu rupiah",
+    "hyp": "potal dua ribu rupiah",
+    "raw": "Potal 2.000 rupiah.",
+    "cer": 0.0556
+   },
+   "t3000": {
+    "ref": "total tiga ribu rupiah",
+    "hyp": "total tiga ribu rupiah",
+    "raw": "Total 3.000 rupiah.",
+    "cer": 0.0
+   },
+   "t4000": {
+    "ref": "total empat ribu rupiah",
+    "hyp": "total empat ribu rupiah",
+    "raw": "Total 4.000 rupiah",
+    "cer": 0.0
+   },
+   "t5000": {
+    "ref": "total lima ribu rupiah",
+    "hyp": "potal lima ribu rupiah",
+    "raw": "Potal 5.000 rupiah.",
+    "cer": 0.0526
+   },
+   "t6000": {
+    "ref": "total enam ribu rupiah",
+    "hyp": "total enam ribu rupiah",
+    "raw": "Total Rp6.000.",
+    "cer": 0.0
+   },
+   "t7000": {
+    "ref": "total tujuh ribu rupiah",
+    "hyp": "total tujuh ribu rupiah",
+    "raw": "Total 7.000 rupiah.",
+    "cer": 0.0
+   },
+   "t8000": {
+    "ref": "total delapan ribu rupiah",
+    "hyp": "total delapan ribu rupiah",
+    "raw": "Total 8.000 rupiah.",
+    "cer": 0.0
+   },
+   "t9000": {
+    "ref": "total sembilan ribu rupiah",
+    "hyp": "total sembilan ribu rupiah",
+    "raw": "Total 9.000 rupiah.",
+    "cer": 0.0
+   },
+   "t10000": {
+    "ref": "total sepuluh ribu rupiah",
+    "hyp": "total sepuluh ribu rupiah",
+    "raw": "Total 10.000 rupiah.",
+    "cer": 0.0
+   },
+   "t11000": {
+    "ref": "total sebelas ribu rupiah",
+    "hyp": "total sebelas ribu rupiah",
+    "raw": "Total 11.000 rupiah.",
+    "cer": 0.0
+   },
+   "t12000": {
+    "ref": "total dua belas ribu rupiah",
+    "hyp": "total dua belas ribu rupiah",
+    "raw": "total 12 ribu rupiah",
+    "cer": 0.0
+   },
+   "t13000": {
+    "ref": "total tiga belas ribu rupiah",
+    "hyp": "total tiga belas ribu rupiah",
+    "raw": "Total, 13.000 rupiah.",
+    "cer": 0.0
+   },
+   "t14000": {
+    "ref": "total empat belas ribu rupiah",
+    "hyp": "total empat belas ribu rupiah",
+    "raw": "Total Rp14.000.",
+    "cer": 0.0
+   },
+   "t15000": {
+    "ref": "total lima belas ribu rupiah",
+    "hyp": "total lima belas ribu rupiah",
+    "raw": "Total 15.000 rupiah.",
+    "cer": 0.0
+   },
+   "t16000": {
+    "ref": "total enam belas ribu rupiah",
+    "hyp": "total enam belas ribu rupiah",
+    "raw": "Total 16.000 rupiah.",
+    "cer": 0.0
+   },
+   "t17000": {
+    "ref": "total tujuh belas ribu rupiah",
+    "hyp": "total tujuh belas ribu rupiah",
+    "raw": "Total 17.000 rupiah",
+    "cer": 0.0
+   },
+   "t20000": {
+    "ref": "total dua puluh ribu rupiah",
+    "hyp": "total dua puluh ribu rupiah",
+    "raw": "total 20 ribu rupiah",
+    "cer": 0.0
+   },
+   "t21000": {
+    "ref": "total dua puluh satu ribu rupiah",
+    "hyp": "total rupiah",
+    "raw": "Total Rp 21.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000",
+    "cer": 0.5926
+   },
+   "t22000": {
+    "ref": "total dua puluh dua ribu rupiah",
+    "hyp": "total dua puluh dua ribu rupiah",
+    "raw": "total 22.000 rupiah",
+    "cer": 0.0
+   },
+   "t23000": {
+    "ref": "total dua puluh tiga ribu rupiah",
+    "hyp": "total dua puluh tiga ribu rupiah",
+    "raw": "Total 23.000 rupiah.",
+    "cer": 0.0
+   },
+   "t24000": {
+    "ref": "total dua puluh empat ribu rupiah",
+    "hyp": "total dua puluh empat ribu rupiah",
+    "raw": "Total Rp24.000.",
+    "cer": 0.0
+   },
+   "t25000": {
+    "ref": "total dua puluh lima ribu rupiah",
+    "hyp": "total dua puluh lima ribu rupiah",
+    "raw": "total 25.000 rupiah",
+    "cer": 0.0
+   },
+   "t26000": {
+    "ref": "total dua puluh enam ribu rupiah",
+    "hyp": "total dua puluh enam ribu rupiah",
+    "raw": "Total Rp26.000.",
+    "cer": 0.0
+   },
+   "t27000": {
+    "ref": "total dua puluh tujuh ribu rupiah",
+    "hyp": "potal dua puluh tujuh ribu rupiah",
+    "raw": "Potal 27.000 rupiah",
+    "cer": 0.0357
+   },
+   "t30000": {
+    "ref": "total tiga puluh ribu rupiah",
+    "hyp": "total tiga puluh ribu rupiah",
+    "raw": "total 30 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t31000": {
+    "ref": "total tiga puluh satu ribu rupiah",
+    "hyp": "total tiga puluh satu ribu rupiah",
+    "raw": "Total, 31 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t32000": {
+    "ref": "total tiga puluh dua ribu rupiah",
+    "hyp": "total tiga puluh dua ribu rupiah",
+    "raw": "total 32 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t35000": {
+    "ref": "total tiga puluh lima ribu rupiah",
+    "hyp": "total tiga puluh lima ribu rupiah",
+    "raw": "Total 35.000 rupiah.",
+    "cer": 0.0
+   },
+   "t40000": {
+    "ref": "total empat puluh ribu rupiah",
+    "hyp": "total empat puluh ribu rupiah",
+    "raw": "Total 40.000 rupiah.",
+    "cer": 0.0
+   },
+   "t41000": {
+    "ref": "total empat puluh satu ribu rupiah",
+    "hyp": "total empat puluh satu ribu rupiah",
+    "raw": "Total Rp41.000.",
+    "cer": 0.0
+   },
+   "t42000": {
+    "ref": "total empat puluh dua ribu rupiah",
+    "hyp": "total empat puluh dua ribu rupiah",
+    "raw": "Total Rp42.000.",
+    "cer": 0.0
+   },
+   "t45000": {
+    "ref": "total empat puluh lima ribu rupiah",
+    "hyp": "total empat puluh lima ribu rupiah",
+    "raw": "total 45 ribu rupiah",
+    "cer": 0.0
+   },
+   "t50000": {
+    "ref": "total lima puluh ribu rupiah",
+    "hyp": "potal lima puluh ribu rupiah",
+    "raw": "Potal 50 ribu rupiah.",
+    "cer": 0.0417
+   },
+   "t51000": {
+    "ref": "total lima puluh satu ribu rupiah",
+    "hyp": "total lima puluh satu ribu rupiah",
+    "raw": "Total, 51 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t52000": {
+    "ref": "total lima puluh dua ribu rupiah",
+    "hyp": "total lima puluh dua ribu rupiah",
+    "raw": "total 52.000 rupiah",
+    "cer": 0.0
+   },
+   "t53000": {
+    "ref": "total lima puluh tiga ribu rupiah",
+    "hyp": "total lima puluh tiga ribu rupiah",
+    "raw": "Total Rp53.000.",
+    "cer": 0.0
+   },
+   "t54000": {
+    "ref": "total lima puluh empat ribu rupiah",
+    "hyp": "total lima puluh empat ribu rupiah",
+    "raw": "Total 54.000 rupiah.",
+    "cer": 0.0
+   },
+   "t55000": {
+    "ref": "total lima puluh lima ribu rupiah",
+    "hyp": "total lima puluh lima ribu rupiah",
+    "raw": "Total 55 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t56000": {
+    "ref": "total lima puluh enam ribu rupiah",
+    "hyp": "total lima puluh enam ribu rupiah",
+    "raw": "Total 56.000 rupiah.",
+    "cer": 0.0
+   },
+   "t57000": {
+    "ref": "total lima puluh tujuh ribu rupiah",
+    "hyp": "potal lima puluh tujuh ribu rupiah",
+    "raw": "POTAL 57.000 RUPIAH",
+    "cer": 0.0345
+   },
+   "t60000": {
+    "ref": "total enam puluh ribu rupiah",
+    "hyp": "total enam puluh ribu rupiah",
+    "raw": "total enam puluh ribu rupiah",
+    "cer": 0.0
+   },
+   "t61000": {
+    "ref": "total enam puluh satu ribu rupiah",
+    "hyp": "total enam puluh satu ribu rupiah",
+    "raw": "Total 61.000 rupiah.",
+    "cer": 0.0
+   },
+   "t62000": {
+    "ref": "total enam puluh dua ribu rupiah",
+    "hyp": "total enam puluh dua ribu rupiah",
+    "raw": "Total Rp62.000.",
+    "cer": 0.0
+   },
+   "t65000": {
+    "ref": "total enam puluh lima ribu rupiah",
+    "hyp": "total enam puluh lima ribu rupiah",
+    "raw": "total 65 ribu rupiah",
+    "cer": 0.0
+   },
+   "t70000": {
+    "ref": "total tujuh puluh ribu rupiah",
+    "hyp": "total tujuh puluh ribu rupiah",
+    "raw": "Total 70.000 rupiah",
+    "cer": 0.0
+   },
+   "t71000": {
+    "ref": "total tujuh puluh satu ribu rupiah",
+    "hyp": "total tujuh puluh satu ribu rupiah",
+    "raw": "Total, 71 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t72000": {
+    "ref": "total tujuh puluh dua ribu rupiah",
+    "hyp": "potal tujuh puluh dua ribu rupiah",
+    "raw": "Potal 72.000 rupiah",
+    "cer": 0.0357
+   },
+   "t75000": {
+    "ref": "total tujuh puluh lima ribu rupiah",
+    "hyp": "total tujuh puluh lima ribu rupiah",
+    "raw": "Total 75.000 rupiah",
+    "cer": 0.0
+   },
+   "t80000": {
+    "ref": "total delapan puluh ribu rupiah",
+    "hyp": "total delapan puluh ribu rupiah",
+    "raw": "Total 80 ribu rupiah",
+    "cer": 0.0
+   },
+   "t90000": {
+    "ref": "total sembilan puluh ribu rupiah",
+    "hyp": "total sembilan puluh ribu rupiah",
+    "raw": "total sembilan puluh ribu rupiah",
+    "cer": 0.0
+   },
+   "t100000": {
+    "ref": "total seratus ribu rupiah",
+    "hyp": "total seratus ribu rupiah",
+    "raw": "total 100 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t101000": {
+    "ref": "total seratus satu ribu rupiah",
+    "hyp": "total seratus satu ribu rupiah",
+    "raw": "Total 101.000 rupiah.",
+    "cer": 0.0
+   },
+   "t102000": {
+    "ref": "total seratus dua ribu rupiah",
+    "hyp": "total seratus dua ribu rupiah",
+    "raw": "Total Rp102.000.",
+    "cer": 0.0
+   },
+   "t103000": {
+    "ref": "total seratus tiga ribu rupiah",
+    "hyp": "total seratus tiga ribu rupiah",
+    "raw": "Total 103.000 rupiah.",
+    "cer": 0.0
+   },
+   "t104000": {
+    "ref": "total seratus empat ribu rupiah",
+    "hyp": "total seratus empat ribu rupiah",
+    "raw": "Total 104.000 rupiah.",
+    "cer": 0.0
+   },
+   "t105000": {
+    "ref": "total seratus lima ribu rupiah",
+    "hyp": "total seratus lima ribu rupiah",
+    "raw": "Total 105 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t106000": {
+    "ref": "total seratus enam ribu rupiah",
+    "hyp": "total seratus enam ribu rupiah",
+    "raw": "Total 106.000 rupiah.",
+    "cer": 0.0
+   },
+   "t107000": {
+    "ref": "total seratus tujuh ribu rupiah",
+    "hyp": "total seratus tujuh ribu rupiah",
+    "raw": "Total seratus tujuh ribu rupiah",
+    "cer": 0.0
+   },
+   "t110000": {
+    "ref": "total seratus sepuluh ribu rupiah",
+    "hyp": "total seratus sepuluh ribu rupiah",
+    "raw": "Total seratus sepuluh ribu rupiah.",
+    "cer": 0.0
+   },
+   "t111000": {
+    "ref": "total seratus sebelas ribu rupiah",
+    "hyp": "total seratus sebelas ribu rupiah",
+    "raw": "Total 111 ribu rupiah",
+    "cer": 0.0
+   },
+   "t112000": {
+    "ref": "total seratus dua belas ribu rupiah",
+    "hyp": "total seratus dua belas ribu rupiah",
+    "raw": "Total 112 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t115000": {
+    "ref": "total seratus lima belas ribu rupiah",
+    "hyp": "total seratus lima belas ribu rupiah",
+    "raw": "Total 115.000 rupiah.",
+    "cer": 0.0
+   },
+   "t120000": {
+    "ref": "total seratus dua puluh ribu rupiah",
+    "hyp": "total seratus dua puluh ribu rupiah",
+    "raw": "Total seratus dua puluh ribu rupiah",
+    "cer": 0.0
+   },
+   "t121000": {
+    "ref": "total seratus dua puluh satu ribu rupiah",
+    "hyp": "total seratus dua puluh satu ribu rupiah",
+    "raw": "Total Rp 121.000.",
+    "cer": 0.0
+   },
+   "t122000": {
+    "ref": "total seratus dua puluh dua ribu rupiah",
+    "hyp": "total seratus dua puluh dua ribu rupiah",
+    "raw": "Total 122 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t125000": {
+    "ref": "total seratus dua puluh lima ribu rupiah",
+    "hyp": "total seratus dua puluh lima ribu rupiah",
+    "raw": "Total 125 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t130000": {
+    "ref": "total seratus tiga puluh ribu rupiah",
+    "hyp": "total seratus tiga puluh ribu rupiah",
+    "raw": "Total 130 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t140000": {
+    "ref": "total seratus empat puluh ribu rupiah",
+    "hyp": "total seratus empat puluh ribu rupiah",
+    "raw": "Total 140.000 rupiah.",
+    "cer": 0.0
+   },
+   "t150000": {
+    "ref": "total seratus lima puluh ribu rupiah",
+    "hyp": "total seratus lima puluh ribu rupiah",
+    "raw": "Total 150 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t151000": {
+    "ref": "total seratus lima puluh satu ribu rupiah",
+    "hyp": "total seratus lima puluh satu ribu rupiah",
+    "raw": "Total 151 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t152000": {
+    "ref": "total seratus lima puluh dua ribu rupiah",
+    "hyp": "total seratus lima puluh dua ribu rupiah",
+    "raw": "Total 152 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t155000": {
+    "ref": "total seratus lima puluh lima ribu rupiah",
+    "hyp": "total seratus lima puluh lima ribu rupiah",
+    "raw": "Total 155 ribu rupiah",
+    "cer": 0.0
+   },
+   "t160000": {
+    "ref": "total seratus enam puluh ribu rupiah",
+    "hyp": "total seratus enam puluh ribu rupiah",
+    "raw": "Total 160 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t170000": {
+    "ref": "total seratus tujuh puluh ribu rupiah",
+    "hyp": "total seratus tujuh puluh ribu rupiah",
+    "raw": "Total seratus tujuh puluh ribu rupiah.",
+    "cer": 0.0
+   },
+   "t200000": {
+    "ref": "total dua ratus ribu rupiah",
+    "hyp": "total dua ratus ribu rupiah",
+    "raw": "Total 200.000 rupiah.",
+    "cer": 0.0
+   },
+   "t201000": {
+    "ref": "total dua ratus satu ribu rupiah",
+    "hyp": "total dua ratus satu ribu rupiah",
+    "raw": "Total 201 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t202000": {
+    "ref": "total dua ratus dua ribu rupiah",
+    "hyp": "total dua ratus dua ribu rupiah",
+    "raw": "total 202 ribu rupiah",
+    "cer": 0.0
+   },
+   "t205000": {
+    "ref": "total dua ratus lima ribu rupiah",
+    "hyp": "total dua ratus lima ribu rupiah",
+    "raw": "total 205 ribu rupiah",
+    "cer": 0.0
+   },
+   "t210000": {
+    "ref": "total dua ratus sepuluh ribu rupiah",
+    "hyp": "total dua ratus sepuluh ribu rupiah",
+    "raw": "Total 210 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t220000": {
+    "ref": "total dua ratus dua puluh ribu rupiah",
+    "hyp": "total dua ratus dua puluh ribu rupiah",
+    "raw": "Total 220 ribu rupiah",
+    "cer": 0.0
+   },
+   "t250000": {
+    "ref": "total dua ratus lima puluh ribu rupiah",
+    "hyp": "total dua ratus lima puluh ribu rupiah",
+    "raw": "Total 250.000 rupiah",
+    "cer": 0.0
+   },
+   "t300000": {
+    "ref": "total tiga ratus ribu rupiah",
+    "hyp": "total tiga ratus ribu rupiah",
+    "raw": "Total 300.000 rupiah.",
+    "cer": 0.0
+   }
+  }
+ },
+ "piper": {
+  "mean_cer": 0.0091,
+  "exact_match": 106,
+  "n": 109,
+  "total_kb": 1481,
+  "clips": {
+   "status_preparing": {
+    "ref": "sedang menyiapkan aplikasi mohon tunggu",
+    "hyp": "sedang menyiapkan aplikasi mohon tunggu",
+    "raw": "sedang menyiapkan aplikasi mohon tunggu.",
+    "cer": 0.0
+   },
+   "status_ready": {
+    "ref": "aplikasi siap arahkan kamera ke uang",
+    "hyp": "aplikasi siap arahkan kamera ke uang",
+    "raw": "Aplikasi siap, arahkan kamera ke uang.",
+    "cer": 0.0
+   },
+   "guide_not_found": {
+    "ref": "uang belum terdeteksi coba balik uang atau jauhkan sedikit",
+    "hyp": "uang belum terdeteksi coba balik uang atau jauhkan sedikit",
+    "raw": "Uang belum terdeteksi, coba balik uang atau jauhkan sedikit.",
+    "cer": 0.0
+   },
+   "guide_dark": {
+    "ref": "ruangan terlalu gelap",
+    "hyp": "ruangan terlalu gelap",
+    "raw": "Ruangan terlalu gelap.",
+    "cer": 0.0
+   },
+   "guide_torch_on": {
+    "ref": "senter dinyalakan",
+    "hyp": "senter dinyalakan",
+    "raw": "senter dinyalakan",
+    "cer": 0.0
+   },
+   "error_camera_denied": {
+    "ref": "izin kamera ditolak mohon izinkan akses kamera di pengaturan browser lalu muat ulang aplikasi",
+    "hyp": "izin kamera ditolak mohon izinkan akses kamera di pengaturan browser lalu muat ulang aplikasi",
+    "raw": "Izin kamera ditolak. Mohon izinkan akses kamera di pengaturan browser, lalu muat ulang aplikasi.",
+    "cer": 0.0
+   },
+   "error_camera": {
+    "ref": "kamera tidak dapat dibuka",
+    "hyp": "kamera tidak dapat dibuka",
+    "raw": "Kamera tidak dapat dibuka.",
+    "cer": 0.0
+   },
+   "error_model": {
+    "ref": "gagal memuat model periksa koneksi internet lalu muat ulang aplikasi",
+    "hyp": "gagal memuat model periksa koneksi internet lalu muat ulang aplikasi",
+    "raw": "Gagal memuat model, periksa koneksi internet, lalu muat ulang aplikasi.",
+    "cer": 0.0
+   },
+   "help": {
+    "ref": "cara memakai suararupiah arahkan kamera belakang ke uang kertas dengan jarak sekitar dua puluh sampai lima puluh sentimeter aplikasi akan menyebutkan nominal uang secara otomatis jika ada lebih dari satu lembar aplikasi menyebutkan jumlah lembar nominal masing masing dan totalnya ketuk layar di mana saja untuk mengulang hasil terakhir jika uang belum terdeteksi coba balik uang jauhkan sedikit atau pindah ke tempat yang lebih terang aplikasi ini hanya mengenali nominal tidak memeriksa keaslian uang uang logam dan uang peringatan tujuh puluh lima ribu rupiah tidak dikenali semua proses berjalan di ponsel anda tidak ada gambar kamera yang dikirim ke internet",
+    "hyp": "cara memakai suara rupiah arahkan kamera belakang ke uang kertas dengan jarak sekitar dua puluh lima puluh cm aplikasi akan menyebutkan nominal uang secara otomatis jika ada lebih dari satu lembar aplikasi menyebutkan jumlah lembar nominal masing masing dan totalnya ketuk layar di mana saja untuk mengulang hasil terakhir jika uang belum terdeteksi coba balik uang jauhkan sedikit atau pindah ke tempat yang lebih terang aplikasi ini hanya mengenali nominal tidak memeriksa keaslian uang uang logam dan uang peringatan tujuh puluh lima ribu rupiah tidak dikenali semua proses berjalan di ponsel anda tidak ada gambar kamera yang dikirim ke internet",
+    "raw": "Cara memakai suara rupiah. Arahkan kamera belakang ke uang kertas dengan jarak sekitar 20-50 cm. Aplikasi akan menyebutkan nominal uang secara otomatis. Jika ada lebih dari satu lembar, aplikasi menyebutkan jumlah lembar, nominal masing-masing, dan totalnya. Ketuk layar di mana saja untuk mengulang hasil terakhir. Jika uang belum terdeteksi, coba balik uang, jauhkan sedikit, atau pindah ke tempat yang lebih terang. Aplikasi ini hanya mengenali nominal, tidak memeriksa keaslian uang. Uang logam dan uang peringatan Rp75.000 tidak dikenali. Semua proses berjalan di ponsel Anda. Tidak ada gambar kamera yang dikirim ke internet.",
+    "cer": 0.0266
+   },
+   "d1000": {
+    "ref": "seribu rupiah",
+    "hyp": "seribu rupiah",
+    "raw": "Seribu rupiah",
+    "cer": 0.0
+   },
+   "n1000": {
+    "ref": "seribu",
+    "hyp": "seribu",
+    "raw": "Seribu",
+    "cer": 0.0
+   },
+   "d2000": {
+    "ref": "dua ribu rupiah",
+    "hyp": "dua ribu rupiah",
+    "raw": "Dua ribu rupiah.",
+    "cer": 0.0
+   },
+   "n2000": {
+    "ref": "dua ribu",
+    "hyp": "dua ribu",
+    "raw": "Dua Ribu",
+    "cer": 0.0
+   },
+   "d5000": {
+    "ref": "lima ribu rupiah",
+    "hyp": "lima ribu rupiah",
+    "raw": "5.000 rupiah",
+    "cer": 0.0
+   },
+   "n5000": {
+    "ref": "lima ribu",
+    "hyp": "lima ribu",
+    "raw": "lima ribu",
+    "cer": 0.0
+   },
+   "d10000": {
+    "ref": "sepuluh ribu rupiah",
+    "hyp": "sepuluh ribu rupiah",
+    "raw": "10.000 rupiah",
+    "cer": 0.0
+   },
+   "n10000": {
+    "ref": "sepuluh ribu",
+    "hyp": "sepuluh ribu",
+    "raw": "sepuluh ribu",
+    "cer": 0.0
+   },
+   "d20000": {
+    "ref": "dua puluh ribu rupiah",
+    "hyp": "dua puluh ribu rupiah",
+    "raw": "20.000 rupiah",
+    "cer": 0.0
+   },
+   "n20000": {
+    "ref": "dua puluh ribu",
+    "hyp": "dua puluh ribu rupiah",
+    "raw": "Rp20.000.",
+    "cer": 0.5
+   },
+   "d50000": {
+    "ref": "lima puluh ribu rupiah",
+    "hyp": "lima puluh ribu rupiah",
+    "raw": "50.000 rupiah.",
+    "cer": 0.0
+   },
+   "n50000": {
+    "ref": "lima puluh ribu",
+    "hyp": "lima puluh ribu rupiah",
+    "raw": "Rp50.000",
+    "cer": 0.4615
+   },
+   "d100000": {
+    "ref": "seratus ribu rupiah",
+    "hyp": "seratus ribu rupiah",
+    "raw": "Seratus ribu rupiah.",
+    "cer": 0.0
+   },
+   "n100000": {
+    "ref": "seratus ribu",
+    "hyp": "seratus ribu",
+    "raw": "Seratus ribu",
+    "cer": 0.0
+   },
+   "c2": {
+    "ref": "dua lembar",
+    "hyp": "dua lembar",
+    "raw": "Dua lembar.",
+    "cer": 0.0
+   },
+   "c3": {
+    "ref": "tiga lembar",
+    "hyp": "tiga lembar",
+    "raw": "Tiga Lembar",
+    "cer": 0.0
+   },
+   "c4": {
+    "ref": "empat lembar",
+    "hyp": "empat lembar",
+    "raw": "4 lembar",
+    "cer": 0.0
+   },
+   "c5": {
+    "ref": "lima lembar",
+    "hyp": "lima lembar",
+    "raw": "5 lembar",
+    "cer": 0.0
+   },
+   "t2000": {
+    "ref": "total dua ribu rupiah",
+    "hyp": "total dua ribu rupiah",
+    "raw": "Total 2.000 rupiah.",
+    "cer": 0.0
+   },
+   "t3000": {
+    "ref": "total tiga ribu rupiah",
+    "hyp": "total tiga ribu rupiah",
+    "raw": "Total 3.000 rupiah.",
+    "cer": 0.0
+   },
+   "t4000": {
+    "ref": "total empat ribu rupiah",
+    "hyp": "total empat ribu rupiah",
+    "raw": "Total 4.000 rupiah.",
+    "cer": 0.0
+   },
+   "t5000": {
+    "ref": "total lima ribu rupiah",
+    "hyp": "total lima ribu rupiah",
+    "raw": "Total 5.000 rupiah.",
+    "cer": 0.0
+   },
+   "t6000": {
+    "ref": "total enam ribu rupiah",
+    "hyp": "total enam ribu rupiah",
+    "raw": "Total 6.000 rupiah.",
+    "cer": 0.0
+   },
+   "t7000": {
+    "ref": "total tujuh ribu rupiah",
+    "hyp": "total tujuh ribu rupiah",
+    "raw": "Total 7.000 rupiah.",
+    "cer": 0.0
+   },
+   "t8000": {
+    "ref": "total delapan ribu rupiah",
+    "hyp": "total delapan ribu rupiah",
+    "raw": "Total 8.000 rupiah.",
+    "cer": 0.0
+   },
+   "t9000": {
+    "ref": "total sembilan ribu rupiah",
+    "hyp": "total sembilan ribu rupiah",
+    "raw": "Total 9.000 rupiah.",
+    "cer": 0.0
+   },
+   "t10000": {
+    "ref": "total sepuluh ribu rupiah",
+    "hyp": "total sepuluh ribu rupiah",
+    "raw": "Total 10.000 rupiah.",
+    "cer": 0.0
+   },
+   "t11000": {
+    "ref": "total sebelas ribu rupiah",
+    "hyp": "total sebelas ribu rupiah",
+    "raw": "Total 11.000 rupiah.",
+    "cer": 0.0
+   },
+   "t12000": {
+    "ref": "total dua belas ribu rupiah",
+    "hyp": "total dua belas ribu rupiah",
+    "raw": "Total Rp12.000.",
+    "cer": 0.0
+   },
+   "t13000": {
+    "ref": "total tiga belas ribu rupiah",
+    "hyp": "total tiga belas ribu rupiah",
+    "raw": "Total 13.000 rupiah.",
+    "cer": 0.0
+   },
+   "t14000": {
+    "ref": "total empat belas ribu rupiah",
+    "hyp": "total empat belas ribu rupiah",
+    "raw": "Total 14.000 rupiah.",
+    "cer": 0.0
+   },
+   "t15000": {
+    "ref": "total lima belas ribu rupiah",
+    "hyp": "total lima belas ribu rupiah",
+    "raw": "Total 15.000 rupiah.",
+    "cer": 0.0
+   },
+   "t16000": {
+    "ref": "total enam belas ribu rupiah",
+    "hyp": "total enam belas ribu rupiah",
+    "raw": "Total 16.000 rupiah.",
+    "cer": 0.0
+   },
+   "t17000": {
+    "ref": "total tujuh belas ribu rupiah",
+    "hyp": "total tujuh belas ribu rupiah",
+    "raw": "Total 17 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t20000": {
+    "ref": "total dua puluh ribu rupiah",
+    "hyp": "total dua puluh ribu rupiah",
+    "raw": "Total 20.000 rupiah.",
+    "cer": 0.0
+   },
+   "t21000": {
+    "ref": "total dua puluh satu ribu rupiah",
+    "hyp": "total dua puluh satu ribu rupiah",
+    "raw": "Total Rp21.000.",
+    "cer": 0.0
+   },
+   "t22000": {
+    "ref": "total dua puluh dua ribu rupiah",
+    "hyp": "total dua puluh dua ribu rupiah",
+    "raw": "Total Rp22.000.",
+    "cer": 0.0
+   },
+   "t23000": {
+    "ref": "total dua puluh tiga ribu rupiah",
+    "hyp": "total dua puluh tiga ribu rupiah",
+    "raw": "Total 23.000 rupiah.",
+    "cer": 0.0
+   },
+   "t24000": {
+    "ref": "total dua puluh empat ribu rupiah",
+    "hyp": "total dua puluh empat ribu rupiah",
+    "raw": "Total Rp24.000.",
+    "cer": 0.0
+   },
+   "t25000": {
+    "ref": "total dua puluh lima ribu rupiah",
+    "hyp": "total dua puluh lima ribu rupiah",
+    "raw": "Total 25.000 rupiah.",
+    "cer": 0.0
+   },
+   "t26000": {
+    "ref": "total dua puluh enam ribu rupiah",
+    "hyp": "total dua puluh enam ribu rupiah",
+    "raw": "Total Rp26.000.",
+    "cer": 0.0
+   },
+   "t27000": {
+    "ref": "total dua puluh tujuh ribu rupiah",
+    "hyp": "total dua puluh tujuh ribu rupiah",
+    "raw": "Total 27 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t30000": {
+    "ref": "total tiga puluh ribu rupiah",
+    "hyp": "total tiga puluh ribu rupiah",
+    "raw": "Total Rp30.000.",
+    "cer": 0.0
+   },
+   "t31000": {
+    "ref": "total tiga puluh satu ribu rupiah",
+    "hyp": "total tiga puluh satu ribu rupiah",
+    "raw": "Total 31.000 rupiah.",
+    "cer": 0.0
+   },
+   "t32000": {
+    "ref": "total tiga puluh dua ribu rupiah",
+    "hyp": "total tiga puluh dua ribu rupiah",
+    "raw": "Total 32.000 rupiah.",
+    "cer": 0.0
+   },
+   "t35000": {
+    "ref": "total tiga puluh lima ribu rupiah",
+    "hyp": "total tiga puluh lima ribu rupiah",
+    "raw": "Total 35.000 rupiah.",
+    "cer": 0.0
+   },
+   "t40000": {
+    "ref": "total empat puluh ribu rupiah",
+    "hyp": "total empat puluh ribu rupiah",
+    "raw": "Total Rp40.000.",
+    "cer": 0.0
+   },
+   "t41000": {
+    "ref": "total empat puluh satu ribu rupiah",
+    "hyp": "total empat puluh satu ribu rupiah",
+    "raw": "Total 41.000 rupiah.",
+    "cer": 0.0
+   },
+   "t42000": {
+    "ref": "total empat puluh dua ribu rupiah",
+    "hyp": "total empat puluh dua ribu rupiah",
+    "raw": "Total Rp42.000.",
+    "cer": 0.0
+   },
+   "t45000": {
+    "ref": "total empat puluh lima ribu rupiah",
+    "hyp": "total empat puluh lima ribu rupiah",
+    "raw": "Total Rp45.000.",
+    "cer": 0.0
+   },
+   "t50000": {
+    "ref": "total lima puluh ribu rupiah",
+    "hyp": "total lima puluh ribu rupiah",
+    "raw": "total 50 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t51000": {
+    "ref": "total lima puluh satu ribu rupiah",
+    "hyp": "total lima puluh satu ribu rupiah",
+    "raw": "Total 51.000 rupiah.",
+    "cer": 0.0
+   },
+   "t52000": {
+    "ref": "total lima puluh dua ribu rupiah",
+    "hyp": "total lima puluh dua ribu rupiah",
+    "raw": "Total 52.000 rupiah.",
+    "cer": 0.0
+   },
+   "t53000": {
+    "ref": "total lima puluh tiga ribu rupiah",
+    "hyp": "total lima puluh tiga ribu rupiah",
+    "raw": "Total 53.000 rupiah.",
+    "cer": 0.0
+   },
+   "t54000": {
+    "ref": "total lima puluh empat ribu rupiah",
+    "hyp": "total lima puluh empat ribu rupiah",
+    "raw": "Total 54.000 rupiah.",
+    "cer": 0.0
+   },
+   "t55000": {
+    "ref": "total lima puluh lima ribu rupiah",
+    "hyp": "total lima puluh lima ribu rupiah",
+    "raw": "Total 55.000 rupiah.",
+    "cer": 0.0
+   },
+   "t56000": {
+    "ref": "total lima puluh enam ribu rupiah",
+    "hyp": "total lima puluh enam ribu rupiah",
+    "raw": "Total 56.000 rupiah.",
+    "cer": 0.0
+   },
+   "t57000": {
+    "ref": "total lima puluh tujuh ribu rupiah",
+    "hyp": "total lima puluh tujuh ribu rupiah",
+    "raw": "Total 57.000 rupiah.",
+    "cer": 0.0
+   },
+   "t60000": {
+    "ref": "total enam puluh ribu rupiah",
+    "hyp": "total enam puluh ribu rupiah",
+    "raw": "Total 60.000 rupiah.",
+    "cer": 0.0
+   },
+   "t61000": {
+    "ref": "total enam puluh satu ribu rupiah",
+    "hyp": "total enam puluh satu ribu rupiah",
+    "raw": "Total 61.000 rupiah.",
+    "cer": 0.0
+   },
+   "t62000": {
+    "ref": "total enam puluh dua ribu rupiah",
+    "hyp": "total enam puluh dua ribu rupiah",
+    "raw": "Total 62.000 rupiah.",
+    "cer": 0.0
+   },
+   "t65000": {
+    "ref": "total enam puluh lima ribu rupiah",
+    "hyp": "total enam puluh lima ribu rupiah",
+    "raw": "Total 65.000 rupiah.",
+    "cer": 0.0
+   },
+   "t70000": {
+    "ref": "total tujuh puluh ribu rupiah",
+    "hyp": "total tujuh puluh ribu rupiah",
+    "raw": "Total 70 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t71000": {
+    "ref": "total tujuh puluh satu ribu rupiah",
+    "hyp": "total tujuh puluh satu ribu rupiah",
+    "raw": "Total 71 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t72000": {
+    "ref": "total tujuh puluh dua ribu rupiah",
+    "hyp": "total tujuh puluh dua ribu rupiah",
+    "raw": "Total 72 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t75000": {
+    "ref": "total tujuh puluh lima ribu rupiah",
+    "hyp": "total tujuh puluh lima ribu rupiah",
+    "raw": "Total 75.000 rupiah.",
+    "cer": 0.0
+   },
+   "t80000": {
+    "ref": "total delapan puluh ribu rupiah",
+    "hyp": "total delapan puluh ribu rupiah",
+    "raw": "Total Rp80.000.",
+    "cer": 0.0
+   },
+   "t90000": {
+    "ref": "total sembilan puluh ribu rupiah",
+    "hyp": "total sembilan puluh ribu rupiah",
+    "raw": "Total Rp90.000.",
+    "cer": 0.0
+   },
+   "t100000": {
+    "ref": "total seratus ribu rupiah",
+    "hyp": "total seratus ribu rupiah",
+    "raw": "Total 100 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t101000": {
+    "ref": "total seratus satu ribu rupiah",
+    "hyp": "total seratus satu ribu rupiah",
+    "raw": "Total 101.000 rupiah.",
+    "cer": 0.0
+   },
+   "t102000": {
+    "ref": "total seratus dua ribu rupiah",
+    "hyp": "total seratus dua ribu rupiah",
+    "raw": "Total seratus dua ribu rupiah.",
+    "cer": 0.0
+   },
+   "t103000": {
+    "ref": "total seratus tiga ribu rupiah",
+    "hyp": "total seratus tiga ribu rupiah",
+    "raw": "Total 103.000 rupiah.",
+    "cer": 0.0
+   },
+   "t104000": {
+    "ref": "total seratus empat ribu rupiah",
+    "hyp": "total seratus empat ribu rupiah",
+    "raw": "Total 104.000 rupiah.",
+    "cer": 0.0
+   },
+   "t105000": {
+    "ref": "total seratus lima ribu rupiah",
+    "hyp": "total seratus lima ribu rupiah",
+    "raw": "Total 105.000 rupiah.",
+    "cer": 0.0
+   },
+   "t106000": {
+    "ref": "total seratus enam ribu rupiah",
+    "hyp": "total seratus enam ribu rupiah",
+    "raw": "Total 106.000 rupiah.",
+    "cer": 0.0
+   },
+   "t107000": {
+    "ref": "total seratus tujuh ribu rupiah",
+    "hyp": "total seratus tujuh ribu rupiah",
+    "raw": "Total 107.000 rupiah.",
+    "cer": 0.0
+   },
+   "t110000": {
+    "ref": "total seratus sepuluh ribu rupiah",
+    "hyp": "total seratus sepuluh ribu rupiah",
+    "raw": "Total 110.000 rupiah.",
+    "cer": 0.0
+   },
+   "t111000": {
+    "ref": "total seratus sebelas ribu rupiah",
+    "hyp": "total seratus sebelas ribu rupiah",
+    "raw": "Total 111 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t112000": {
+    "ref": "total seratus dua belas ribu rupiah",
+    "hyp": "total seratus dua belas ribu rupiah",
+    "raw": "Total Rp112.000.",
+    "cer": 0.0
+   },
+   "t115000": {
+    "ref": "total seratus lima belas ribu rupiah",
+    "hyp": "total seratus lima belas ribu rupiah",
+    "raw": "Total 115.000 rupiah.",
+    "cer": 0.0
+   },
+   "t120000": {
+    "ref": "total seratus dua puluh ribu rupiah",
+    "hyp": "total seratus dua puluh ribu rupiah",
+    "raw": "Total Rp120.000.",
+    "cer": 0.0
+   },
+   "t121000": {
+    "ref": "total seratus dua puluh satu ribu rupiah",
+    "hyp": "total seratus dua puluh satu ribu rupiah",
+    "raw": "Total 121 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t122000": {
+    "ref": "total seratus dua puluh dua ribu rupiah",
+    "hyp": "total seratus dua puluh dua ribu rupiah",
+    "raw": "Total Rp122.000.",
+    "cer": 0.0
+   },
+   "t125000": {
+    "ref": "total seratus dua puluh lima ribu rupiah",
+    "hyp": "total seratus dua puluh lima ribu rupiah",
+    "raw": "Total 125.000 rupiah.",
+    "cer": 0.0
+   },
+   "t130000": {
+    "ref": "total seratus tiga puluh ribu rupiah",
+    "hyp": "total seratus tiga puluh ribu rupiah",
+    "raw": "Total 130 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t140000": {
+    "ref": "total seratus empat puluh ribu rupiah",
+    "hyp": "total seratus empat puluh ribu rupiah",
+    "raw": "Total 140.000 rupiah.",
+    "cer": 0.0
+   },
+   "t150000": {
+    "ref": "total seratus lima puluh ribu rupiah",
+    "hyp": "total seratus lima puluh ribu rupiah",
+    "raw": "Total 150.000 rupiah.",
+    "cer": 0.0
+   },
+   "t151000": {
+    "ref": "total seratus lima puluh satu ribu rupiah",
+    "hyp": "total seratus lima puluh satu ribu rupiah",
+    "raw": "Total 151 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t152000": {
+    "ref": "total seratus lima puluh dua ribu rupiah",
+    "hyp": "total seratus lima puluh dua ribu rupiah",
+    "raw": "Total 152 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t155000": {
+    "ref": "total seratus lima puluh lima ribu rupiah",
+    "hyp": "total seratus lima puluh lima ribu rupiah",
+    "raw": "Total 155.000 rupiah.",
+    "cer": 0.0
+   },
+   "t160000": {
+    "ref": "total seratus enam puluh ribu rupiah",
+    "hyp": "total seratus enam puluh ribu rupiah",
+    "raw": "Total 160.000 rupiah.",
+    "cer": 0.0
+   },
+   "t170000": {
+    "ref": "total seratus tujuh puluh ribu rupiah",
+    "hyp": "total seratus tujuh puluh ribu rupiah",
+    "raw": "Total Rp170.000.",
+    "cer": 0.0
+   },
+   "t200000": {
+    "ref": "total dua ratus ribu rupiah",
+    "hyp": "total dua ratus ribu rupiah",
+    "raw": "Total 200 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t201000": {
+    "ref": "total dua ratus satu ribu rupiah",
+    "hyp": "total dua ratus satu ribu rupiah",
+    "raw": "Total 201 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t202000": {
+    "ref": "total dua ratus dua ribu rupiah",
+    "hyp": "total dua ratus dua ribu rupiah",
+    "raw": "Total Rp202.000.",
+    "cer": 0.0
+   },
+   "t205000": {
+    "ref": "total dua ratus lima ribu rupiah",
+    "hyp": "total dua ratus lima ribu rupiah",
+    "raw": "Total 205 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t210000": {
+    "ref": "total dua ratus sepuluh ribu rupiah",
+    "hyp": "total dua ratus sepuluh ribu rupiah",
+    "raw": "Total Rp210.000.",
+    "cer": 0.0
+   },
+   "t220000": {
+    "ref": "total dua ratus dua puluh ribu rupiah",
+    "hyp": "total dua ratus dua puluh ribu rupiah",
+    "raw": "Total 220 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t250000": {
+    "ref": "total dua ratus lima puluh ribu rupiah",
+    "hyp": "total dua ratus lima puluh ribu rupiah",
+    "raw": "Total 250 ribu rupiah.",
+    "cer": 0.0
+   },
+   "t300000": {
+    "ref": "total tiga ratus ribu rupiah",
+    "hyp": "total tiga ratus ribu rupiah",
+    "raw": "Total Rp300.000.",
+    "cer": 0.0
+   }
+  }
+ }
+}

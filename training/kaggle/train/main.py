@@ -88,6 +88,18 @@ for r in runs:
             summary["runs"][r["name"]]["export_error"] = str(e)
     (W / "summary.json").write_text(json.dumps(summary, indent=1))
 
+if job.get("audit"):  # audit label berbasis model (lihat audit_labels.py)
+    for r in runs:
+        best = W / "runs" / r["name"] / "weights" / "best.pt"
+        if best.exists():
+            sh(f"cd {S} && python audit_labels.py --weights {best} --imgsz {r['imgsz']} --out {W / 'audit' / r['name']}")
+    import zipfile
+
+    with zipfile.ZipFile(W / "audit.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        for p in (W / "audit").rglob("*"):
+            if p.is_file():
+                z.write(p, p.relative_to(W).as_posix())
+
 if job.get("save_test"):
     with tarfile.open(W / "test.tar", "w") as t:
         for sub in ("images/test", "labels/test"):

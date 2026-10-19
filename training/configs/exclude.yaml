@@ -4,8 +4,14 @@
 # Sumber yang dikeluarkan seluruhnya
 exclude_sources:
   malik-project/deteksi-uang-rupiah-50fx4: "anotasi per-bagian uang (angka/potret/sudut), bukan uang utuh (nest_rate 0,68)"
+  hmmakmur/nominal-rupiah: "dominan anotasi per-bagian uang (7,4 box/citra, ukuran median 0,10, nest_rate 0,62)"
+  putra-p21x4/project-ka: "dominan anotasi per-bagian uang (4,4 box/citra, nest_rate 0,73)"
+  bima-dcfqn/ini-uang: "sebagian besar foto di bawah lampu UV untuk cek keaslian; filter warna tidak cukup andal karena bingkai hitam"
+  bima-dcfqn/uang-1: "sebagian besar foto di bawah lampu UV untuk cek keaslian"
 
-# Sumber yang citra lampu UV-nya (dominan ungu) dibuang: foto untuk cek keaslian, tidak mewakili pemakaian
-uv_filter_sources:
-  - bima-dcfqn/ini-uang
-  - bima-dcfqn/uang-1
+# Sumber yang citra lampu UV-nya (dominan ungu) dibuang
+uv_filter_sources: []
+
+# Box yang >= 80% luasnya berada di dalam box lain BERKELAS SAMA dan lebih kecil dianggap anotasi bagian
+# (mis. kotak di sekitar angka "2000" di dalam kotak uang utuh) dan dibuang. Berlaku untuk semua sumber.
+strip_nested_boxes: true
