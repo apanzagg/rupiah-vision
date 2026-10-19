@@ -15,13 +15,15 @@ Pool awal: **69.624 citra** dari 44 sumber Roboflow + 1 dataset Kaggle (setelah 
 | D2 | Dedup serakah **non-transitif**; beda *jumlah* box bukan konflik (anotasi per lembar dipertahankan); `malik-project` dikeluarkan (anotasi per-bagian); filter foto UV untuk `bima-dcfqn/*` | 39.681 | 250 (125 pasangan) | 2.663 duplikat beda-jumlah-box, 1.632 foto UV terbuang |
 | D3 | Audit gaya anotasi (`audit_sources.py`): `hmmakmur/nominal-rupiah`, `putra-p21x4/project-ka` (dominan per-bagian) dan `bima-dcfqn/*` (UV lolos filter) dikeluarkan; **box bagian bersarang** (≥80% di dalam box sekelas yang lebih besar) dibuang untuk semua sumber | **38.430** | 246 (123 pasangan) | 11.359 box bagian dibuang; nest_rate maks. turun 0,73 → 0,05 |
 
+| D4 | Hasil audit model ronde 1 (`audit_labels.py`, model e0): koreksi 65 label pola "salah ketik nol" (47 train, 6 val, 12 test; verifikasi visual sampel `uang-wfprv`: 37/37 memang salah label), 42 citra train dengan kelas meragukan dibuang, 63 kasus non-sistematis di val/test **dibiarkan** (tidak bias ke model). Sumber dikeluarkan: `tugas-akhir-xq8lu/train-6bmh8` (salah label parah, 45% box tidak cocok), `sitis-workspace-k9sh9/deteksi-uang-rupiah-09ea1` (koin berlabel uang kertas) | **35.862** | 258 (129 pasangan) | train 26.461 / val 4.858 / test 4.543 (74 / 13,5 / 12,7%; salinan augmentasi dipaksa ke train) |
+
 Pemeriksaan visual konflik D2/D3 (`reports/sheets/conflicts_*.jpg`): mayoritas adalah **salah label sungguhan** pada foto
 identik, pola "salah jumlah nol" (Rp1.000 ditulis 10000, Rp2.000 ditulis 20000, Rp5.000 ditulis 50000), terutama di
 `duit/deteksi-uang-4lt3e`, `teamkito-labs/uang-wfprv`, `test-eyksp/tugas-pemodelan-data-rupiah`,
 `remedial-data-mining/deteksi-uang-zyvb3`. Konflik yang tertangkap dedup hanya yang kebetulan punya duplikat; sisanya
 dicari dengan **audit berbasis model** (ronde 1).
 
-Split D3 (objek per kelas):
+Split D3 (objek per kelas; D4 di `docs/LAPORAN_EVALUASI.md`):
 
 | Split | Citra | Negatif | Rp1.000 | Rp2.000 | Rp5.000 | Rp10.000 | Rp20.000 | Rp50.000 | Rp100.000 |
 |---|---|---|---|---|---|---|---|---|---|
