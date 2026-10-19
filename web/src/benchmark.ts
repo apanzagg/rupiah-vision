@@ -2,7 +2,6 @@
 import './styles.css';
 import { BASE, MODEL, ORT_CACHE, ORT_VERSION, WASM_BYTES, WASM_URL } from './app/assets';
 import { Detector } from './app/detector';
-import { fetchCached } from './app/loader';
 
 interface VariantInfo {
   file: string;
@@ -51,13 +50,14 @@ async function variants(): Promise<VariantInfo[]> {
 
 async function makeDetector(file: string): Promise<{ det: Detector; loadMs: number; downloadMs: number; initMs: number; warmupMs: number }> {
   const t0 = performance.now();
-  const resp = await fetch(`${BASE}models/${file}`, { cache: 'no-store' });
-  const model = await resp.arrayBuffer();
-  const downloadMs = performance.now() - t0;
-  const wasm = await fetchCached(WASM_URL, ORT_CACHE, WASM_BYTES);
   const det = new Detector(MODEL.imgsz, MODEL.classes.length);
-  const ready = await det.init(model, wasm);
-  return { det, loadMs: performance.now() - t0, downloadMs, initMs: ready.initMs, warmupMs: ready.warmupMs };
+  // cache khusus benchmark dengan stempel waktu -> model selalu diunduh ulang (mengukur waktu unduh nyata)
+  const ready = await det.init(
+    { url: new URL(`${BASE}models/${file}`, location.href).href, cache: `bench-${Date.now()}`, bytes: 6_000_000 },
+    { url: new URL(WASM_URL, location.href).href, cache: ORT_CACHE, bytes: WASM_BYTES },
+  );
+  void caches.keys().then((ks) => ks.filter((k) => k.startsWith('bench-')).forEach((k) => caches.delete(k)));
+  return { det, loadMs: performance.now() - t0, downloadMs: ready.downloadMs, initMs: ready.initMs, warmupMs: ready.warmupMs };
 }
 
 async function runBenchmark() {

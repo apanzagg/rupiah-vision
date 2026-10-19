@@ -3,6 +3,7 @@
 import * as ort from 'onnxruntime-web/wasm';
 import { PAD_VALUE, letterbox, meanLuma, rgbaToTensor, type Letterbox } from '../lib/letterbox';
 import { decode } from '../lib/postprocess';
+import { fetchCached } from '../app/loader';
 import type { FromWorker, ToWorker } from './protocol';
 
 let session: ort.InferenceSession | null = null;
@@ -16,12 +17,28 @@ let tensorBuf: Float32Array | undefined;
 const post = (m: FromWorker) => (self as unknown as Worker).postMessage(m);
 
 async function init(m: Extract<ToWorker, { type: 'init' }>) {
-  ort.env.wasm.wasmBinary = m.wasm;
+  const got = { model: 0, wasm: 0 };
+  const total = { model: m.model.bytes, wasm: m.wasm.bytes };
+  let last = 0;
+  const report = () => {
+    const now = performance.now();
+    if (now - last < 100) return;
+    last = now;
+    post({ type: 'progress', received: got.model + got.wasm, total: total.model + total.wasm });
+  };
+  const td = performance.now();
+  const [model, wasm] = await Promise.all([
+    fetchCached(m.model.url, m.model.cache, m.model.bytes, (r, t) => ((got.model = r), (total.model = t), report())),
+    fetchCached(m.wasm.url, m.wasm.cache, m.wasm.bytes, (r, t) => ((got.wasm = r), (total.wasm = t), report())),
+  ]);
+  const downloadMs = performance.now() - td;
+  post({ type: 'progress', received: 1, total: 1 });
+  ort.env.wasm.wasmBinary = wasm;
   ort.env.wasm.numThreads = m.threads;
   ort.env.wasm.proxy = false;
   ort.env.logLevel = 'warning';
   const t0 = performance.now();
-  session = await ort.InferenceSession.create(new Uint8Array(m.model), {
+  session = await ort.InferenceSession.create(new Uint8Array(model), {
     executionProviders: ['wasm'],
     graphOptimizationLevel: 'all',
   });
@@ -38,6 +55,7 @@ async function init(m: Extract<ToWorker, { type: 'init' }>) {
   }
   post({
     type: 'ready',
+    downloadMs,
     initMs,
     warmupMs,
     offscreen: !!ctx,

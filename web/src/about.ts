@@ -34,12 +34,16 @@ $<HTMLAnchorElement>('src-link').href = SOURCE_URL;
 $<HTMLAnchorElement>('src-datasets').href = `${SOURCE_URL}/blob/main/docs/SUMBER_DATASET.md`;
 $('model-info').textContent = `Versi model: ${MODEL.version} (${MODEL.variant}, input ${MODEL.imgsz}x${MODEL.imgsz} piksel)`;
 
-const speaker = new Speaker(BASE);
-speaker.rate = s.rate;
-const loading = speaker.load().catch(() => undefined);
+// speaker dibuat saat tombol diketuk: tidak ada AudioContext/unduhan audio sebelum dibutuhkan
+let speaker: Speaker | null = null;
 $('play-help').addEventListener('click', async () => {
+  if (!speaker) {
+    speaker = new Speaker(BASE);
+    speaker.rate = s.rate;
+    await speaker.unlock();
+    await speaker.load().catch(() => undefined);
+  }
   await speaker.unlock();
-  await loading;
   speaker.enabled = true;
   void speaker.say([{ key: 'help', text: speaker.text('help') }]);
 });

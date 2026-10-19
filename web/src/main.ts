@@ -3,7 +3,7 @@ import './styles.css';
 import { BASE, MODEL, MODEL_CACHE, MODEL_URL, ORT_CACHE, WASM_BYTES, WASM_URL, CACHE_PREFIX, AUDIO_MANIFEST } from './app/assets';
 import { CameraError, openCamera, setTorch, stopCamera, type CameraHandle } from './app/camera';
 import { Detector } from './app/detector';
-import { cleanupCaches, fetchCached } from './app/loader';
+import { cleanupCaches } from './app/loader';
 import { loadSettings } from './app/settings';
 import { Speaker } from './app/speaker';
 import { DecisionEngine, GuidanceEngine, DEFAULT_DECISION, type Announcement } from './lib/decision';
@@ -149,28 +149,11 @@ async function tick() {
   setTimeout(tick, Math.max(0, MIN_FRAME_MS - dt));
 }
 
-async function loadAssets(): Promise<[ArrayBuffer, ArrayBuffer]> {
-  const sizes = { model: MODEL.sizeBytes || 6_000_000, wasm: WASM_BYTES };
-  const got = { model: 0, wasm: 0 };
-  const report = () => setProgress((got.model + got.wasm) / (sizes.model + sizes.wasm), 'Mengunduh model');
-  return Promise.all([
-    fetchCached(MODEL_URL, MODEL_CACHE, sizes.model, (r, t) => {
-      got.model = r;
-      sizes.model = t;
-      report();
-    }),
-    fetchCached(WASM_URL, ORT_CACHE, sizes.wasm, (r, t) => {
-      got.wasm = r;
-      sizes.wasm = t;
-      report();
-    }),
-  ]);
-}
-
 async function boot() {
-  sayKey('status_preparing');
+  // status awal hanya lewat layar + aria-live (pembaca layar); audio belum dimuat agar boot ringan
+  statusEl.textContent = phraseText('status_preparing');
+  announceLive(phraseText('status_preparing'));
   void cleanupCaches(CACHE_PREFIX, [MODEL_CACHE, ORT_CACHE]);
-  const audioReady = speaker.load().catch(() => undefined);
   const camReady = openCamera(video).then(
     (c) => (cam = c),
     (e: unknown) => {
@@ -179,11 +162,13 @@ async function boot() {
       throw e;
     },
   );
-  let buffers: [ArrayBuffer, ArrayBuffer];
   try {
-    buffers = await loadAssets();
     detector = new Detector(MODEL.imgsz, MODEL.classes.length);
-    await detector.init(buffers[0], buffers[1]);
+    await detector.init(
+      { url: new URL(MODEL_URL, location.href).href, cache: MODEL_CACHE, bytes: MODEL.sizeBytes || 6_000_000 },
+      { url: new URL(WASM_URL, location.href).href, cache: ORT_CACHE, bytes: WASM_BYTES },
+      (r, t) => setProgress(r / t, 'Mengunduh model'),
+    );
   } catch (e) {
     console.error(e);
     debug.phase = 'model-error';
@@ -191,7 +176,7 @@ async function boot() {
     return;
   }
   progress.hidden = true;
-  await audioReady;
+  await speaker.load().catch(() => undefined);
   try {
     await camReady;
   } catch {
@@ -199,6 +184,9 @@ async function boot() {
   }
   debug.phase = 'ready';
   sayKey('status_ready', true);
+  // decode klip yang paling sering dipakai saat browser senggang
+  speaker.warmup([...[1000, 2000, 5000, 10000, 20000, 50000, 100000].flatMap((n) => [`d${n}`, `n${n}`]),
+    'guide_not_found', 'guide_dark', 'guide_torch_on', 'c2', 'c3']);
   resultEl.textContent = 'Arahkan kamera ke uang';
   guidance = new GuidanceEngine(performance.now());
   running = true;

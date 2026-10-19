@@ -2,10 +2,16 @@
 import type { Letterbox } from '../lib/letterbox';
 import type { Detection } from '../lib/postprocess';
 
+/** Worker sendiri yang mengunduh & meng-cache model + WASM (agar thread UI tidak menyalin ~20 MB data). */
+export interface AssetSpec {
+  url: string;
+  cache: string;
+  bytes: number;
+}
 export interface InitMsg {
   type: 'init';
-  model: ArrayBuffer;
-  wasm: ArrayBuffer;
+  model: AssetSpec;
+  wasm: AssetSpec;
   imgsz: number;
   numClasses: number;
   threads: number;
@@ -28,8 +34,14 @@ export interface PixelsMsg {
 }
 export type ToWorker = InitMsg | FrameMsg | PixelsMsg;
 
+export interface ProgressMsg {
+  type: 'progress';
+  received: number;
+  total: number;
+}
 export interface ReadyMsg {
   type: 'ready';
+  downloadMs: number;
   initMs: number;
   warmupMs: number;
   offscreen: boolean;
@@ -52,4 +64,4 @@ export interface ErrorMsg {
   id?: number;
   message: string;
 }
-export type FromWorker = ReadyMsg | ResultMsg | ErrorMsg;
+export type FromWorker = ProgressMsg | ReadyMsg | ResultMsg | ErrorMsg;

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
 const web = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const repoModels = resolve(web, '..', 'models');
+const repoModels = process.env.MODELS_DIR ? resolve(process.env.MODELS_DIR) : resolve(web, '..', 'models');
 const pub = join(web, 'public');
 const cfg = JSON.parse(readFileSync(join(web, 'src', 'model-config.json'), 'utf8'));
 

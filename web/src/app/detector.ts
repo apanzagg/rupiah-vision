@@ -1,6 +1,6 @@
 // Pembungkus Worker di thread utama: inisialisasi, kirim frame, terima hasil (satu frame diproses sekaligus).
 import { PAD_VALUE, letterbox } from '../lib/letterbox';
-import type { FromWorker, ReadyMsg, ResultMsg } from '../worker/protocol';
+import type { AssetSpec, FromWorker, ReadyMsg, ResultMsg } from '../worker/protocol';
 
 export class Detector {
   private worker: Worker;
@@ -23,11 +23,13 @@ export class Detector {
     };
   }
 
-  init(model: ArrayBuffer, wasm: ArrayBuffer): Promise<ReadyMsg> {
+  init(model: AssetSpec, wasm: AssetSpec, onProgress?: (received: number, total: number) => void): Promise<ReadyMsg> {
     const threads = self.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
     return new Promise((resolve, reject) => {
       const onMsg = (e: MessageEvent<FromWorker>) => {
-        if (e.data.type === 'ready') {
+        if (e.data.type === 'progress') {
+          onProgress?.(e.data.received, e.data.total);
+        } else if (e.data.type === 'ready') {
           this.worker.removeEventListener('message', onMsg);
           this.ready = e.data;
           resolve(e.data);
@@ -37,10 +39,7 @@ export class Detector {
         }
       };
       this.worker.addEventListener('message', onMsg);
-      this.worker.postMessage(
-        { type: 'init', model, wasm, imgsz: this.imgsz, numClasses: this.numClasses, threads },
-        [model, wasm],
-      );
+      this.worker.postMessage({ type: 'init', model, wasm, imgsz: this.imgsz, numClasses: this.numClasses, threads });
     });
   }
 

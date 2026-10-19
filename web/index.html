@@ -7,6 +7,7 @@
     <meta name="description" content="SuaraRupiah: pengenal nominal uang kertas Rupiah dengan suara untuk penyandang tunanetra. Berjalan di ponsel, tanpa mengirim gambar ke internet." />
     <link rel="icon" href="/icons/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="SuaraRupiah" />
     <title>SuaraRupiah</title>
@@ -15,9 +16,9 @@
     <main id="app">
       <video id="video" autoplay muted playsinline aria-hidden="true"></video>
       <canvas id="overlay" aria-hidden="true"></canvas>
-      <button id="tap" class="tap" type="button" aria-label="Ulangi hasil terakhir">
+      <button id="tap" class="tap" type="button" aria-labelledby="result hint">
         <span id="result" class="result">SuaraRupiah</span>
-        <span class="hint" aria-hidden="true">Ketuk layar untuk mengulang</span>
+        <span id="hint" class="hint">Ketuk layar untuk mengulang</span>
       </button>
       <header class="topbar">
         <h1 class="sr-only">SuaraRupiah</h1>

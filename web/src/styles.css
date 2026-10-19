@@ -145,7 +145,7 @@ body {
   margin: 0 auto;
   padding: 1rem 1rem 4rem;
 }
-.page a {
+.page a:not(.btn) {
   color: var(--accent);
 }
 .page h1 {

@@ -1,13 +1,18 @@
 // Keluaran suara: klip audio TTS (public/audio/*.mp3, mudah diganti rekaman manusia) diputar lewat Web Audio API.
 // Jika klip tidak ada / gagal / audio belum diizinkan browser, jatuh ke Web Speech API (lang id-ID).
+// Klip diunduh di awal (kecil) tetapi baru di-decode saat dibutuhkan atau saat browser senggang,
+// agar thread utama tidak tersendat ketika aplikasi baru dibuka.
 import type { Segment } from '../lib/phrases';
 
 interface Manifest {
   phrases: Record<string, { text: string; file: string }>;
 }
 
+const hasActivation = () => (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } }).userActivation?.hasBeenActive ?? true;
+
 export class Speaker {
   private ctx: AudioContext | null = null;
+  private raw = new Map<string, ArrayBuffer>();
   private buffers = new Map<string, AudioBuffer>();
   private current: AudioBufferSourceNode[] = [];
   private seq = 0;
@@ -15,53 +20,74 @@ export class Speaker {
   enabled = true;
   rate = 1;
 
-  constructor(private base: string) {
-    try {
-      this.ctx = new AudioContext();
-    } catch {
-      this.ctx = null;
+  constructor(private base: string) {}
+
+  /** AudioContext dibuat saat pertama dibutuhkan (membuatnya saat halaman dibuka memperlambat boot). */
+  private audio(): AudioContext | null {
+    if (!this.ctx) {
+      try {
+        this.ctx = new AudioContext();
+      } catch {
+        this.ctx = null;
+      }
     }
+    return this.ctx;
   }
 
   /** true bila browser sudah mengizinkan audio diputar (autoplay / setelah interaksi). */
   get unlocked(): boolean {
-    return this.ctx?.state === 'running';
+    return this.audio()?.state === 'running';
   }
 
   /** Panggil dari handler interaksi pengguna (ketukan) untuk membuka kunci audio. */
   async unlock(): Promise<void> {
     try {
-      await this.ctx?.resume();
+      await this.audio()?.resume();
     } catch {
       /* abaikan */
     }
-    if ('speechSynthesis' in self) {
-      // "pemanasan" Web Speech pada interaksi pertama (diperlukan sebagian browser)
-      const u = new SpeechSynthesisUtterance('');
-      u.volume = 0;
-      speechSynthesis.speak(u);
-    }
   }
 
-  /** Muat manifest + decode semua klip (kecil, ~100 berkas). */
-  async load(onProgress?: (done: number, total: number) => void): Promise<void> {
+  /** Muat manifest + unduh semua klip (belum di-decode). */
+  async load(): Promise<void> {
     const res = await fetch(`${this.base}audio/manifest.json`);
     this.manifest = (await res.json()) as Manifest;
-    const entries = Object.entries(this.manifest.phrases);
-    let done = 0;
-    const work = entries.map(async ([key, p]) => {
-      try {
-        const r = await fetch(`${this.base}audio/${p.file}`);
-        if (!r.ok || !this.ctx) return;
-        const buf = await this.ctx.decodeAudioData(await r.arrayBuffer());
-        this.buffers.set(key, buf);
-      } catch {
-        /* klip hilang -> Web Speech */
-      } finally {
-        onProgress?.(++done, entries.length);
-      }
-    });
-    await Promise.all(work);
+    await Promise.all(
+      Object.entries(this.manifest.phrases).map(async ([key, p]) => {
+        try {
+          const r = await fetch(`${this.base}audio/${p.file}`);
+          if (r.ok) this.raw.set(key, await r.arrayBuffer());
+        } catch {
+          /* klip hilang -> Web Speech */
+        }
+      }),
+    );
+  }
+
+  /** Decode klip saat browser senggang (dipanggil setelah aplikasi siap). */
+  warmup(keys: string[]): void {
+    const idle = (cb: () => void) => ('requestIdleCallback' in self ? requestIdleCallback(cb) : setTimeout(cb, 50));
+    const next = () => {
+      const k = keys.shift();
+      if (!k) return;
+      void this.decode(k).finally(() => idle(next));
+    };
+    idle(next);
+  }
+
+  private async decode(key: string): Promise<AudioBuffer | null> {
+    const hit = this.buffers.get(key);
+    if (hit) return hit;
+    const raw = this.raw.get(key);
+    if (!raw || !this.audio()) return null;
+    try {
+      const buf = await this.ctx!.decodeAudioData(raw.slice(0));
+      this.buffers.set(key, buf);
+      return buf;
+    } catch {
+      this.raw.delete(key);
+      return null;
+    }
   }
 
   stop(): void {
@@ -74,7 +100,7 @@ export class Speaker {
       }
     }
     this.current = [];
-    if ('speechSynthesis' in self) speechSynthesis.cancel();
+    if ('speechSynthesis' in self && hasActivation()) speechSynthesis.cancel();
   }
 
   /** Ucapkan rangkaian segmen. Pengumuman baru memotong yang sedang diputar. */
@@ -82,27 +108,29 @@ export class Speaker {
     if (!this.enabled || !segments.length) return;
     this.stop();
     const my = this.seq;
-    const allClips = segments.every((s) => this.buffers.has(s.key));
-    if (this.ctx && this.unlocked && allClips) {
-      let t = this.ctx.currentTime + 0.02;
-      for (const s of segments) {
-        const src = this.ctx.createBufferSource();
-        src.buffer = this.buffers.get(s.key)!;
-        src.playbackRate.value = this.rate;
-        src.connect(this.ctx.destination);
-        src.start(t);
-        t += src.buffer.duration / this.rate + 0.06;
-        this.current.push(src);
+    if (this.unlocked && this.ctx) {
+      const bufs = await Promise.all(segments.map((s) => this.decode(s.key)));
+      if (my !== this.seq) return; // sudah didahului pengumuman lain
+      if (bufs.every((b) => b)) {
+        let t = this.ctx.currentTime + 0.02;
+        for (const b of bufs as AudioBuffer[]) {
+          const src = this.ctx.createBufferSource();
+          src.buffer = b;
+          src.playbackRate.value = this.rate;
+          src.connect(this.ctx.destination);
+          src.start(t);
+          t += b.duration / this.rate + 0.06;
+          this.current.push(src);
+        }
+        return;
       }
-      await new Promise((r) => setTimeout(r, (t - this.ctx!.currentTime) * 1000));
-      return;
     }
-    if (my !== this.seq) return;
     this.speakText(segments.map((s) => s.text).join(' '));
   }
 
+  /** Web Speech API. Tanpa interaksi pengguna browser menolaknya, jadi dilewati (teks tetap ke aria-live). */
   speakText(text: string): void {
-    if (!this.enabled || !('speechSynthesis' in self)) return;
+    if (!this.enabled || !('speechSynthesis' in self) || !hasActivation()) return;
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'id-ID';
     u.rate = this.rate;
