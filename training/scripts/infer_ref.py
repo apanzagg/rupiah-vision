@@ -14,7 +14,8 @@ PAD_VALUE = 114
 def letterbox_params(w: int, h: int, size: int) -> tuple[float, int, int, int, int]:
     """(skala, lebar_baru, tinggi_baru, pad_kiri, pad_atas) - rumus yang sama dipakai di web (letterbox.ts)."""
     scale = min(size / w, size / h)
-    nw, nh = round(w * scale), round(h * scale)
+    # pembulatan setengah-ke-atas agar sama dengan Math.round di JavaScript (round() Python = banker's rounding)
+    nw, nh = int(w * scale + 0.5), int(h * scale + 0.5)
     return scale, nw, nh, (size - nw) // 2, (size - nh) // 2
 
 

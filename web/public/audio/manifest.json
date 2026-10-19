@@ -1,0 +1,443 @@
+{
+ "lang": "id-ID",
+ "format": "mp3",
+ "max_notes_audio": 3,
+ "phrases": {
+  "status_preparing": {
+   "text": "Sedang menyiapkan aplikasi, mohon tunggu.",
+   "file": "status_preparing.mp3"
+  },
+  "status_ready": {
+   "text": "Aplikasi siap, arahkan kamera ke uang.",
+   "file": "status_ready.mp3"
+  },
+  "guide_not_found": {
+   "text": "Uang belum terdeteksi, coba balik uang atau jauhkan sedikit.",
+   "file": "guide_not_found.mp3"
+  },
+  "guide_dark": {
+   "text": "Ruangan terlalu gelap.",
+   "file": "guide_dark.mp3"
+  },
+  "guide_torch_on": {
+   "text": "Senter dinyalakan.",
+   "file": "guide_torch_on.mp3"
+  },
+  "error_camera_denied": {
+   "text": "Izin kamera ditolak. Mohon izinkan akses kamera di pengaturan browser, lalu muat ulang aplikasi.",
+   "file": "error_camera_denied.mp3"
+  },
+  "error_camera": {
+   "text": "Kamera tidak dapat dibuka.",
+   "file": "error_camera.mp3"
+  },
+  "error_model": {
+   "text": "Gagal memuat model. Periksa koneksi internet, lalu muat ulang aplikasi.",
+   "file": "error_model.mp3"
+  },
+  "help": {
+   "text": "Cara memakai SuaraRupiah. Arahkan kamera belakang ke uang kertas, dengan jarak sekitar dua puluh sampai lima puluh sentimeter. Aplikasi akan menyebutkan nominal uang secara otomatis. Jika ada lebih dari satu lembar, aplikasi menyebutkan jumlah lembar, nominal masing-masing, dan totalnya. Ketuk layar di mana saja untuk mengulang hasil terakhir. Jika uang belum terdeteksi, coba balik uang, jauhkan sedikit, atau pindah ke tempat yang lebih terang. Aplikasi ini hanya mengenali nominal, tidak memeriksa keaslian uang. Uang logam dan uang peringatan tujuh puluh lima ribu rupiah tidak dikenali. Semua proses berjalan di ponsel Anda. Tidak ada gambar kamera yang dikirim ke internet.",
+   "file": "help.mp3"
+  },
+  "d1000": {
+   "text": "Seribu rupiah.",
+   "file": "d1000.mp3"
+  },
+  "n1000": {
+   "text": "seribu.",
+   "file": "n1000.mp3"
+  },
+  "d2000": {
+   "text": "Dua ribu rupiah.",
+   "file": "d2000.mp3"
+  },
+  "n2000": {
+   "text": "dua ribu.",
+   "file": "n2000.mp3"
+  },
+  "d5000": {
+   "text": "Lima ribu rupiah.",
+   "file": "d5000.mp3"
+  },
+  "n5000": {
+   "text": "lima ribu.",
+   "file": "n5000.mp3"
+  },
+  "d10000": {
+   "text": "Sepuluh ribu rupiah.",
+   "file": "d10000.mp3"
+  },
+  "n10000": {
+   "text": "sepuluh ribu.",
+   "file": "n10000.mp3"
+  },
+  "d20000": {
+   "text": "Dua puluh ribu rupiah.",
+   "file": "d20000.mp3"
+  },
+  "n20000": {
+   "text": "dua puluh ribu.",
+   "file": "n20000.mp3"
+  },
+  "d50000": {
+   "text": "Lima puluh ribu rupiah.",
+   "file": "d50000.mp3"
+  },
+  "n50000": {
+   "text": "lima puluh ribu.",
+   "file": "n50000.mp3"
+  },
+  "d100000": {
+   "text": "Seratus ribu rupiah.",
+   "file": "d100000.mp3"
+  },
+  "n100000": {
+   "text": "seratus ribu.",
+   "file": "n100000.mp3"
+  },
+  "c2": {
+   "text": "Dua lembar.",
+   "file": "c2.mp3"
+  },
+  "c3": {
+   "text": "Tiga lembar.",
+   "file": "c3.mp3"
+  },
+  "c4": {
+   "text": "Empat lembar.",
+   "file": "c4.mp3"
+  },
+  "c5": {
+   "text": "Lima lembar.",
+   "file": "c5.mp3"
+  },
+  "t2000": {
+   "text": "Total dua ribu rupiah.",
+   "file": "t2000.mp3"
+  },
+  "t3000": {
+   "text": "Total tiga ribu rupiah.",
+   "file": "t3000.mp3"
+  },
+  "t4000": {
+   "text": "Total empat ribu rupiah.",
+   "file": "t4000.mp3"
+  },
+  "t5000": {
+   "text": "Total lima ribu rupiah.",
+   "file": "t5000.mp3"
+  },
+  "t6000": {
+   "text": "Total enam ribu rupiah.",
+   "file": "t6000.mp3"
+  },
+  "t7000": {
+   "text": "Total tujuh ribu rupiah.",
+   "file": "t7000.mp3"
+  },
+  "t8000": {
+   "text": "Total delapan ribu rupiah.",
+   "file": "t8000.mp3"
+  },
+  "t9000": {
+   "text": "Total sembilan ribu rupiah.",
+   "file": "t9000.mp3"
+  },
+  "t10000": {
+   "text": "Total sepuluh ribu rupiah.",
+   "file": "t10000.mp3"
+  },
+  "t11000": {
+   "text": "Total sebelas ribu rupiah.",
+   "file": "t11000.mp3"
+  },
+  "t12000": {
+   "text": "Total dua belas ribu rupiah.",
+   "file": "t12000.mp3"
+  },
+  "t13000": {
+   "text": "Total tiga belas ribu rupiah.",
+   "file": "t13000.mp3"
+  },
+  "t14000": {
+   "text": "Total empat belas ribu rupiah.",
+   "file": "t14000.mp3"
+  },
+  "t15000": {
+   "text": "Total lima belas ribu rupiah.",
+   "file": "t15000.mp3"
+  },
+  "t16000": {
+   "text": "Total enam belas ribu rupiah.",
+   "file": "t16000.mp3"
+  },
+  "t17000": {
+   "text": "Total tujuh belas ribu rupiah.",
+   "file": "t17000.mp3"
+  },
+  "t20000": {
+   "text": "Total dua puluh ribu rupiah.",
+   "file": "t20000.mp3"
+  },
+  "t21000": {
+   "text": "Total dua puluh satu ribu rupiah.",
+   "file": "t21000.mp3"
+  },
+  "t22000": {
+   "text": "Total dua puluh dua ribu rupiah.",
+   "file": "t22000.mp3"
+  },
+  "t23000": {
+   "text": "Total dua puluh tiga ribu rupiah.",
+   "file": "t23000.mp3"
+  },
+  "t24000": {
+   "text": "Total dua puluh empat ribu rupiah.",
+   "file": "t24000.mp3"
+  },
+  "t25000": {
+   "text": "Total dua puluh lima ribu rupiah.",
+   "file": "t25000.mp3"
+  },
+  "t26000": {
+   "text": "Total dua puluh enam ribu rupiah.",
+   "file": "t26000.mp3"
+  },
+  "t27000": {
+   "text": "Total dua puluh tujuh ribu rupiah.",
+   "file": "t27000.mp3"
+  },
+  "t30000": {
+   "text": "Total tiga puluh ribu rupiah.",
+   "file": "t30000.mp3"
+  },
+  "t31000": {
+   "text": "Total tiga puluh satu ribu rupiah.",
+   "file": "t31000.mp3"
+  },
+  "t32000": {
+   "text": "Total tiga puluh dua ribu rupiah.",
+   "file": "t32000.mp3"
+  },
+  "t35000": {
+   "text": "Total tiga puluh lima ribu rupiah.",
+   "file": "t35000.mp3"
+  },
+  "t40000": {
+   "text": "Total empat puluh ribu rupiah.",
+   "file": "t40000.mp3"
+  },
+  "t41000": {
+   "text": "Total empat puluh satu ribu rupiah.",
+   "file": "t41000.mp3"
+  },
+  "t42000": {
+   "text": "Total empat puluh dua ribu rupiah.",
+   "file": "t42000.mp3"
+  },
+  "t45000": {
+   "text": "Total empat puluh lima ribu rupiah.",
+   "file": "t45000.mp3"
+  },
+  "t50000": {
+   "text": "Total lima puluh ribu rupiah.",
+   "file": "t50000.mp3"
+  },
+  "t51000": {
+   "text": "Total lima puluh satu ribu rupiah.",
+   "file": "t51000.mp3"
+  },
+  "t52000": {
+   "text": "Total lima puluh dua ribu rupiah.",
+   "file": "t52000.mp3"
+  },
+  "t53000": {
+   "text": "Total lima puluh tiga ribu rupiah.",
+   "file": "t53000.mp3"
+  },
+  "t54000": {
+   "text": "Total lima puluh empat ribu rupiah.",
+   "file": "t54000.mp3"
+  },
+  "t55000": {
+   "text": "Total lima puluh lima ribu rupiah.",
+   "file": "t55000.mp3"
+  },
+  "t56000": {
+   "text": "Total lima puluh enam ribu rupiah.",
+   "file": "t56000.mp3"
+  },
+  "t57000": {
+   "text": "Total lima puluh tujuh ribu rupiah.",
+   "file": "t57000.mp3"
+  },
+  "t60000": {
+   "text": "Total enam puluh ribu rupiah.",
+   "file": "t60000.mp3"
+  },
+  "t61000": {
+   "text": "Total enam puluh satu ribu rupiah.",
+   "file": "t61000.mp3"
+  },
+  "t62000": {
+   "text": "Total enam puluh dua ribu rupiah.",
+   "file": "t62000.mp3"
+  },
+  "t65000": {
+   "text": "Total enam puluh lima ribu rupiah.",
+   "file": "t65000.mp3"
+  },
+  "t70000": {
+   "text": "Total tujuh puluh ribu rupiah.",
+   "file": "t70000.mp3"
+  },
+  "t71000": {
+   "text": "Total tujuh puluh satu ribu rupiah.",
+   "file": "t71000.mp3"
+  },
+  "t72000": {
+   "text": "Total tujuh puluh dua ribu rupiah.",
+   "file": "t72000.mp3"
+  },
+  "t75000": {
+   "text": "Total tujuh puluh lima ribu rupiah.",
+   "file": "t75000.mp3"
+  },
+  "t80000": {
+   "text": "Total delapan puluh ribu rupiah.",
+   "file": "t80000.mp3"
+  },
+  "t90000": {
+   "text": "Total sembilan puluh ribu rupiah.",
+   "file": "t90000.mp3"
+  },
+  "t100000": {
+   "text": "Total seratus ribu rupiah.",
+   "file": "t100000.mp3"
+  },
+  "t101000": {
+   "text": "Total seratus satu ribu rupiah.",
+   "file": "t101000.mp3"
+  },
+  "t102000": {
+   "text": "Total seratus dua ribu rupiah.",
+   "file": "t102000.mp3"
+  },
+  "t103000": {
+   "text": "Total seratus tiga ribu rupiah.",
+   "file": "t103000.mp3"
+  },
+  "t104000": {
+   "text": "Total seratus empat ribu rupiah.",
+   "file": "t104000.mp3"
+  },
+  "t105000": {
+   "text": "Total seratus lima ribu rupiah.",
+   "file": "t105000.mp3"
+  },
+  "t106000": {
+   "text": "Total seratus enam ribu rupiah.",
+   "file": "t106000.mp3"
+  },
+  "t107000": {
+   "text": "Total seratus tujuh ribu rupiah.",
+   "file": "t107000.mp3"
+  },
+  "t110000": {
+   "text": "Total seratus sepuluh ribu rupiah.",
+   "file": "t110000.mp3"
+  },
+  "t111000": {
+   "text": "Total seratus sebelas ribu rupiah.",
+   "file": "t111000.mp3"
+  },
+  "t112000": {
+   "text": "Total seratus dua belas ribu rupiah.",
+   "file": "t112000.mp3"
+  },
+  "t115000": {
+   "text": "Total seratus lima belas ribu rupiah.",
+   "file": "t115000.mp3"
+  },
+  "t120000": {
+   "text": "Total seratus dua puluh ribu rupiah.",
+   "file": "t120000.mp3"
+  },
+  "t121000": {
+   "text": "Total seratus dua puluh satu ribu rupiah.",
+   "file": "t121000.mp3"
+  },
+  "t122000": {
+   "text": "Total seratus dua puluh dua ribu rupiah.",
+   "file": "t122000.mp3"
+  },
+  "t125000": {
+   "text": "Total seratus dua puluh lima ribu rupiah.",
+   "file": "t125000.mp3"
+  },
+  "t130000": {
+   "text": "Total seratus tiga puluh ribu rupiah.",
+   "file": "t130000.mp3"
+  },
+  "t140000": {
+   "text": "Total seratus empat puluh ribu rupiah.",
+   "file": "t140000.mp3"
+  },
+  "t150000": {
+   "text": "Total seratus lima puluh ribu rupiah.",
+   "file": "t150000.mp3"
+  },
+  "t151000": {
+   "text": "Total seratus lima puluh satu ribu rupiah.",
+   "file": "t151000.mp3"
+  },
+  "t152000": {
+   "text": "Total seratus lima puluh dua ribu rupiah.",
+   "file": "t152000.mp3"
+  },
+  "t155000": {
+   "text": "Total seratus lima puluh lima ribu rupiah.",
+   "file": "t155000.mp3"
+  },
+  "t160000": {
+   "text": "Total seratus enam puluh ribu rupiah.",
+   "file": "t160000.mp3"
+  },
+  "t170000": {
+   "text": "Total seratus tujuh puluh ribu rupiah.",
+   "file": "t170000.mp3"
+  },
+  "t200000": {
+   "text": "Total dua ratus ribu rupiah.",
+   "file": "t200000.mp3"
+  },
+  "t201000": {
+   "text": "Total dua ratus satu ribu rupiah.",
+   "file": "t201000.mp3"
+  },
+  "t202000": {
+   "text": "Total dua ratus dua ribu rupiah.",
+   "file": "t202000.mp3"
+  },
+  "t205000": {
+   "text": "Total dua ratus lima ribu rupiah.",
+   "file": "t205000.mp3"
+  },
+  "t210000": {
+   "text": "Total dua ratus sepuluh ribu rupiah.",
+   "file": "t210000.mp3"
+  },
+  "t220000": {
+   "text": "Total dua ratus dua puluh ribu rupiah.",
+   "file": "t220000.mp3"
+  },
+  "t250000": {
+   "text": "Total dua ratus lima puluh ribu rupiah.",
+   "file": "t250000.mp3"
+  },
+  "t300000": {
+   "text": "Total tiga ratus ribu rupiah.",
+   "file": "t300000.mp3"
+  }
+ }
+}

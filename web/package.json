@@ -1,0 +1,29 @@
+{
+  "name": "suararupiah",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SuaraRupiah: PWA pengenal nominal uang kertas Rupiah dengan keluaran suara untuk penyandang tunanetra",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/prepare-assets.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/prepare-assets.mjs",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "onnxruntime-web": "1.30.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vite-plugin-pwa": "2.0.0",
+    "vitest": "5.0.5",
+    "workbox-window": "7.4.1"
+  }
+}

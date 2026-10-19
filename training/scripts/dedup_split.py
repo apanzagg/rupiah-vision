@@ -184,6 +184,17 @@ def main() -> None:
             if line:
                 rejects.add(line)
 
+    import yaml
+
+    excl = yaml.safe_load((CONFIGS / "exclude.yaml").read_text(encoding="utf-8")) if (CONFIGS / "exclude.yaml").exists() else {}
+    excl_src = set((excl.get("exclude_sources") or {}).keys())
+    uv_src = set(excl.get("uv_filter_sources") or [])
+
+    def is_uv(img_id: str) -> bool:
+        """Foto lampu UV: dominan ungu (B tinggi, G rendah, R sedang) pada thumbnail 8x8."""
+        r_, g_, b_ = hz["thumbs"][idx_of[img_id], 0].reshape(-1, 3).mean(0)
+        return b_ > 90 and g_ < 0.6 * b_ and r_ > 0.3 * b_
+
     report: dict = {"input": len(rows), "drop": Counter()}
     kept = []
     for r in rows:
@@ -193,6 +204,10 @@ def main() -> None:
             report["drop"]["manual_reject"] += 1
         elif r["id"] not in idx_of:
             report["drop"]["no_hash"] += 1
+        elif r["slug"] in excl_src:
+            report["drop"]["excluded_source"] += 1
+        elif r["slug"] in uv_src and is_uv(r["id"]):
+            report["drop"]["uv_light"] += 1
         else:
             kept.append(r)
     rows = kept
@@ -203,12 +218,16 @@ def main() -> None:
 
     pairs = find_pairs(phash, thumbs)
     print(f"{len(pairs)} pasangan kandidat ({time.time() - t0:.0f} dtk)")
-    dup_uf, grp_uf = UF(n), UF(n)
+    grp_uf = UF(n)
+    adj: dict[int, list[tuple[int, float]]] = defaultdict(list)
     n_dup_pairs = 0
     for i, j, d, c, k in pairs:
-        if d <= T_DUP and c <= C_DUP and grad_dist(rows[i]["id"], rows[j]["id"], k) <= G_DUP:
-            dup_uf.union(i, j)
-            n_dup_pairs += 1
+        if d <= T_DUP and c <= C_DUP:
+            g = grad_dist(rows[i]["id"], rows[j]["id"], k)
+            if g <= G_DUP:
+                adj[i].append((j, g))
+                adj[j].append((i, g))
+                n_dup_pairs += 1
         if d <= T_GROUP and c <= C_GROUP:
             grp_uf.union(i, j)
     by_origin = defaultdict(list)
@@ -218,35 +237,40 @@ def main() -> None:
         for m in members[1:]:
             grp_uf.union(members[0], m)
 
-    # selesaikan klaster duplikat
-    clusters = defaultdict(list)
-    for i in range(n):
-        clusters[dup_uf.find(i)].append(i)
+    # Duplikat diselesaikan secara serakah & NON-transitif: citra diproses menurut prioritas, dan hanya
+    # dibandingkan langsung dengan "pemimpin" (citra yang sudah dipertahankan) yang menjadi tetangganya.
+    # Union-find transitif sebelumnya membentuk rantai A~B~C... sehingga satu beda label membuang ratusan citra.
+    # Prioritas: positif dulu, citra asli (bukan augmentasi), label manual (bukan auto-label),
+    # box lebih banyak (anotasi per lembar lebih informatif daripada satu box untuk tumpukan), resolusi besar.
+    def cls_set(m: int) -> frozenset:
+        return frozenset(rows[m]["classes"].split())
+
+    order = sorted(range(n), key=lambda m: (rows[m]["role"] != "pos", int(rows[m]["augmented"]), int(rows[m]["autolabel"]),
+                                            -int(rows[m]["n_boxes"] or 0), -int(rows[m]["w"]) * int(rows[m]["h"]), rows[m]["id"]))
+    leader: set[int] = set()
     removed = set()
     conflicts = []
-    for members in clusters.values():
-        if len(members) == 1:
+    for m in order:
+        leads = [(j, g) for j, g in adj.get(m, []) if j in leader]
+        if not leads:
+            leader.add(m)
             continue
-        pos = [m for m in members if rows[m]["role"] == "pos"]
-        neg = [m for m in members if rows[m]["role"] == "neg"]
-        if pos and neg:
-            removed.update(neg)
-            report["drop"]["dup_neg_of_pos"] += len(neg)
-        if pos:
-            label_sets = {rows[m]["classes"] for m in pos}
-            if len(label_sets) > 1:
-                removed.update(pos)
-                report["drop"]["label_conflict"] += len(pos)
-                conflicts.append([rows[m]["id"] for m in pos])
-                continue
-            pos.sort(key=lambda m: (int(rows[m]["augmented"]), int(rows[m]["autolabel"]),
-                                    -int(rows[m]["w"]) * int(rows[m]["h"]), rows[m]["id"]))
-            removed.update(pos[1:])
-            report["drop"]["duplicate"] += len(pos) - 1
-        elif len(neg) > 1:
-            neg.sort(key=lambda m: rows[m]["id"])
-            removed.update(neg[1:])
-            report["drop"]["duplicate"] += len(neg) - 1
+        j, g = min(leads, key=lambda t: t[1])
+        if rows[m]["role"] == "neg":
+            removed.add(m)
+            report["drop"]["dup_neg_of_pos" if rows[j]["role"] == "pos" else "duplicate"] += 1
+        elif cls_set(m) == cls_set(j):
+            removed.add(m)
+            same_count = rows[m]["classes"] == rows[j]["classes"]
+            report["drop"]["duplicate" if same_count else "duplicate_count_mismatch"] += 1
+        else:
+            # citra sama, kelas berbeda: label salah di salah satu sumber -> buang keduanya
+            removed.update((m, j))
+            leader.discard(j)
+            report["drop"]["label_conflict"] += 2
+            conflicts.append({"a": rows[j]["id"], "b": rows[m]["id"], "grad": round(g, 3),
+                              "a_cls": rows[j]["classes"], "b_cls": rows[m]["classes"],
+                              "a_src": rows[j]["slug"], "b_src": rows[m]["slug"]})
 
     alive = [i for i in range(n) if i not in removed]
     # kuota citra negatif ~NEG_FRAC dari total
@@ -331,7 +355,7 @@ def main() -> None:
         encoding="utf-8",
     )
     report.update({
-        "after_dedup": len(alive), "groups": len(groups), "pairs": len(pairs), "dup_pairs": n_dup_pairs, "conflict_clusters": conflicts[:200],
+        "after_dedup": len(alive), "groups": len(groups), "pairs": len(pairs), "dup_pairs": n_dup_pairs, "conflict_clusters": conflicts[:400],
         "n_conflict_clusters": len(conflicts), "splits": split_stats, "thresholds": {
             "T_DUP": T_DUP, "C_DUP": C_DUP, "G_DUP": G_DUP, "T_GROUP": T_GROUP, "C_GROUP": C_GROUP, "NEG_FRAC": NEG_FRAC},
         "seconds": round(time.time() - t0),

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/icons/favicon.png" type="image/png" />
+    <title>Benchmark - SuaraRupiah</title>
+  </head>
+  <body>
+    <main class="page">
+      <p><a class="btn secondary" href="../">Kembali ke kamera</a></p>
+      <h1>Benchmark perangkat</h1>
+      <p>Mengukur waktu muat model dan waktu inferensi per frame di perangkat ini, memakai citra contoh (tanpa kamera). Hasil tidak dikirim ke mana pun; salin manual bila diperlukan.</p>
+      <div class="field">
+        <label for="variant">Varian model</label>
+        <select id="variant" class="btn secondary"></select>
+      </div>
+      <div class="field">
+        <label for="iters">Jumlah iterasi</label>
+        <input id="iters" type="number" min="5" max="500" value="50" class="btn secondary" />
+      </div>
+      <p>
+        <button id="run" class="btn" type="button">Mulai benchmark</button>
+        <button id="copy" class="btn secondary" type="button">Salin hasil</button>
+      </p>
+      <p id="state" role="status" aria-live="polite">Siap.</p>
+      <table id="table" aria-label="Hasil benchmark"><tbody></tbody></table>
+      <h2>Data mentah</h2>
+      <pre id="out"></pre>
+    </main>
+    <script type="module" src="/src/benchmark.ts"></script>
+  </body>
+</html>

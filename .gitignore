@@ -39,3 +39,9 @@ Thumbs.db
 
 # Kernel Kaggle hasil bundel (memuat link unduhan sementara)
 training/kaggle/_build/
+
+# Aset web hasil salinan (sumbernya di ../models)
+web/public/models/
+web/public/parity/
+web/public/ort/
+web/tests/e2e/.fake/

@@ -1,0 +1,11 @@
+# Keputusan pembersihan data setelah pemeriksaan visual & audit (audit_sources.py, diag_dedup.py).
+# Dibaca dedup_split.py. Setiap entri wajib punya alasan; ringkasannya masuk docs/SUMBER_DATASET.md.
+
+# Sumber yang dikeluarkan seluruhnya
+exclude_sources:
+  malik-project/deteksi-uang-rupiah-50fx4: "anotasi per-bagian uang (angka/potret/sudut), bukan uang utuh (nest_rate 0,68)"
+
+# Sumber yang citra lampu UV-nya (dominan ungu) dibuang: foto untuk cek keaslian, tidak mewakili pemakaian
+uv_filter_sources:
+  - bima-dcfqn/ini-uang
+  - bima-dcfqn/uang-1

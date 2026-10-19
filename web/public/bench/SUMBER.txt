@@ -1,0 +1,1 @@
+Citra contoh benchmark: dari dataset "Uang rupiah" oleh yudhi (Roboflow Universe, https://universe.roboflow.com/yudhi/uang-rupiah-sjt3b), lisensi CC BY 4.0.

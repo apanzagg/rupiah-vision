@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "variant": "int8_mixed",
+  "file": "model-v1-int8_mixed.onnx",
+  "imgsz": 320,
+  "classes": ["1000", "2000", "5000", "10000", "20000", "50000", "100000"],
+  "sizeBytes": 0,
+  "note": "Diperbarui oleh training/scripts/install_model.py setelah model final dipilih"
+}
