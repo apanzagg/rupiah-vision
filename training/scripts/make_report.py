@@ -2,8 +2,12 @@
 
 Masukan (yang tersedia saja yang dipakai):
   training/kaggle_out/build/reports/   dedup_report.json, ingest_stats.json, source_stats.json, source_audit.json, figures/
-  training/kaggle_out/train/           summary.json, runs/<run>/metrics.json & grafik, export/<run>/variants.json
+  training/kaggle_out/train/           summary.json, runs/<run>/metrics.json & grafik, export/<run>/variants.json,
+                                       web_pipeline_map.json (eval_onnx_map.py)
+  training/kaggle_out/train_v2/        (opsional, --extra) run percobaan yang tidak diadopsi
   data/interim/conditions_eval/        conditions_metrics.json + confusion_<kondisi>.png
+  data/interim/conditions_eval_v2/     (opsional) uji per kondisi model percobaan
+  docs/figures/examples_*.jpg          make_examples.py
   web/test-results/                    bench_desktop.json, e2e-results.json, lighthouse.json
   training/report/*.md                 bagian naratif (analisis kesalahan, keterbatasan) yang ditulis setelah melihat hasil
 Keluaran: docs/LAPORAN_EVALUASI.md + salinan grafik di docs/figures/
@@ -42,14 +46,27 @@ def main() -> None:
     ap.add_argument("--run", required=True, help="nama run final, mis. e1_r320")
     ap.add_argument("--build", default=str(ROOT / "training/kaggle_out/build/reports"))
     ap.add_argument("--train", default=str(ROOT / "training/kaggle_out/train"))
+    ap.add_argument("--extra", nargs="*", default=[str(ROOT / "training/kaggle_out/train_v2")],
+                    help="folder output training percobaan lain (ditampilkan di tabel eksperimen)")
     args = ap.parse_args()
     build, train = Path(args.build), Path(args.train)
     rep = load(build / "dedup_report.json") or {}
     src_stats = load(build / "source_stats.json") or {}
     summary = load(train / "summary.json") or {}
+    extras = [(Path(e), load(Path(e) / "summary.json")) for e in args.extra]
+    extras = [(p, s) for p, s in extras if s]
     m = load(train / "runs" / args.run / "metrics.json") or {}
     var = load(train / "export" / args.run / "variants.json") or {}
+    # mAP pipeline web: baris hasil eval_onnx_map.py untuk berkas varian run ini (urutan = urutan --models)
+    webmap = load(train / "web_pipeline_map.json") or {}
+    files = [v["file"] for v in var.get("variants", {}).values()]
+    web_rows = [r for r in webmap.get("results", []) if r["model"] in files]
+    web_rows = web_rows[:len(files)] if var.get("imgsz") == 320 else web_rows[-len(files):]
+    web_by_file = {r["model"]: r for r in web_rows}
+    web_extra = [(next(iter(s.get("runs", {})), p.name), r) for p, s in extras
+                 for r in (load(p / "web_pipeline_map.json") or {}).get("results", [])]
     cond = load(DATA / "interim" / "conditions_eval" / "conditions_metrics.json")
+    cond_v2 = load(DATA / "interim" / "conditions_eval_v2" / "conditions_metrics.json")
     bench = load(ROOT / "web" / "test-results" / "bench_desktop.json")
     lh = load(ROOT / "web" / "test-results" / "lighthouse.json")
     sizes = load(ROOT / "web" / "test-results" / "download_sizes.json")
@@ -82,7 +99,7 @@ def main() -> None:
     for f, cap in (("class_distribution.png", "Distribusi kelas per split"), ("bbox_size_hist.png", "Distribusi ukuran bounding box"),
                    ("boxes_per_image.png", "Jumlah uang per citra"), ("source_contribution.png", "Kontribusi sumber"),
                    ("samples_grid.png", "Contoh citra latih beserta label")):
-        p = copy_fig(build / "figures" / f, f)
+        p = copy_fig(build / "figures" / f, f) or copy_fig(build / "reports" / "figures" / f, f)
         if p:
             w(f"![{cap}]({p})\n")
     if "pembersihan_data" in parts:
@@ -111,27 +128,52 @@ def main() -> None:
 
     # ---------------- 4.3 eksperimen
     w("## 4.3 Tabel eksperimen\n")
-    runs = summary.get("runs", {})
+    runs = dict(summary.get("runs", {}))
+    for _, s in extras:
+        runs.update(s.get("runs", {}))
     if runs:
+        w("Angka validator Ultralytics bawaan (`rect=True`, cenderung optimistis; lihat 4.4):\n")
         w("| Run | imgsz | Epoch | mAP50 val | mAP50 test | mAP50-95 test | Precision test | Recall test |\n|---|---|---|---|---|---|---|---|")
         for name, r in runs.items():
             if "test" in r:
                 w(f"| {name} | {r['imgsz']} | {r['epochs_trained']} | {fmt(r['val']['map50'])} | {fmt(r['test']['map50'])} | "
                   f"{fmt(r['test']['map50_95'])} | {fmt(r['test']['precision'])} | {fmt(r['test']['recall'])} |")
-        w("\nRiwayat lengkap & alasan setiap perubahan: `docs/EKSPERIMEN.md`.\n")
+        if web_rows or web_extra:
+            w("\nmAP **pipeline aplikasi web** (ONNX, `eval_onnx_map.py`) pada split test yang sama:\n")
+            w("| Model | Citra | mAP50 | mAP50-95 | Precision | Recall |\n|---|---|---|---|---|---|")
+            for src, r in [(args.run, r) for r in web_rows] + web_extra:
+                if r["model"].endswith(("fp32.onnx", "fp16.onnx")):
+                    w(f"| `{r['model']}` ({src}) | {r['images']} | {fmt(r['map50'])} | {fmt(r['map50_95'])} | "
+                      f"{fmt(r['precision'])} | {fmt(r['recall'])} |")
+        w("\nRiwayat lengkap & alasan setiap perubahan (termasuk aturan adopsi ronde v2): `docs/EKSPERIMEN.md`.\n")
 
     # ---------------- 4.4 metrik akhir
     w("## 4.4 Metrik akhir model terpilih\n")
     if m:
         t = m["test"]
-        tgt = "tercapai" if t["map50"] >= 0.90 else "BELUM tercapai"
-        w(f"Run **{args.run}** pada split test: mAP50 **{fmt(t['map50'])}**, mAP50-95 **{fmt(t['map50_95'])}**, "
-          f"precision **{fmt(t['precision'])}**, recall **{fmt(t['recall'])}**. Target mAP50 ≥ 0,90: **{tgt}**.\n")
-        w("| Kelas | AP50 | AP50-95 |\n|---|---|---|")
-        for c in CLASSES:
-            pc = t["per_class"].get(c)
-            if pc:
-                w(f"| {LABEL[c]} | {fmt(pc['ap50'])} | {fmt(pc['ap50_95'])} |")
+        chosen = var.get("variants", {}).get(var.get("chosen", ""), {}).get("file")
+        wr = web_by_file.get(chosen)
+        if wr:
+            tgt = "tercapai" if wr["map50"] >= 0.90 else "BELUM tercapai"
+            w(f"Model web terpilih `{chosen}` (run **{args.run}**) dengan **pipeline aplikasi web** (letterbox tengah, NMS "
+              f"class-agnostic, `eval_onnx_map.py`) pada split test ({wr['images']} citra): mAP50 **{fmt(wr['map50'])}**, "
+              f"mAP50-95 **{fmt(wr['map50_95'])}**, precision **{fmt(wr['precision'])}**, recall **{fmt(wr['recall'])}**. "
+              f"Target mAP50 ≥ 0,90: **{tgt}**. Angka ini dipakai sebagai angka utama.\n")
+            w(f"Sebagai pembanding, validator Ultralytics bawaan (`rect=True`) memberi mAP50 {fmt(t['map50'])} / mAP50-95 "
+              f"{fmt(t['map50_95'])} untuk bobot PyTorch yang sama; selisihnya dibahas di `docs/EKSPERIMEN.md` (catatan protokol).\n")
+            w("| Kelas | AP50 pipeline web | AP50 validator Ultralytics | AP50-95 validator Ultralytics |\n|---|---|---|---|")
+            for i, c in enumerate(CLASSES):
+                pc = t["per_class"].get(c, {})
+                w(f"| {LABEL[c]} | {fmt(wr['ap50_per_class'][i])} | {fmt(pc.get('ap50', '-'))} | {fmt(pc.get('ap50_95', '-'))} |")
+        else:
+            tgt = "tercapai" if t["map50"] >= 0.90 else "BELUM tercapai"
+            w(f"Run **{args.run}** pada split test: mAP50 **{fmt(t['map50'])}**, mAP50-95 **{fmt(t['map50_95'])}**, "
+              f"precision **{fmt(t['precision'])}**, recall **{fmt(t['recall'])}**. Target mAP50 ≥ 0,90: **{tgt}**.\n")
+            w("| Kelas | AP50 | AP50-95 |\n|---|---|---|")
+            for c in CLASSES:
+                pc = t["per_class"].get(c)
+                if pc:
+                    w(f"| {LABEL[c]} | {fmt(pc['ap50'])} | {fmt(pc['ap50_95'])} |")
         w("")
 
     # ---------------- 4.5 kondisi
@@ -144,8 +186,10 @@ def main() -> None:
             meta = r.get("meta", {})
             src = f"{meta.get('real', '?')} + {meta.get('synthetic', 0)}"
             w(f"| {k} | {r['images']} ({src}) | {fmt(r['accuracy'], 3)} | {fmt(r['precision'], 3)} | {fmt(r['recall'], 3)} | {fmt(r['f1'], 3)} |")
-        w("\nSet `terlipat_tertutup` **sepenuhnya sintetis** dan sebagian `cahaya_redup` (berkas berawalan `sint_`) dibuat "
-          "dengan penggelapan buatan; angka keduanya bukan pengganti uji lapangan.\n")
+        synth = [k for k, r in cond["conditions"].items() if r.get("meta", {}).get("synthetic", 0)]
+        if synth:
+            w("\nSet " + ", ".join(f"`{k}`" for k in synth) + " berisi citra **sintetis** (berkas berawalan `sint_`, "
+              "lihat sumber di metadata set); angkanya bukan pengganti uji lapangan.\n")
         for k, r in cond["conditions"].items():
             pcs = r["per_class"]
             if pcs:
@@ -157,14 +201,32 @@ def main() -> None:
             p = copy_fig(DATA / "interim" / "conditions_eval" / f"confusion_{k}.png", f"confusion_{k}.png")
             if p:
                 w(f"![Confusion matrix {k}]({p})\n")
+        if cond_v2:
+            w(f"Pembanding: model percobaan `{cond_v2['model']}` (ronde v2 hard negative, **tidak diadopsi**) pada set yang sama. "
+              "\"Salah sebut\" = ada nominal diumumkan yang tidak ada di citra; \"diam\" = tidak ada deteksi ≥ ambang.\n")
+            w(f"| Kondisi | Akurasi `{cond['model']}` | Akurasi `{cond_v2['model']}` | Salah sebut | Diam |\n|---|---|---|---|---|")
+            tot = [0, 0, 0, 0]
+            for k, r in cond["conditions"].items():
+                r2 = cond_v2["conditions"].get(k)
+                if not r2:
+                    continue
+                n = [sum(1 for d in x["details"] if d["pred"] and set(d["pred"]) - set(d["gt"])) for x in (r, r2)]
+                z = [sum(1 for d in x["details"] if not d["ok"] and not d["pred"]) for x in (r, r2)]
+                tot = [tot[0] + n[0], tot[1] + n[1], tot[2] + z[0], tot[3] + z[1]]
+                w(f"| {k} | {fmt(r['accuracy'], 3)} | {fmt(r2['accuracy'], 3)} | {n[0]} → {n[1]} | {z[0]} → {z[1]} |")
+            w(f"| **Jumlah** | | | **{tot[0]} → {tot[1]}** | **{tot[2]} → {tot[3]}** |\n")
 
     # ---------------- 4.6 varian
     w("## 4.6 Perbandingan FP32, FP16, INT8\n")
     if var:
-        w("Evaluasi split test dengan backend onnxruntime (CPU), pipeline evaluasi sama untuk semua varian.\n")
-        w("| Varian | Ukuran (MB) | mAP50 | mAP50-95 | Precision | Recall | ms/citra (CPU Kaggle) |\n|---|---|---|---|---|---|---|")
+        w("Evaluasi split test dengan backend onnxruntime (CPU), pipeline evaluasi sama untuk semua varian. Kolom "
+          "\"validator\" = validator Ultralytics (letterbox persegi); kolom \"web\" = pipeline aplikasi (`eval_onnx_map.py`).\n")
+        w("| Varian | Ukuran (MB) | mAP50 validator | mAP50-95 validator | mAP50 web | mAP50-95 web | Precision validator | Recall validator | ms/citra (CPU Kaggle) |\n"
+          "|---|---|---|---|---|---|---|---|---|")
         for k, v in var["variants"].items():
-            w(f"| {k} | {fmt(v['size_mb'], 2)} | {fmt(v['map50'])} | {fmt(v['map50_95'])} | {fmt(v['precision'])} | {fmt(v['recall'])} | {fmt(v['cpu_ms'], 1)} |")
+            wv = web_by_file.get(v["file"], {})
+            w(f"| {k} | {fmt(v['size_mb'], 2)} | {fmt(v['map50'])} | {fmt(v['map50_95'])} | {fmt(wv.get('map50', '-'))} | "
+              f"{fmt(wv.get('map50_95', '-'))} | {fmt(v['precision'])} | {fmt(v['recall'])} | {fmt(v['cpu_ms'], 1)} |")
         w(f"\nAturan pemilihan: {var['rule']}. Terpilih: **{var['chosen']}**.\n")
         if "kuantisasi" in parts:
             w(parts["kuantisasi"] + "\n")

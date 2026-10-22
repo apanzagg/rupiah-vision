@@ -8,7 +8,7 @@ Metrik per kondisi:
 - confusion matrix 8x8 (7 kelas + 'latar'): baris = label, kolom = prediksi
 Keluaran: <out>/conditions_metrics.json dan <out>/confusion_<kondisi>.png
 
-Pemakaian: python eval_conditions.py --model ../../models/model-v1-int8_mixed.onnx [--thr 0.7] [--out ../../docs/figures]
+Pemakaian: python eval_conditions.py --model ../../models/model-v1-fp16.onnx [--thr 0.7] [--out ../../docs/figures]
 """
 from __future__ import annotations
 

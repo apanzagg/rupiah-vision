@@ -8,7 +8,7 @@ Kasus:
   gelap   : citra yang sangat gelap                                    -> panduan "ruangan terlalu gelap"
 Keluaran: web/tests/e2e/.fake/*.y4m + cases.json (diabaikan git).
 
-Pemakaian: python make_fake_videos.py --model ../../../models/model-v1-int8_mixed.onnx
+Pemakaian: python make_fake_videos.py --model ../../../models/model-v1-fp16.onnx
 (model dipakai hanya untuk MEMILIH citra yang labelnya pasti dan terdeteksi jelas, agar E2E menguji
 aplikasi, bukan batas akurasi model; akurasi diukur terpisah di eval_conditions.py)
 """

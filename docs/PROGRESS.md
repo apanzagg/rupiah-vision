@@ -75,10 +75,13 @@ Status: **BELUM SELESAI**. Sesi otomatis yang melanjutkan: kerjakan berurutan, c
 - [x] D. Web: `cd web && npm test && npm run build`; `python tests/e2e/make_fake_videos.py --model ../models/<model>.onnx`; `npx playwright test`
       (parity, announce, pwa). Benchmark desktop -> `web/test-results/bench_desktop.json`; `node scripts/measure-sizes.mjs`.
       Selesai: 64 unit test, build, 13/13 Playwright lulus; ukuran unduhan pertama 10,81 MB gzip. Benchmark desktop 20 Okt tetap berlaku (model sama).
-- [ ] E. Commit `models/` + skrip + docs (JANGAN commit data/, kredensial, bobot .pt) lalu push ke `main` (memicu deploy GitHub Pages).
+- [x] E. Commit `models/` + skrip + docs (JANGAN commit data/, kredensial, bobot .pt) lalu push ke `main` (memicu deploy GitHub Pages).
       Verifikasi https://apanzagg.github.io/rupiah-vision/ (halaman, model termuat, offline). Lighthouse dari URL publik -> `web/test-results/lighthouse.json`.
-- [ ] F. Laporan: isi `training/report/*.md`, `make_sources_doc.py`, `make_report.py --run <run>` -> `docs/LAPORAN_EVALUASI.md`;
+      Selesai: commit 84a85f5, deploy Pages sukses; E2E publik (multi, panduan, offline) lulus; Lighthouse 99/100/100/100.
+- [x] F. Laporan: isi `training/report/*.md`, `make_sources_doc.py`, `make_report.py --run <run>` -> `docs/LAPORAN_EVALUASI.md`;
       perbarui EKSPERIMEN.md, README, MODEL_CARD, ARSITEKTUR/PENJELASAN bila angka berubah. Commit & push.
+      Selesai: `make_examples.py` (grid contoh benar/salah), `make_report.py` memakai mAP pipeline web sebagai angka utama
+      + pembanding v2; SUMBER_DATASET dari statistik D4. Angka v1 tidak berubah, jadi README/MODEL_CARD/ARSITEKTUR tetap.
 - [ ] G. Ringkasan akhir untuk pengguna (Bahasa Indonesia): URL, target tercapai/tidak (angka nyata), yang harus dilakukan pengguna
       (uji di Android/iPhone sendiri, foto sendiri sesuai PANDUAN_FOTO, blob data lama di riwayat git commit d69ca74).
       Setelah selesai ubah status di atas menjadi **SELESAI** dan hapus tugas terjadwal `lanjutkan-suararupiah`.

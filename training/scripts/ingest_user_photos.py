@@ -16,7 +16,7 @@ Langkah:
 4. disalin ke data/test_conditions/foto_saya_<kondisi>/ (kondisi: baru, lusuh_kusut, terlipat_tertutup,
    cahaya_redup, latar_ramai, bukan_rupiah) agar dilaporkan terpisah dari set uji publik.
 
-Pemakaian: python ingest_user_photos.py --model ../../models/model-v1-int8_mixed.onnx
+Pemakaian: python ingest_user_photos.py --model ../../models/model-v1-fp16.onnx
 """
 from __future__ import annotations
 
