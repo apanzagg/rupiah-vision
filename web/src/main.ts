@@ -7,15 +7,20 @@ import { cleanupCaches } from './app/loader';
 import { loadSettings } from './app/settings';
 import { Speaker } from './app/speaker';
 import { DecisionEngine, GuidanceEngine, DEFAULT_DECISION, type Announcement } from './lib/decision';
-import { formatRupiah } from './lib/numwords';
+import { capitalize, formatRupiah, numToWords } from './lib/numwords';
 import { announcementSegments, announcementText, vibrationFor, type Segment } from './lib/phrases';
 import type { Detection } from './lib/postprocess';
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T;
+const app = $<HTMLElement>('#app');
 const video = $<HTMLVideoElement>('#video');
 const overlay = $<HTMLCanvasElement>('#overlay');
+const topbar = $<HTMLElement>('.topbar');
 const statusEl = $<HTMLParagraphElement>('#status');
+const card = $<HTMLSpanElement>('#card');
+const kickerEl = $<HTMLSpanElement>('#kicker');
 const resultEl = $<HTMLSpanElement>('#result');
+const detailEl = $<HTMLSpanElement>('#detail');
 const live = $<HTMLDivElement>('#live');
 const progress = $<HTMLDivElement>('#progress');
 const progressBar = progress.querySelector('.bar') as HTMLDivElement;
@@ -39,6 +44,24 @@ const debug = { phase: 'boot', announcements: [] as string[], guidance: [] as st
 (window as unknown as { __suararupiah: typeof debug }).__suararupiah = debug;
 
 const phraseText = (key: string) => (AUDIO_MANIFEST.phrases as Record<string, { text: string }>)[key]?.text ?? key;
+const NOMINALS = [1000, 2000, 5000, 10000, 20000, 50000, 100000];
+
+/** Keadaan layar (warna lampu status, bingkai bidik, gaya kartu): loading | scanning | found | guide | error */
+function setState(s: 'loading' | 'scanning' | 'found' | 'guide' | 'error') {
+  app.dataset.state = s;
+}
+
+/** Isi kartu hasil di bawah layar; animasi "pop" singkat saat hasil baru muncul. */
+function setCard(kicker: string, result: string, detail: string, pop = false) {
+  kickerEl.textContent = kicker;
+  resultEl.textContent = result;
+  detailEl.textContent = detail;
+  if (pop) {
+    card.classList.remove('pop');
+    void card.offsetWidth; // mulai ulang animasi
+    card.classList.add('pop');
+  }
+}
 
 function announceLive(text: string) {
   // kosongkan dulu agar pembaca layar membacakan ulang teks yang sama
@@ -70,7 +93,10 @@ function setProgress(frac: number, label: string) {
 
 function announce(a: Announcement, now: number) {
   const text = announcementText(a);
-  resultEl.textContent = a.notes.length === 1 ? formatRupiah(a.total) : `${formatRupiah(a.total)} (${a.notes.length} lembar)`;
+  if (a.notes.length === 1) setCard('Nominal terdeteksi', formatRupiah(a.total), `${capitalize(numToWords(a.total))} rupiah`, true);
+  else setCard(`Total ${a.notes.length} lembar`, formatRupiah(a.total), a.notes.map(formatRupiah).join(' + '), true);
+  setState('found');
+  statusEl.textContent = 'Uang terdeteksi. Arahkan lagi untuk uang berikutnya.';
   say(announcementSegments(a), text, vibrationFor(a));
   guidance.noteAnnounced(now);
   debug.announcements.push(text);
@@ -78,14 +104,17 @@ function announce(a: Announcement, now: number) {
 
 async function giveGuidance(g: 'guide_not_found' | 'guide_dark') {
   debug.guidance.push(g);
+  setState('guide');
   if (g === 'guide_dark' && cam?.hasTorch && !torchOn) {
     torchOn = await setTorch(cam, true);
     if (torchOn) {
       const text = `${phraseText('guide_dark')} ${phraseText('guide_torch_on')}`;
+      statusEl.textContent = text;
       say([{ key: 'guide_dark', text: phraseText('guide_dark') }, { key: 'guide_torch_on', text: phraseText('guide_torch_on') }], text, undefined, false);
       return;
     }
   }
+  statusEl.textContent = phraseText(g);
   say([{ key: g, text: phraseText(g) }], phraseText(g), undefined, false);
 }
 
@@ -102,23 +131,39 @@ function drawOverlay(dets: Detection[], srcW: number, srcH: number) {
   const s = Math.max(cw / srcW, ch / srcH);
   const ox = (cw - srcW * s) / 2;
   const oy = (ch - srcH * s) / 2;
+  const top = topbar.getBoundingClientRect().bottom + 6; // label tidak boleh tertutup bilah atas
+  const rect = (x: number, y: number, w: number, h: number, r: number) => {
+    g.beginPath();
+    if (g.roundRect) g.roundRect(x, y, w, h, r);
+    else g.rect(x, y, w, h);
+  };
   g.lineJoin = 'round';
-  g.font = 'bold 28px system-ui, sans-serif';
+  g.font = '800 26px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
+  g.textBaseline = 'middle';
   for (const d of dets) {
     if (d.score < settings.threshold) continue;
     const [x0, y0, x1, y1] = d.box.map((v, i) => (i % 2 ? v * s + oy : v * s + ox));
-    g.strokeStyle = '#000';
+    rect(x0, y0, x1 - x0, y1 - y0, 18);
+    g.strokeStyle = 'rgba(0,0,0,0.85)';
     g.lineWidth = 12;
-    g.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    g.stroke();
     g.strokeStyle = '#ffd400';
     g.lineWidth = 6;
-    g.strokeRect(x0, y0, x1 - x0, y1 - y0);
-    const label = formatRupiah([1000, 2000, 5000, 10000, 20000, 50000, 100000][d.cls]);
-    const tw = g.measureText(label).width + 16;
+    g.stroke();
+    // label nominal: di atas kotak bila muat, selain itu di dalam sudut kiri atas; selalu di dalam layar
+    const label = formatRupiah(NOMINALS[d.cls]);
+    const tw = g.measureText(label).width + 28;
+    const th = 44;
+    const lx = Math.min(Math.max(x0, 8), cw - tw - 8);
+    const ly = y0 - th - 8 >= top ? y0 - th - 8 : Math.max(top, y0 + 10);
+    rect(lx, ly, tw, th, th / 2);
     g.fillStyle = '#ffd400';
-    g.fillRect(x0, Math.max(0, y0 - 40), tw, 40);
+    g.fill();
+    g.strokeStyle = '#000';
+    g.lineWidth = 3;
+    g.stroke();
     g.fillStyle = '#000';
-    g.fillText(label, x0 + 8, Math.max(30, y0 - 10));
+    g.fillText(label, lx + 14, ly + th / 2 + 1);
   }
 }
 
@@ -134,12 +179,18 @@ async function tick() {
     debug.frames++;
     debug.inferMs = debug.inferMs ? debug.inferMs * 0.9 + r.inferMs * 0.1 : r.inferMs;
     drawOverlay(r.dets, r.srcW, r.srcH);
+    const seen = r.dets.some((d) => d.score >= settings.threshold);
+    app.classList.toggle('has-dets', seen);
     const now = performance.now();
     const a = decision.update(r.dets, now);
     if (a) announce(a, now);
     else {
-      const g = guidance.update(r.dets.some((d) => d.score >= settings.threshold), r.luma, now);
+      const g = guidance.update(seen, r.luma, now);
       if (g) void giveGuidance(g);
+      else if (seen && app.dataset.state === 'guide') {
+        setState('scanning');
+        statusEl.textContent = 'Memindai uang...';
+      }
     }
   } catch (e) {
     console.warn('deteksi gagal', e);
@@ -158,7 +209,10 @@ async function boot() {
     (c) => (cam = c),
     (e: unknown) => {
       debug.phase = 'camera-error';
-      sayKey(e instanceof CameraError && e.kind === 'denied' ? 'error_camera_denied' : 'error_camera', true);
+      const key = e instanceof CameraError && e.kind === 'denied' ? 'error_camera_denied' : 'error_camera';
+      setState('error');
+      setCard('', 'Kamera belum bisa dipakai', '');
+      sayKey(key, true);
       throw e;
     },
   );
@@ -172,6 +226,8 @@ async function boot() {
   } catch (e) {
     console.error(e);
     debug.phase = 'model-error';
+    setState('error');
+    setCard('', 'Model gagal dimuat', '');
     sayKey('error_model', true);
     return;
   }
@@ -187,7 +243,8 @@ async function boot() {
   // decode klip yang paling sering dipakai saat browser senggang
   speaker.warmup([...[1000, 2000, 5000, 10000, 20000, 50000, 100000].flatMap((n) => [`d${n}`, `n${n}`]),
     'guide_not_found', 'guide_dark', 'guide_torch_on', 'c2', 'c3']);
-  resultEl.textContent = 'Arahkan kamera ke uang';
+  setCard('', 'Arahkan kamera ke uang', 'Jarak 20 sampai 50 cm, di tempat yang terang');
+  setState('scanning');
   guidance = new GuidanceEngine(performance.now());
   running = true;
   void tick();

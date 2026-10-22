@@ -1,11 +1,26 @@
-/* Tema kontras tinggi: latar hitam, teks putih/kuning. Semua kontras >= 7:1 (WCAG AAA untuk teks besar). */
+/* Tema kontras tinggi: latar hitam, teks putih/kuning. Kontras teks >= 7:1 (WCAG AAA).
+   Font Atkinson Hyperlegible (Braille Institute, SIL OFL 1.1) dirancang untuk pembaca low vision; disajikan lokal
+   (ikut di-precache) agar tetap offline dan tanpa permintaan ke pihak ketiga. */
+@import '@fontsource/atkinson-hyperlegible/latin-400.css';
+@import '@fontsource/atkinson-hyperlegible/latin-700.css';
+
 :root {
   --bg: #000;
+  --surface: #121212;
+  --surface-2: #1d1d1d;
+  --line: #3a3a3a;
   --fg: #fff;
+  --muted: #cfcfcf;
   --accent: #ffd400;
   --accent-ink: #000;
-  --muted: #d9d9d9;
+  --ok: #3ddc84;
+  --warn: #ffab2e;
+  --err: #ff6b6b;
   --focus: #00e5ff;
+  --radius: 20px;
+  --font: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* angka nominal memakai font sistem: Atkinson Hyperlegible memakai nol bergaris (0 -> Ø) yang janggal untuk uang */
+  --font-num: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color-scheme: dark;
 }
 * {
@@ -17,9 +32,10 @@ body {
   height: 100%;
   background: var(--bg);
   color: var(--fg);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font);
   font-size: 20px;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 .sr-only {
   position: absolute;
@@ -36,10 +52,19 @@ body {
   outline: 4px solid var(--focus);
   outline-offset: 3px;
 }
+.ico {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+  fill: currentColor;
+}
+
+/* ================= layar kamera ================= */
 #app {
   position: fixed;
   inset: 0;
   overflow: hidden;
+  background: #000;
 }
 #video,
 #overlay {
@@ -49,9 +74,110 @@ body {
   height: 100%;
   object-fit: cover;
 }
-#video {
-  filter: brightness(0.75);
+/* urutan lapisan: video < gradasi < kotak deteksi < bingkai bidik < kartu < bilah atas */
+#overlay {
+  z-index: 2;
 }
+.viewfinder {
+  z-index: 3;
+}
+.tap {
+  z-index: 4;
+}
+.topbar {
+  z-index: 5;
+}
+#video {
+  filter: brightness(0.82);
+}
+/* gradasi atas & bawah agar teks selalu terbaca di atas gambar kamera apa pun */
+#app::before,
+#app::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+#app::before {
+  top: 0;
+  height: 14rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+#app::after {
+  bottom: 0;
+  height: 22rem;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+}
+
+/* bingkai bidik: membantu pengguna low vision mengarahkan kamera; hilang saat uang terdeteksi */
+.viewfinder {
+  --vf: min(72vw, 46vh);
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: var(--vf);
+  height: calc(var(--vf) * 0.62);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#app[data-state='scanning'] .viewfinder,
+#app[data-state='guide'] .viewfinder {
+  opacity: 1;
+}
+#app.has-dets .viewfinder {
+  opacity: 0;
+}
+.viewfinder i {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border: 6px solid var(--accent);
+  filter: drop-shadow(0 0 2px #000) drop-shadow(0 0 1px #000);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+.viewfinder i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 18px;
+}
+.viewfinder i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-top-right-radius: 18px;
+}
+.viewfinder i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom-left-radius: 18px;
+}
+.viewfinder i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: 18px;
+}
+#app[data-state='guide'] .viewfinder i {
+  border-color: var(--warn);
+}
+@keyframes breathe {
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+}
+
+/* seluruh layar = tombol "ulangi"; kartu hasil di bawah */
 .tap {
   position: absolute;
   inset: 0;
@@ -61,8 +187,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0 1rem calc(2rem + env(safe-area-inset-bottom));
+  padding: 0 1rem calc(1.25rem + env(safe-area-inset-bottom));
   background: transparent;
   border: 0;
   color: var(--fg);
@@ -70,67 +195,197 @@ body {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+.tap:focus-visible {
+  outline-offset: -8px;
+}
+.card {
+  width: 100%;
+  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 1rem 1.25rem 0.9rem;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  background: rgba(14, 14, 14, 0.92);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.kicker {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.kicker:empty {
+  display: none;
+}
 .result {
   max-width: 100%;
-  padding: 0.25rem 1rem;
-  border-radius: 12px;
+  font-size: clamp(2.4rem, 13vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+/* nominal terdeteksi: blok kuning besar, mudah dilihat pengguna low vision */
+#app[data-state='found'] .result {
+  padding: 0.1em 0.35em 0.12em;
+  border-radius: 16px;
   background: var(--accent);
   color: var(--accent-ink);
-  font-size: clamp(2.2rem, 11vw, 5rem);
-  font-weight: 800;
+}
+/* teks ajakan (bukan nominal): lebih kecil agar tidak memenuhi layar */
+#app:not([data-state='found']) .result {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 7.5vw, 2.6rem);
   line-height: 1.15;
-  text-align: center;
-  overflow-wrap: anywhere;
+}
+.result,
+.detail {
+  text-wrap: balance;
+}
+.detail {
+  font-family: var(--font-num);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.detail:empty {
+  display: none;
 }
 .hint {
-  padding: 0.2rem 0.75rem;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.8);
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--muted);
 }
+.pop {
+  animation: pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+@keyframes pop {
+  from {
+    transform: scale(0.92);
+  }
+}
+
+/* bilah atas: merek, tombol bantuan, status berwarna */
 .topbar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  padding: calc(0.7rem + env(safe-area-inset-top)) 1rem 0.75rem;
+}
+.brand-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: calc(0.75rem + env(safe-area-inset-top)) 1rem 0.75rem;
-  background: rgba(0, 0, 0, 0.85);
 }
-.status {
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   margin: 0;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.logo {
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: none;
 }
 .help {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   flex: none;
   min-width: 48px;
   min-height: 48px;
-  padding: 0.55rem 1rem;
-  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
   background: var(--fg);
   color: #000;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
-  text-align: center;
+}
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.6rem 0 0;
+  padding: 0.4rem 0.9rem 0.45rem;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.72);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.status::before {
+  content: '';
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.25);
+  transform: translateY(0.05rem);
+}
+#app[data-state='loading'] .status::before {
+  animation: blink 1s ease-in-out infinite;
+}
+#app[data-state='scanning'] .status::before,
+#app[data-state='found'] .status::before {
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(61, 220, 132, 0.25);
+}
+#app[data-state='guide'] .status::before {
+  background: var(--warn);
+  box-shadow: 0 0 0 3px rgba(255, 171, 46, 0.25);
+}
+#app[data-state='error'] .status::before {
+  background: var(--err);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+}
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
 }
 .progress {
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  top: calc(5.5rem + env(safe-area-inset-top));
-  height: 18px;
+  height: 14px;
+  margin-top: 0.6rem;
   border: 2px solid var(--fg);
-  border-radius: 9px;
+  border-radius: 999px;
   overflow: hidden;
   background: #000;
+}
+.progress[hidden] {
+  display: none;
 }
 .progress .bar {
   height: 100%;
   width: 0;
+  border-radius: 999px;
   background: var(--accent);
   transition: width 0.2s;
 }
@@ -139,65 +394,254 @@ body {
   font-size: 1.5rem;
 }
 
-/* ---- halaman Tentang & Benchmark ---- */
+/* ================= halaman Bantuan & Benchmark ================= */
+.pagebar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: calc(0.6rem + env(safe-area-inset-top)) 1rem 0.6rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.pagebar .brand {
+  font-size: 1.1rem;
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 48px;
+  padding: 0.4rem 1rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: var(--fg);
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+}
 .page {
   max-width: 46rem;
   margin: 0 auto;
-  padding: 1rem 1rem 4rem;
+  padding: 1.25rem 1rem 4rem;
 }
 .page a:not(.btn) {
   color: var(--accent);
+  text-underline-offset: 3px;
 }
 .page h1 {
-  font-size: 2rem;
-  line-height: 1.2;
+  margin: 0.25rem 0 0.5rem;
+  font-size: 2.1rem;
+  line-height: 1.15;
+}
+.lead {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+.section {
+  margin: 1.25rem 0;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.section > :first-child {
+  margin-top: 0;
+}
+.section > :last-child {
+  margin-bottom: 0;
 }
 .page h2 {
-  margin-top: 2rem;
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.75rem;
+  font-size: 1.45rem;
+  line-height: 1.2;
   color: var(--accent);
 }
+.page h2 .ico {
+  width: 1.1em;
+  height: 1.1em;
+}
 .page li {
-  margin: 0.35rem 0;
+  margin: 0.4rem 0;
+}
+.note {
+  padding: 0.75rem 0.9rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+/* langkah bernomor bulat */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  margin: 0;
+  padding: 0.5rem 0 0.7rem 3.1rem;
+  min-height: 2.4rem;
+}
+.steps li + li {
+  border-top: 1px solid var(--line);
+  padding-top: 0.7rem;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+}
+.steps li + li::before {
+  top: 0.7rem;
 }
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   min-height: 52px;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.3rem;
   margin: 0.25rem 0.5rem 0.25rem 0;
-  border: 0;
-  border-radius: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
   background: var(--accent);
   color: #000;
   font: inherit;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
 }
 .btn.secondary {
-  background: var(--fg);
+  border-color: var(--fg);
+  background: transparent;
+  color: var(--fg);
+}
+.btn:active {
+  transform: scale(0.98);
 }
 .field {
   margin: 1rem 0;
 }
 .field label {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   font-weight: 700;
+}
+.field output {
+  flex: none;
+  min-width: 3.4rem;
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-num);
+  font-weight: 800;
+  text-align: center;
 }
 .field input[type='range'] {
   width: 100%;
   min-height: 44px;
   accent-color: var(--accent);
 }
-.field input[type='checkbox'] {
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
-  accent-color: var(--accent);
+/* kartu hasil benchmark disembunyikan sampai ada isinya */
+.section:has(> table tbody:empty),
+.section:has(> pre:empty) {
+  display: none;
 }
-.check label {
-  display: inline;
-  margin-left: 0.5rem;
+.field select,
+.field input[type='number'] {
+  font-family: var(--font-num);
+  width: 100%;
+  min-height: 52px;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-2);
+  color: var(--fg);
+  font-size: inherit;
+  font-weight: 700;
+}
+.help-text {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+  color: var(--muted);
+}
+/* checkbox sebagai sakelar (tetap elemen checkbox asli untuk pembaca layar) */
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 56px;
+  margin: 0.5rem 0;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--line);
+}
+.switch label {
+  font-weight: 700;
+  cursor: pointer;
+}
+.switch input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex: none;
+  width: 64px;
+  height: 36px;
+  margin: 0;
+  border: 2px solid var(--fg);
+  border-radius: 999px;
+  background: #000;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.switch input::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--fg);
+  transition: transform 0.2s;
+}
+.switch input:checked {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.switch input:checked::after {
+  background: #000;
+  transform: translateX(28px);
+}
+.saved {
+  margin: 0.5rem 0 0;
+  color: var(--ok);
+  font-weight: 700;
+}
+.saved:empty {
+  margin: 0;
 }
 table {
   width: 100%;
@@ -206,14 +650,77 @@ table {
 }
 th,
 td {
-  padding: 0.4rem;
-  border-bottom: 1px solid #555;
+  padding: 0.55rem 0.4rem;
+  border-bottom: 1px solid var(--line);
   text-align: left;
+  vertical-align: middle;
+}
+th {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+/* pola getar: titik = pendek, batang = panjang */
+.vib {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0.15rem 0 0.3rem;
+}
+.vib i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background: var(--accent);
+}
+.vib i.l {
+  width: 34px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.chips li {
+  margin: 0;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 1rem;
+}
+td:first-child {
+  font-family: var(--font-num);
+  font-weight: 700;
 }
 pre {
+  margin: 0;
   white-space: pre-wrap;
-  font-size: 0.9rem;
-  background: #111;
+  font-size: 0.85rem;
+  background: #000;
+  border: 1px solid var(--line);
   padding: 0.75rem;
-  border-radius: 8px;
+  border-radius: 12px;
+}
+pre:empty {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

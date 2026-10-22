@@ -9,77 +9,122 @@
     <title>Bantuan - SuaraRupiah</title>
   </head>
   <body>
+    <nav class="pagebar" aria-label="Navigasi">
+      <a class="back" href="../">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" /></svg>
+        Kembali ke kamera
+      </a>
+    </nav>
     <main class="page">
-      <p><a class="btn secondary" href="../">Kembali ke kamera</a></p>
-      <h1>Bantuan SuaraRupiah</h1>
-      <p>SuaraRupiah mengenali nominal uang kertas Rupiah lewat kamera ponsel dan menyebutkannya dengan suara.</p>
-      <p><button id="play-help" class="btn" type="button">Putar panduan suara</button></p>
+      <h1>Bantuan</h1>
+      <p class="lead">SuaraRupiah mengenali nominal uang kertas Rupiah lewat kamera ponsel dan menyebutkannya dengan suara.</p>
+      <p>
+        <button id="play-help" class="btn" type="button">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          Putar panduan suara
+        </button>
+      </p>
 
-      <h2 id="cara">Cara memakai</h2>
-      <ol>
-        <li>Buka aplikasi. Izinkan akses kamera bila diminta. Kamera belakang akan aktif otomatis.</li>
-        <li>Arahkan kamera ke uang kertas, dengan jarak sekitar 20 sampai 50 sentimeter.</li>
-        <li>Aplikasi menyebutkan nominal secara otomatis, misalnya "Lima puluh ribu rupiah", disertai getaran (Android).</li>
-        <li>Jika ada lebih dari satu lembar, aplikasi menyebutkan jumlah lembar, nominal masing-masing, dan totalnya.</li>
-        <li>Ketuk layar di mana saja untuk mengulang hasil terakhir. Ketukan pertama juga mengaktifkan suara jika browser menahannya.</li>
-        <li>Jika uang belum terdeteksi, coba balik uang, jauhkan sedikit, atau pindah ke tempat yang lebih terang. Saat gelap, aplikasi mencoba menyalakan senter.</li>
-      </ol>
-      <p>Pengguna TalkBack atau VoiceOver: hasil juga dibacakan oleh pembaca layar. Jika suara terdengar dobel, matikan "Suara aplikasi" di bawah.</p>
-      <p>Agar bisa dipakai tanpa internet, pasang aplikasi: di Chrome Android pilih menu lalu "Tambahkan ke layar utama"; di Safari iPhone pilih Bagikan lalu "Tambah ke Layar Utama". Setelah dibuka sekali dengan internet, aplikasi tetap berfungsi offline.</p>
+      <section class="section" aria-labelledby="cara">
+        <h2 id="cara">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8-4h-3.2L15 3H9L7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" /></svg>
+          Cara memakai
+        </h2>
+        <ol class="steps">
+          <li>Buka aplikasi. Izinkan akses kamera bila diminta. Kamera belakang akan aktif otomatis.</li>
+          <li>Arahkan kamera ke uang kertas, dengan jarak sekitar 20 sampai 50 sentimeter.</li>
+          <li>Aplikasi menyebutkan nominal secara otomatis, misalnya "Lima puluh ribu rupiah", disertai getaran (Android).</li>
+          <li>Jika ada lebih dari satu lembar, aplikasi menyebutkan jumlah lembar, nominal masing-masing, dan totalnya.</li>
+          <li>Ketuk layar di mana saja untuk mengulang hasil terakhir. Ketukan pertama juga mengaktifkan suara jika browser menahannya.</li>
+          <li>Jika uang belum terdeteksi, coba balik uang, jauhkan sedikit, atau pindah ke tempat yang lebih terang. Saat gelap, aplikasi mencoba menyalakan senter.</li>
+        </ol>
+        <p class="note">Pengguna TalkBack atau VoiceOver: hasil juga dibacakan oleh pembaca layar. Jika suara terdengar dobel, matikan "Suara aplikasi" di bagian Pengaturan.</p>
+        <p>Agar bisa dipakai tanpa internet, pasang aplikasi: di Chrome Android pilih menu lalu "Tambahkan ke layar utama"; di Safari iPhone pilih Bagikan lalu "Tambah ke Layar Utama". Setelah dibuka sekali dengan internet, aplikasi tetap berfungsi offline.</p>
+      </section>
 
-      <h2 id="pola-getar">Pola getaran</h2>
-      <table>
-        <thead><tr><th scope="col">Nominal</th><th scope="col">Pola</th></tr></thead>
-        <tbody>
-          <tr><td>Rp1.000</td><td>1 pendek</td></tr>
-          <tr><td>Rp2.000</td><td>2 pendek</td></tr>
-          <tr><td>Rp5.000</td><td>1 panjang</td></tr>
-          <tr><td>Rp10.000</td><td>1 panjang, 1 pendek</td></tr>
-          <tr><td>Rp20.000</td><td>1 panjang, 2 pendek</td></tr>
-          <tr><td>Rp50.000</td><td>2 panjang</td></tr>
-          <tr><td>Rp100.000</td><td>3 panjang</td></tr>
-          <tr><td>Beberapa lembar</td><td>2 getar cepat, lalu pola nominal terbesar</td></tr>
-        </tbody>
-      </table>
+      <section class="section" aria-labelledby="pola-getar">
+        <h2 id="pola-getar">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 15h2V9H0v6zm3 2h2V7H3v10zm19-8v6h2V9h-2zm-3 8h2V7h-2v10zM16.5 3h-9C6.7 3 6 3.7 6 4.5v15c0 .8.7 1.5 1.5 1.5h9c.8 0 1.5-.7 1.5-1.5v-15c0-.8-.7-1.5-1.5-1.5zM16 19H8V5h8v14z" /></svg>
+          Pola getaran
+        </h2>
+        <p class="help-text">Titik = getar pendek, batang = getar panjang.</p>
+        <table>
+          <thead><tr><th scope="col">Nominal</th><th scope="col">Pola</th></tr></thead>
+          <tbody>
+            <tr><td>Rp1.000</td><td><span class="vib" aria-hidden="true"><i></i></span>1 pendek</td></tr>
+            <tr><td>Rp2.000</td><td><span class="vib" aria-hidden="true"><i></i><i></i></span>2 pendek</td></tr>
+            <tr><td>Rp5.000</td><td><span class="vib" aria-hidden="true"><i class="l"></i></span>1 panjang</td></tr>
+            <tr><td>Rp10.000</td><td><span class="vib" aria-hidden="true"><i class="l"></i><i></i></span>1 panjang, 1 pendek</td></tr>
+            <tr><td>Rp20.000</td><td><span class="vib" aria-hidden="true"><i class="l"></i><i></i><i></i></span>1 panjang, 2 pendek</td></tr>
+            <tr><td>Rp50.000</td><td><span class="vib" aria-hidden="true"><i class="l"></i><i class="l"></i></span>2 panjang</td></tr>
+            <tr><td>Rp100.000</td><td><span class="vib" aria-hidden="true"><i class="l"></i><i class="l"></i><i class="l"></i></span>3 panjang</td></tr>
+            <tr><td>Beberapa lembar</td><td>2 getar cepat, lalu pola nominal terbesar</td></tr>
+          </tbody>
+        </table>
+      </section>
 
-      <h2 id="batasan">Batasan sistem</h2>
-      <ul>
-        <li>Mengenali 7 nominal uang kertas: Rp1.000, Rp2.000, Rp5.000, Rp10.000, Rp20.000, Rp50.000, Rp100.000 (Tahun Emisi 2016 dan 2022, sisi depan dan belakang).</li>
-        <li><strong>Hanya mengenali nominal, tidak memeriksa keaslian uang.</strong></li>
-        <li>Uang logam dan uang peringatan Rp75.000 tidak dikenali.</li>
-        <li>Akurasi menurun bila uang sangat rusak, tertutup lebih dari separuh, sangat gelap, atau terlalu jauh. Selalu pastikan ulang untuk transaksi penting.</li>
-        <li>Getaran tidak tersedia di iPhone (keterbatasan Safari).</li>
-      </ul>
+      <section class="section" aria-labelledby="batasan">
+        <h2 id="batasan">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" /></svg>
+          Batasan sistem
+        </h2>
+        <p>Mengenali 7 nominal uang kertas Tahun Emisi 2016 dan 2022, sisi depan dan belakang:</p>
+        <ul class="chips" aria-label="Nominal yang dikenali">
+          <li>Rp1.000</li><li>Rp2.000</li><li>Rp5.000</li><li>Rp10.000</li><li>Rp20.000</li><li>Rp50.000</li><li>Rp100.000</li>
+        </ul>
+        <ul>
+          <li><strong>Hanya mengenali nominal, tidak memeriksa keaslian uang.</strong></li>
+          <li>Uang logam dan uang peringatan Rp75.000 tidak dikenali.</li>
+          <li>Akurasi menurun bila uang sangat rusak, tertutup lebih dari separuh, sangat gelap, atau terlalu jauh. Selalu pastikan ulang untuk transaksi penting.</li>
+          <li>Getaran tidak tersedia di iPhone (keterbatasan Safari).</li>
+        </ul>
+      </section>
 
-      <h2 id="privasi">Privasi</h2>
-      <p>Semua pengenalan berjalan di ponsel Anda. <strong>Tidak ada gambar kamera yang dikirim ke server mana pun</strong>, dan aplikasi ini tidak memakai analitik atau pelacak. Pengaturan disimpan hanya di perangkat Anda.</p>
+      <section class="section" aria-labelledby="privasi">
+        <h2 id="privasi">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4zm-2 16-4-4 1.4-1.4 2.6 2.6 6.6-6.6L18 9l-8 8z" /></svg>
+          Privasi
+        </h2>
+        <p>Semua pengenalan berjalan di ponsel Anda. <strong>Tidak ada gambar kamera yang dikirim ke server mana pun</strong>, dan aplikasi ini tidak memakai analitik atau pelacak. Pengaturan disimpan hanya di perangkat Anda.</p>
+      </section>
 
-      <h2 id="pengaturan">Pengaturan</h2>
-      <form id="settings">
-        <div class="field">
-          <label for="thr">Ambang keyakinan pengumuman: <output id="thr-out" for="thr">0,70</output></label>
-          <input id="thr" name="thr" type="range" min="0.5" max="0.95" step="0.05" aria-describedby="thr-help" />
-          <p id="thr-help">Lebih tinggi = lebih jarang salah sebut, tetapi lebih lama mengenali. Bawaan 0,70.</p>
-        </div>
-        <div class="field">
-          <label for="rate">Kecepatan bicara: <output id="rate-out" for="rate">1,0</output></label>
-          <input id="rate" name="rate" type="range" min="0.8" max="1.5" step="0.1" />
-        </div>
-        <div class="field check"><input id="voice" type="checkbox" /><label for="voice">Suara aplikasi</label></div>
-        <div class="field check"><input id="vibrate" type="checkbox" /><label for="vibrate">Getaran</label></div>
-        <p id="saved" role="status" aria-live="polite"></p>
-      </form>
+      <section class="section" aria-labelledby="pengaturan">
+        <h2 id="pengaturan">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" /></svg>
+          Pengaturan
+        </h2>
+        <form id="settings">
+          <div class="field">
+            <label for="thr">Ambang keyakinan pengumuman <output id="thr-out" for="thr">0,70</output></label>
+            <input id="thr" name="thr" type="range" min="0.5" max="0.95" step="0.05" aria-describedby="thr-help" />
+            <p id="thr-help" class="help-text">Lebih tinggi = lebih jarang salah sebut, tetapi lebih lama mengenali. Bawaan 0,70.</p>
+          </div>
+          <div class="field">
+            <label for="rate">Kecepatan bicara <output id="rate-out" for="rate">1,0</output></label>
+            <input id="rate" name="rate" type="range" min="0.8" max="1.5" step="0.1" />
+          </div>
+          <div class="switch"><label for="voice">Suara aplikasi</label><input id="voice" type="checkbox" /></div>
+          <div class="switch"><label for="vibrate">Getaran</label><input id="vibrate" type="checkbox" /></div>
+          <p id="saved" class="saved" role="status" aria-live="polite"></p>
+        </form>
+      </section>
 
-      <h2 id="tentang">Tentang proyek</h2>
-      <p>Proyek capstone: <em>Rancang Bangun Aplikasi Web Progresif Pengenal Nominal Uang Kertas Rupiah dengan Keluaran Suara Menggunakan YOLOv8 untuk Penyandang Tunanetra</em>.</p>
-      <ul>
-        <li>Model deteksi: YOLOv8n (Ultralytics), dijalankan dengan ONNX Runtime Web.</li>
-        <li id="model-info">Versi model: -</li>
-        <li>Suara: klip TTS Bahasa Indonesia (lihat kredit di kode sumber), cadangan Web Speech API.</li>
-        <li>Dataset: gabungan dataset publik berlisensi terbuka (Roboflow Universe, Kaggle). Daftar & atribusi: <a id="src-datasets" href="#">SUMBER_DATASET.md</a>.</li>
-      </ul>
-      <p>Kode sumber (lisensi GNU AGPL-3.0): <a id="src-link" href="#">github.com/apanzagg/rupiah-vision</a></p>
-      <p><a href="../benchmark/">Ukur performa perangkat (benchmark)</a></p>
+      <section class="section" aria-labelledby="tentang">
+        <h2 id="tentang">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" /></svg>
+          Tentang proyek
+        </h2>
+        <p>Proyek capstone: <em>Rancang Bangun Aplikasi Web Progresif Pengenal Nominal Uang Kertas Rupiah dengan Keluaran Suara Menggunakan YOLOv8 untuk Penyandang Tunanetra</em>.</p>
+        <ul>
+          <li>Model deteksi: YOLOv8n (Ultralytics), dijalankan dengan ONNX Runtime Web.</li>
+          <li id="model-info">Versi model: -</li>
+          <li>Suara: klip TTS Bahasa Indonesia (lihat kredit di kode sumber), cadangan Web Speech API.</li>
+          <li>Font: Atkinson Hyperlegible (Braille Institute, SIL Open Font License).</li>
+          <li>Dataset: gabungan dataset publik berlisensi terbuka (Roboflow Universe, Kaggle). Daftar & atribusi: <a id="src-datasets" href="#">SUMBER_DATASET.md</a>.</li>
+        </ul>
+        <p>Kode sumber (lisensi GNU AGPL-3.0): <a id="src-link" href="#">github.com/apanzagg/rupiah-vision</a></p>
+        <p><a class="btn secondary" href="../benchmark/">Ukur performa perangkat</a></p>
+      </section>
     </main>
     <script type="module" src="/src/about.ts"></script>
   </body>

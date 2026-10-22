@@ -45,7 +45,7 @@ export default defineConfig({
       workbox: {
         // Model ONNX & runtime WASM TIDAK di-precache service worker: aplikasi menyimpannya sendiri di
         // Cache Storage (src/app/loader.ts) agar progres unduhan bisa ditampilkan dan tidak terunduh dua kali.
-        globPatterns: ['**/*.{js,css,html,png,svg,json,mp3,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,png,svg,json,mp3,webmanifest,woff2}'],
         globIgnores: ['**/models/**', '**/parity/**', '**/bench/**', '**/*.wasm', '**/*.gz'],
         ignoreURLParametersMatching: [/.*/],
         cleanupOutdatedCaches: true,

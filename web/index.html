@@ -13,21 +13,37 @@
     <title>SuaraRupiah</title>
   </head>
   <body>
-    <main id="app">
+    <main id="app" data-state="loading">
       <video id="video" autoplay muted playsinline aria-hidden="true"></video>
       <canvas id="overlay" aria-hidden="true"></canvas>
-      <button id="tap" class="tap" type="button" aria-labelledby="result hint">
-        <span id="result" class="result">SuaraRupiah</span>
-        <span id="hint" class="hint">Ketuk layar untuk mengulang</span>
+      <div class="viewfinder" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <button id="tap" class="tap" type="button" aria-labelledby="kicker result detail hint">
+        <span id="card" class="card">
+          <span id="kicker" class="kicker"></span>
+          <span id="result" class="result">Menyiapkan aplikasi</span>
+          <span id="detail" class="detail">Pertama kali perlu internet, setelah itu bisa offline</span>
+          <span id="hint" class="hint">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z" /></svg>
+            Ketuk layar untuk mengulang
+          </span>
+        </span>
       </button>
       <header class="topbar">
-        <h1 class="sr-only">SuaraRupiah</h1>
+        <div class="brand-row">
+          <h1 class="brand">
+            <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffd400" /><text x="7" y="32" font-size="20" font-weight="800" font-family="system-ui, sans-serif" fill="#000">Rp</text><path d="M35 17a10 10 0 0 1 0 14M39 13a15 15 0 0 1 0 22" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round" /></svg>
+            SuaraRupiah
+          </h1>
+          <a class="help" href="about/">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 17h-2v-2h2v2zm2.1-7.7-.9.9A3.4 3.4 0 0 0 13 15h-2v-.5a4 4 0 0 1 1.2-2.8l1.2-1.3A2 2 0 0 0 14 9a2 2 0 0 0-4 0H8a4 4 0 0 1 8 0c0 .9-.4 1.7-.9 2.3z" /></svg>
+            Bantuan
+          </a>
+        </div>
         <p id="status" class="status">Sedang menyiapkan aplikasi, mohon tunggu.</p>
-        <a class="help" href="about/">Bantuan</a>
+        <div id="progress" class="progress" role="progressbar" aria-label="Unduhan model" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+          <div class="bar"></div>
+        </div>
       </header>
-      <div id="progress" class="progress" role="progressbar" aria-label="Unduhan model" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
-        <div class="bar"></div>
-      </div>
       <div id="live" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     </main>
     <noscript><p class="noscript">Aplikasi ini memerlukan JavaScript.</p></noscript>
