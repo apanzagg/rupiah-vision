@@ -3,7 +3,7 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import modelCfg from '../../src/model-config.json';
+import modelCfg from '../../src/model-config.json' with { type: 'json' };
 
 interface Det {
   cls: number;

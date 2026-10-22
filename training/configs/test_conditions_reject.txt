@@ -1,0 +1,27 @@
+# id kandidat set uji per kondisi yang DITOLAK setelah pemeriksaan visual contact sheet
+# format: <id>  # kondisi: alasan
+0397d9_578d75a4fd  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_5ed9059358  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_7dd9e9c76d  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0c2880_ffd9c4bc3e  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_3bba77f9af  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_8c8fafa489  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_b6841003c1  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_bf91b78cb2  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_fa8e5a75b3  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_278e49fba0  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_4f17ead047  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_4d8ebee4e5  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_214a1624dd  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_1dc7b19eb6  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_1efc5253b9  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_0558f330da  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_9d125cb335  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_94cb5d7809  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_115548c4d2  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_51756b925c  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_dc62acf0c0  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+0397d9_3e402b3965  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+d2c76a_70180b3391  # baru: bukan kondisi baru (kusut/close-up/sobek/cermin)
+ccc59a_24b546cacf  # latar_ramai: latar polos gelap
+b86bff_30cbe3208f  # bukan_rupiah: uang kertas biru kusut, negara tidak dapat dipastikan

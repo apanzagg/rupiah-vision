@@ -140,7 +140,7 @@ async function runParity() {
     const o = document.createElement('option');
     o.value = v.file;
     o.textContent = `${v.variant}${v.size_mb ? ` - ${v.size_mb} MB` : ''}${v.map50 ? ` - mAP50 ${v.map50}` : ''}`;
-    o.selected = v.file === MODEL.file;
+    o.selected = v.file === (q.get('model') ?? MODEL.file);
     select.append(o);
   }
   $('run').addEventListener('click', () => void runBenchmark().catch((e) => (state.textContent = `Gagal: ${e}`)));

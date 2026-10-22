@@ -94,9 +94,11 @@ def candidates() -> None:
                           "n": int(r["n_boxes"] or 0), "slug": r["slug"]}
     pos = {k: f for k, f in feats.items() if f["role"] == "pos" and f["sat"] > 25}  # buang citra hitam-putih
     pick = {
-        "baru": sorted((k for k, f in pos.items() if f["n"] <= 2 and 90 < f["luma"] < 200 and f["bg_edges"] < 0.04 and f["sharp"] > 150),
-                       key=lambda k: pos[k]["bg_edges"])[: N_PER + 30],
-        "latar_ramai": sorted((k for k, f in pos.items() if f["bg_frac"] > 0.3 and f["bg_edges"] > 0.12), key=lambda k: -pos[k]["bg_edges"])[: N_PER + 30],
+        # uang terlihat utuh dengan latar (box 10-70% luas citra), 1 lembar, terang, tajam, latar polos
+        "baru": sorted((k for k, f in pos.items() if f["n"] == 1 and 0.3 < f["bg_frac"] < 0.9 and 90 < f["luma"] < 200
+                        and f["bg_edges"] < 0.05 and f["sharp"] > 100),
+                       key=lambda k: pos[k]["bg_edges"])[: N_PER + 40],
+        "latar_ramai": sorted((k for k, f in pos.items() if f["bg_frac"] > 0.35 and f["bg_edges"] > 0.12), key=lambda k: -pos[k]["bg_edges"])[: N_PER + 40],
         "cahaya_redup": sorted((k for k, f in pos.items() if f["luma"] < 70), key=lambda k: pos[k]["luma"])[: N_PER + 30],
     }
     negs = [k for k, f in feats.items() if f["role"] == "neg"]

@@ -1,12 +1,14 @@
 # Job training untuk kernel Kaggle "suararupiah-train" (dibaca training/kaggle/train/main.py).
-# Setiap percobaan dicatat di docs/EKSPERIMEN.md.
-# Ronde 2 (final): data D4 (pembersihan hasil audit), dua ukuran input dibandingkan, berjalan berurutan dalam satu sesi.
-version: v1
+# Setiap percobaan dicatat di docs/EKSPERIMEN.md. Job v1 (e1_r320 & e1_r416) disimpan di train_job_v1.yaml.
+# v2 (hard negative): fine-tune bobot v1 (e1_r320) pada data D5 = D4 + negatif yang terbuang kuota (val/test identik),
+# dengan negatif uang asing di-oversample 3x (train_hardneg.txt, dibuat dedup_split.py --extra-neg).
+version: v2
 runs:
-  - {name: e1_r320, imgsz: 320, epochs: 80, patience: 20, batch: 64, args: {cache: ram, train-list: images/train}}
-  - {name: e1_r416, imgsz: 416, epochs: 80, patience: 20, batch: 64, args: {cache: ram, train-list: images/train}}
-parallel: false   # berurutan: CPU (4 core) adalah bottleneck dan cache RAM dua run paralel berisiko OOM
-max_hours: 4.5   # per run; dua run berurutan + ekspor < batas sesi Kaggle 12 jam
+  - {name: e2_r320_hn, imgsz: 320, epochs: 40, patience: 15, batch: 64,
+     args: {cache: ram, train-list: train_hardneg.txt, model: "/kaggle/input/**/e1_r320_best.pt"},
+     set: {optimizer: SGD, lr0: 0.005, warmup_epochs: 1}}
+parallel: false
+max_hours: 3.0
 export: true
 save_test: true
 audit: false

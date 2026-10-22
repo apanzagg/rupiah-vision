@@ -2,7 +2,7 @@
 
 Chrome memutar berkas ini sebagai kamera (--use-file-for-fake-video-capture), berulang terus.
 Kasus:
-  nominal : satu lembar uang (diambil dari data/test_conditions/baru) -> harus diumumkan nominalnya
+  nominal : satu lembar uang per nominal, 7 video (data/test_conditions/baru) -> harus diumumkan nominalnya
   multi   : dua lembar berbeda nominal digabung berdampingan            -> "Dua lembar ... Total ..."
   kosong  : meja tanpa uang (citra negatif 'bukan_rupiah')             -> panduan "uang belum terdeteksi"
   gelap   : citra yang sangat gelap                                    -> panduan "ruangan terlalu gelap"
@@ -64,8 +64,9 @@ def main() -> None:
     base = ROOT / "data" / "test_conditions"
     cases = []
     singles = {}
-    for img_path in sorted((base / "baru" / "images").glob("*.jpg")):
-        lbl = (base / "baru" / "labels" / f"{img_path.stem}.txt").read_text().split()
+    # satu video per nominal (7 kelas); cadangan dari set pindaian/latar ramai bila set 'baru' tidak punya contoh yang jelas
+    for img_path in [p for cond in ("baru", "baru_pindaian", "latar_ramai") for p in sorted((base / cond / "images").glob("*.jpg"))]:
+        lbl = (img_path.parent.parent / "labels" / f"{img_path.stem}.txt").read_text().split()
         if len(lbl) != 5:
             continue
         c = CLASSES[int(lbl[0])]
@@ -75,7 +76,10 @@ def main() -> None:
         p = det(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), conf=0.25)
         if len(p) == 1 and CLASSES[p[0]["cls"]] == c and p[0]["score"] >= 0.85:
             singles[c] = frame
-    for c in ("50000", "2000"):  # dua kasus nominal (biru & abu-abu: mudah tertukar dengan 20000)
+    missing = [c for c in CLASSES if c not in singles]
+    if missing:
+        print("PERINGATAN: tidak ada citra jelas untuk", missing)
+    for c in CLASSES:
         if c in singles:
             write_y4m(out / f"rp{c}.y4m", singles[c])
             cases.append({"video": f"rp{c}.y4m", "kind": "nominal", "expect": WORDS[c]})

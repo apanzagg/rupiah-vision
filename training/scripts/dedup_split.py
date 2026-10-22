@@ -163,6 +163,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--balance", action="store_true", help="tulis train_balanced.txt (oversampling kelas minoritas)")
     ap.add_argument("--copy", action="store_true", help="salin berkas (default: hardlink jika bisa)")
+    ap.add_argument("--extra-neg", action="store_true",
+                    help="v2: negatif yang terbuang kuota masuk TRAIN (kecuali satu grup dengan val/test); split val/test tetap")
+    ap.add_argument("--hardneg-rep", type=int, default=3, help="pengulangan negatif uang_asing di train_hardneg.txt")
     args = ap.parse_args()
     t0 = time.time()
     rng = random.Random(SEED)
@@ -328,6 +331,7 @@ def main() -> None:
     n_pos = sum(1 for i in alive if rows[i]["role"] == "pos")
     negs = [i for i in alive if rows[i]["role"] == "neg"]
     target_neg = round(n_pos * NEG_FRAC / (1 - NEG_FRAC))
+    drop_neg: set[int] = set()
     if len(negs) > target_neg:
         by_kind = defaultdict(list)
         for i in negs:
@@ -344,6 +348,22 @@ def main() -> None:
     for i in alive:
         groups[grp_uf.find(i)].append(i)
     assign = stratified_group_split(groups, rows, rng, frozenset(excl.get("force_train_sources") or []))
+
+    # v2 (hard negative): negatif yang terbuang oleh kuota ditambahkan ke TRAIN setelah split ditentukan, sehingga
+    # val/test identik dengan v1. Negatif yang satu grup (mirip) dengan citra val/test dilewati agar tidak bocor.
+    if args.extra_neg:
+        extra = Counter()
+        for i in sorted(drop_neg):
+            root = grp_uf.find(i)
+            if root in groups and assign[root] != "train":
+                report["drop"]["extra_neg_skip_valtest_group"] += 1
+                continue
+            if root not in groups:
+                assign[root] = "train"
+            groups[root].append(i)
+            extra[rows[i]["kind"]] += 1
+        report["extra_neg_train"] = dict(extra)
+        print("negatif tambahan ke train:", dict(extra))
 
     # tulis dataset final
     if FINAL.exists():
@@ -400,6 +420,12 @@ def main() -> None:
         # Dipakai bila perlu lewat train.py --train-list train_balanced.txt (keputusan dicatat di EKSPERIMEN.md)
         (FINAL / "train_balanced.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
         report["balanced_train_entries"] = len(lines)
+    if args.extra_neg:  # oversampling negatif uang asing (penyebab utama salah sebut pada uji 'bukan_rupiah' v1)
+        tr = [r for r in out_rows if r["split"] == "train"]
+        lines = [f"./images/train/{r['id']}.jpg" for r in tr
+                 for _ in range(args.hardneg_rep if r["role"] == "neg" and r["kind"] == "uang_asing" else 1)]
+        (FINAL / "train_hardneg.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        report["hardneg_train_entries"] = len(lines)
     names = "\n".join(f"  {i}: '{c}'" for i, c in enumerate(CLASSES))
     (FINAL / "data.yaml").write_text(
         f"# Dataset SuaraRupiah (dibangkitkan dedup_split.py)\ntrain: {train_file}\nval: images/val\ntest: images/test\n"

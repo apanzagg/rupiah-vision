@@ -84,7 +84,7 @@ class OnnxDetector:
         self.inp = self.sess.get_inputs()[0]
         self.size = int(self.inp.shape[2])
 
-    def __call__(self, img_rgb: np.ndarray, conf: float = 0.25, iou: float = 0.45) -> list[dict]:
+    def __call__(self, img_rgb: np.ndarray, conf: float = 0.25, iou: float = 0.45, max_det: int = 20) -> list[dict]:
         x, meta = preprocess(img_rgb, self.size)
         out = self.sess.run(None, {self.inp.name: x})[0]
-        return decode(out, meta, conf, iou)
+        return decode(out, meta, conf, iou, max_det)

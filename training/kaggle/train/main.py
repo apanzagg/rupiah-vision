@@ -55,6 +55,9 @@ ngpu = max(1, torch.cuda.device_count())
 runs = job["runs"]
 procs = []
 for i, r in enumerate(runs):
+    m = r.get("args", {}).get("model", "")
+    if "*" in m:  # bobot awal dari dataset Kaggle (fine-tune), mis. /kaggle/input/**/e1_r320_best.pt
+        r["args"]["model"] = sorted(glob.glob(m, recursive=True))[0]
     dev = i % ngpu if job.get("parallel") else 0
     workers = 3 if job.get("parallel") and len(runs) > 1 else 4
     cmd = (f"cd {S} && python train.py --data /tmp/final/data.yaml --imgsz {r['imgsz']} --epochs {r['epochs']} "

@@ -25,6 +25,7 @@ def main() -> None:
     ap.add_argument("--export-dir", required=True)
     ap.add_argument("--variant", default="")
     ap.add_argument("--version", default="v1")
+    ap.add_argument("--web-map", default="", help="hasil eval_onnx_map.py (mAP pipeline web) untuk MODEL_CARD")
     args = ap.parse_args()
     run, exp = Path(args.run_dir), Path(args.export_dir)
     variants = json.loads((exp / "variants.json").read_text(encoding="utf-8"))
@@ -81,7 +82,7 @@ untuk dijalankan di browser dengan ONNX Runtime Web (backend WASM). Dibangkitkan
 
 ## Kelas (urutan indeks)
 
-| Indeks | Nama | Nominal | AP50 (test) | AP50-95 (test) |
+| Indeks | Nama | Nominal | AP50 test (validator Ultralytics) | AP50-95 test (validator Ultralytics) |
 |---|---|---|---|---|
 {pcs}
 
@@ -90,21 +91,43 @@ untuk dijalankan di browser dengan ONNX Runtime Web (backend WASM). Dibangkitkan
 - Confidence filter awal: 0,25; NMS class-agnostic IoU 0,45 (maks. 20 deteksi).
 - Pengumuman suara: confidence >= **0,7** dan konsisten di >= 3 dari 5 frame terakhir (lihat `web/src/lib/decision.ts`).
 
-## Metrik (split test, {t.get('images', '')})
+## Metrik split test
 
-PyTorch (`best.pt`, Ultralytics val): mAP50 **{t['map50']:.4f}**, mAP50-95 **{t['map50_95']:.4f}**, precision {t['precision']:.4f}, recall {t['recall']:.4f}.
+PyTorch (`best.pt`, validator Ultralytics bawaan `rect=True`, cenderung optimistis): mAP50 **{t['map50']:.4f}**, mAP50-95 **{t['map50_95']:.4f}**, precision {t['precision']:.4f}, recall {t['recall']:.4f}.
 
-Perbandingan varian ONNX (Ultralytics val, backend onnxruntime CPU, batch 1, letterbox persegi; waktu CPU = Kaggle 4 vCPU):
+Perbandingan varian ONNX (validator Ultralytics, backend onnxruntime CPU, batch 1, letterbox persegi; waktu CPU = Kaggle 4 vCPU):
 
 | Varian | Ukuran (MB) | mAP50 | mAP50-95 | Precision | Recall | ms/citra (CPU) |
 |---|---|---|---|---|---|---|
 {rows}
 
+{{web_section}}
 ## Data & batasan
 
 Lihat `docs/SUMBER_DATASET.md` (sumber & lisensi) dan `docs/LAPORAN_EVALUASI.md` (evaluasi per kondisi, analisis kesalahan).
 Model **hanya mengenali nominal**, bukan keaslian. Uang logam dan Rp75.000 tidak dikenali (dilatih sebagai latar).
 """
+    web_section = ""
+    if args.web_map and Path(args.web_map).exists():
+        wm = json.loads(Path(args.web_map).read_text(encoding="utf-8"))
+        imgsz = variants["imgsz"]
+        rows_w = [r for r in wm["results"] if Path(exp / r["model"]).exists() and r["model"] in {x["file"] for x in variants["variants"].values()}]
+        rows_w = rows_w[:len(variants["variants"])] if imgsz == 320 else rows_w[-len(variants["variants"]):]
+        lines_w = [
+            "",
+            "## Metrik pipeline aplikasi web (angka utama)",
+            "",
+            f"Protokol: {wm['protocol']}; split test {rows_w[0]['images'] if rows_w else ''} citra. "
+            "Validator Ultralytics bawaan (`rect=True`) memberi angka lebih tinggi untuk model yang sama; "
+            "lihat `docs/EKSPERIMEN.md` (catatan protokol).",
+            "",
+            "| Varian | mAP50 | mAP50-95 | Precision | Recall |",
+            "|---|---|---|---|---|",
+            *(f"| {r['model']} | {r['map50']:.4f} | {r['map50_95']:.4f} | {r['precision']:.4f} | {r['recall']:.4f} |" for r in rows_w),
+            "",
+        ]
+        web_section = "\n".join(lines_w)
+    card = card.replace("{web_section}", web_section)
     (MODELS / "MODEL_CARD.md").write_text(card, encoding="utf-8")
     print(f"Terpasang: {dst} ({dst.stat().st_size / 1e6:.2f} MB), varian {chosen}")
 

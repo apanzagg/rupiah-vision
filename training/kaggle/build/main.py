@@ -23,7 +23,7 @@ Path("/tmp/work").mkdir(parents=True, exist_ok=True)
 with tarfile.open(sorted(glob.glob("/kaggle/input/**/pool.tar", recursive=True))[0]) as t:
     t.extractall("/tmp/work", filter="data")
 S = "cd /tmp/src/scripts && python"
-sh(f"{S} dedup_split.py --balance")
+sh(f"{S} dedup_split.py --balance --extra-neg")  # v2: + negatif yang terbuang kuota masuk train (val/test tetap)
 sh(f"{S} diag_dedup.py")
 sh(f"{S} analyze.py")
 sh(f"{S} audit_sources.py")

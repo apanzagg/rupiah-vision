@@ -50,9 +50,35 @@ Catatan kerja per fase. Jika sesi terputus, lanjutkan dari bagian **Langkah beri
 - 64 unit test lulus; parity & E2E Playwright siap; skrip uji kondisi, pengukur ukuran, generator laporan.
 - GitHub Actions deploy ke Pages (menunggu model); sumber Pages sudah diubah ke "GitHub Actions".
 
-## Langkah berikutnya
+## Fase 3 sampai 4: hasil (selesai)
 
-1. Ambil hasil training ronde 1 (`e0_r320_audit`) → tinjau `audit.zip` → isi `training/configs/label_fixes.csv` dan/atau
-   `force_train_sources` di `exclude.yaml` → push kernel `build`.
-2. Training final: `train_job.yaml` dengan `e1_r320` & `e1_r416` (80 epoch, paralel, export + save_test).
-3. `install_model.py` → `make_test_conditions.py` → `eval_conditions.py` → `make_fake_videos.py` → Playwright → deploy → `make_report.py`.
+- Training final e1_r320 & e1_r416 (data D4). Model web v1 = e1_r320 FP16 (6,1 MB): mAP50 pipeline web 0,9154 (target 0,90 tercapai).
+  Terpasang di `models/` (`install_model.py`), belum di-commit saat catatan ini dibuat.
+- Set uji per kondisi dibangun (`data/test_conditions/`, tidak di-commit) dan dievaluasi v1 (`data/interim/conditions_eval/`):
+  bukan_rupiah hanya 0,889 (uang asing disebut rupiah) -> ronde v2 hard negative (lihat `docs/EKSPERIMEN.md`).
+
+## Langkah berikutnya (diperbarui 2026-10-22 WIB)
+
+Status: **BELUM SELESAI**. Sesi otomatis yang melanjutkan: kerjakan berurutan, centang di sini setelah selesai.
+
+- [x] A. Kernel Kaggle `achmadapanza/suararupiah-build` versi 6 (v2, `dedup_split.py --extra-neg`). Setelah COMPLETE: unduh output ke
+      `training/kaggle_out/build_v2/` (`kaggle kernels output achmadapanza/suararupiah-build -p training/kaggle_out/build_v2`, cd dulu ke folder),
+      pastikan id val/test di `manifest_final.csv` identik dengan `training/kaggle_out/build/reports/manifest_final.csv`.
+      Selesai: D5 train 28.231 / val 4.858 / test 4.543, id val/test identik dengan D4.
+- [x] B. Push kernel train v2: `PYTHONUTF8=1 .venv/Scripts/python.exe training/kaggle/bundle.py train --push --accelerator NvidiaTeslaT4`
+      (job `training/configs/train_job.yaml` = e2_r320_hn, ~1,5 jam). Unduh output ke `training/kaggle_out/train_v2/`.
+      Selesai: kernel train versi 3, 40 epoch, 1,34 jam.
+- [x] C. Evaluasi v2: `eval_onnx_map.py` (FP32 & FP16 v2, root `data/final_test/final`) dan `eval_conditions.py --model <fp16 v2> --out data/interim/conditions_eval_v2`.
+      Terapkan **aturan adopsi** di `docs/EKSPERIMEN.md`. Jika v2 lolos: `install_model.py --run-dir ... --export-dir ... --version v2 --web-map ...`
+      lalu `eval_conditions.py` ulang ke `data/interim/conditions_eval`. Catat hasil di EKSPERIMEN.md (lolos atau tidak).
+      Selesai: v2 **tidak lolos** syarat (3) (terlipat −5,0, redup −5,8 poin). v1 dipertahankan; hasil di EKSPERIMEN.md.
+- [x] D. Web: `cd web && npm test && npm run build`; `python tests/e2e/make_fake_videos.py --model ../models/<model>.onnx`; `npx playwright test`
+      (parity, announce, pwa). Benchmark desktop -> `web/test-results/bench_desktop.json`; `node scripts/measure-sizes.mjs`.
+      Selesai: 64 unit test, build, 13/13 Playwright lulus; ukuran unduhan pertama 10,81 MB gzip. Benchmark desktop 20 Okt tetap berlaku (model sama).
+- [ ] E. Commit `models/` + skrip + docs (JANGAN commit data/, kredensial, bobot .pt) lalu push ke `main` (memicu deploy GitHub Pages).
+      Verifikasi https://apanzagg.github.io/rupiah-vision/ (halaman, model termuat, offline). Lighthouse dari URL publik -> `web/test-results/lighthouse.json`.
+- [ ] F. Laporan: isi `training/report/*.md`, `make_sources_doc.py`, `make_report.py --run <run>` -> `docs/LAPORAN_EVALUASI.md`;
+      perbarui EKSPERIMEN.md, README, MODEL_CARD, ARSITEKTUR/PENJELASAN bila angka berubah. Commit & push.
+- [ ] G. Ringkasan akhir untuk pengguna (Bahasa Indonesia): URL, target tercapai/tidak (angka nyata), yang harus dilakukan pengguna
+      (uji di Android/iPhone sendiri, foto sendiri sesuai PANDUAN_FOTO, blob data lama di riwayat git commit d69ca74).
+      Setelah selesai ubah status di atas menjadi **SELESAI** dan hapus tugas terjadwal `lanjutkan-suararupiah`.

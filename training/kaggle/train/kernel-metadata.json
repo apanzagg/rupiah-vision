@@ -7,8 +7,12 @@
   "is_private": true,
   "enable_gpu": true,
   "enable_internet": true,
-  "dataset_sources": [],
+  "dataset_sources": [
+    "achmadapanza/suararupiah-v1-weights"
+  ],
   "competition_sources": [],
-  "kernel_sources": ["achmadapanza/suararupiah-build"],
+  "kernel_sources": [
+    "achmadapanza/suararupiah-build"
+  ],
   "model_sources": []
 }

@@ -1,9 +1,17 @@
 {
   "version": "v1",
-  "variant": "int8_mixed",
-  "file": "model-v1-int8_mixed.onnx",
+  "variant": "fp16",
+  "file": "model-v1-fp16.onnx",
   "imgsz": 320,
-  "classes": ["1000", "2000", "5000", "10000", "20000", "50000", "100000"],
-  "sizeBytes": 0,
-  "note": "Diperbarui oleh training/scripts/install_model.py setelah model final dipilih"
+  "classes": [
+    "1000",
+    "2000",
+    "5000",
+    "10000",
+    "20000",
+    "50000",
+    "100000"
+  ],
+  "sizeBytes": 6110421,
+  "sha256": "05f7d311be4223be14b1e6c73b4fece9fa177ec32206e0466311c9759666c2e4"
 }
