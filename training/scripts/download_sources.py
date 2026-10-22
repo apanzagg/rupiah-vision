@@ -1,4 +1,4 @@
-"""Unduh semua sumber di training/configs/sources.yaml ke data/raw/.
+"""Unduh semua sumber di training/configs/sources.yaml ke data/raw/ (atau SR_RAW).
 
 - Roboflow: format YOLOv8 -> data/raw/roboflow/<workspace>__<project>__v<ver>/
 - Kaggle:   data/raw/kaggle/<owner>__<slug>/
@@ -19,14 +19,14 @@ from pathlib import Path
 
 import yaml
 
-from common import DATA, ROOT, load_env, roboflow_key
+from common import RAW, ROOT, load_env, roboflow_key
 
 
 def dl_roboflow(src: dict, key: str) -> None:
     from roboflow import Roboflow
 
     ws, proj = src["slug"].split("/")
-    out = DATA / "raw" / "roboflow" / f"{ws}__{proj}__v{src['version']}"
+    out = RAW / "roboflow" / f"{ws}__{proj}__v{src['version']}"
     if (out / ".done").exists():
         print(f"  lewati (sudah ada): {out.name}")
         return
@@ -52,7 +52,7 @@ def dl_roboflow(src: dict, key: str) -> None:
 
 def dl_kaggle(src: dict) -> None:
     owner, slug = src["ref"].split("/")
-    out = DATA / "raw" / "kaggle" / f"{owner}__{slug}"
+    out = RAW / "kaggle" / f"{owner}__{slug}"
     if (out / ".done").exists():
         print(f"  lewati (sudah ada): {out.name}")
         return
