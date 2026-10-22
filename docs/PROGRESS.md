@@ -59,7 +59,7 @@ Catatan kerja per fase. Jika sesi terputus, lanjutkan dari bagian **Langkah beri
 
 ## Langkah berikutnya (diperbarui 2026-10-22 WIB)
 
-Status: **BELUM SELESAI**. Sesi otomatis yang melanjutkan: kerjakan berurutan, centang di sini setelah selesai.
+Status: **SELESAI** (2026-10-22). Langkah A sampai G sudah dikerjakan; yang tersisa adalah uji oleh pengguna di ponsel nyata.
 
 - [x] A. Kernel Kaggle `achmadapanza/suararupiah-build` versi 6 (v2, `dedup_split.py --extra-neg`). Setelah COMPLETE: unduh output ke
       `training/kaggle_out/build_v2/` (`kaggle kernels output achmadapanza/suararupiah-build -p training/kaggle_out/build_v2`, cd dulu ke folder),
@@ -82,6 +82,7 @@ Status: **BELUM SELESAI**. Sesi otomatis yang melanjutkan: kerjakan berurutan, c
       perbarui EKSPERIMEN.md, README, MODEL_CARD, ARSITEKTUR/PENJELASAN bila angka berubah. Commit & push.
       Selesai: `make_examples.py` (grid contoh benar/salah), `make_report.py` memakai mAP pipeline web sebagai angka utama
       + pembanding v2; SUMBER_DATASET dari statistik D4. Angka v1 tidak berubah, jadi README/MODEL_CARD/ARSITEKTUR tetap.
-- [ ] G. Ringkasan akhir untuk pengguna (Bahasa Indonesia): URL, target tercapai/tidak (angka nyata), yang harus dilakukan pengguna
+- [x] G. Ringkasan akhir untuk pengguna (Bahasa Indonesia): URL, target tercapai/tidak (angka nyata), yang harus dilakukan pengguna
       (uji di Android/iPhone sendiri, foto sendiri sesuai PANDUAN_FOTO, blob data lama di riwayat git commit d69ca74).
       Setelah selesai ubah status di atas menjadi **SELESAI** dan hapus tugas terjadwal `lanjutkan-suararupiah`.
+      Selesai: ringkasan diberikan di sesi; tugas terjadwal `lanjutkan-suararupiah` sudah tidak ada saat dicek.
